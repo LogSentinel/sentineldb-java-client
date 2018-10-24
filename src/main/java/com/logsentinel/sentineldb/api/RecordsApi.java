@@ -65,18 +65,18 @@ public class RecordsApi {
         this.apiClient = apiClient;
     }
 
-    /* Build call for createUsingPOST */
-    private com.squareup.okhttp.Call createUsingPOSTCall(String body, String datastoreId, String actorId, String ownerId, String type, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for createRecord */
+    private com.squareup.okhttp.Call createRecordCall(String body, String datastoreId, String actorId, String ownerId, String type, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // verify the required parameter 'body' is set
         if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling createUsingPOST(Async)");
+            throw new ApiException("Missing the required parameter 'body' when calling createRecord(Async)");
         }
         
         // verify the required parameter 'datastoreId' is set
         if (datastoreId == null) {
-            throw new ApiException("Missing the required parameter 'datastoreId' when calling createUsingPOST(Async)");
+            throw new ApiException("Missing the required parameter 'datastoreId' when calling createRecord(Async)");
         }
         
 
@@ -135,8 +135,8 @@ public class RecordsApi {
      * @return Record
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Record createUsingPOST(String body, String datastoreId, String actorId, String ownerId, String type) throws ApiException {
-        ApiResponse<Record> resp = createUsingPOSTWithHttpInfo(body, datastoreId, actorId, ownerId, type);
+    public Record createRecord(String body, String datastoreId, String actorId, String ownerId, String type) throws ApiException {
+        ApiResponse<Record> resp = createRecordWithHttpInfo(body, datastoreId, actorId, ownerId, type);
         return resp.getData();
     }
 
@@ -151,8 +151,8 @@ public class RecordsApi {
      * @return ApiResponse&lt;Record&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Record> createUsingPOSTWithHttpInfo(String body, String datastoreId, String actorId, String ownerId, String type) throws ApiException {
-        com.squareup.okhttp.Call call = createUsingPOSTCall(body, datastoreId, actorId, ownerId, type, null, null);
+    public ApiResponse<Record> createRecordWithHttpInfo(String body, String datastoreId, String actorId, String ownerId, String type) throws ApiException {
+        com.squareup.okhttp.Call call = createRecordCall(body, datastoreId, actorId, ownerId, type, null, null);
         Type localVarReturnType = new TypeToken<Record>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -169,7 +169,7 @@ public class RecordsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createUsingPOSTAsync(String body, String datastoreId, String actorId, String ownerId, String type, final ApiCallback<Record> callback) throws ApiException {
+    public com.squareup.okhttp.Call createRecordAsync(String body, String datastoreId, String actorId, String ownerId, String type, final ApiCallback<Record> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -190,18 +190,18 @@ public class RecordsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createUsingPOSTCall(body, datastoreId, actorId, ownerId, type, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createRecordCall(body, datastoreId, actorId, ownerId, type, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Record>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-    /* Build call for deleteUsingDELETE */
-    private com.squareup.okhttp.Call deleteUsingDELETECall(String recordId, String actorId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for deleteRecord */
+    private com.squareup.okhttp.Call deleteRecordCall(String recordId, String actorId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // verify the required parameter 'recordId' is set
         if (recordId == null) {
-            throw new ApiException("Missing the required parameter 'recordId' when calling deleteUsingDELETE(Async)");
+            throw new ApiException("Missing the required parameter 'recordId' when calling deleteRecord(Async)");
         }
         
 
@@ -253,8 +253,8 @@ public class RecordsApi {
      * @return Object
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Object deleteUsingDELETE(String recordId, String actorId) throws ApiException {
-        ApiResponse<Object> resp = deleteUsingDELETEWithHttpInfo(recordId, actorId);
+    public Object deleteRecord(String recordId, String actorId) throws ApiException {
+        ApiResponse<Object> resp = deleteRecordWithHttpInfo(recordId, actorId);
         return resp.getData();
     }
 
@@ -266,8 +266,8 @@ public class RecordsApi {
      * @return ApiResponse&lt;Object&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Object> deleteUsingDELETEWithHttpInfo(String recordId, String actorId) throws ApiException {
-        com.squareup.okhttp.Call call = deleteUsingDELETECall(recordId, actorId, null, null);
+    public ApiResponse<Object> deleteRecordWithHttpInfo(String recordId, String actorId) throws ApiException {
+        com.squareup.okhttp.Call call = deleteRecordCall(recordId, actorId, null, null);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -281,7 +281,7 @@ public class RecordsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteUsingDELETEAsync(String recordId, String actorId, final ApiCallback<Object> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteRecordAsync(String recordId, String actorId, final ApiCallback<Object> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -302,18 +302,18 @@ public class RecordsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteUsingDELETECall(recordId, actorId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteRecordCall(recordId, actorId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Object>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-    /* Build call for getUsingGET */
-    private com.squareup.okhttp.Call getUsingGETCall(String recordId, String actorId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for getRecord */
+    private com.squareup.okhttp.Call getRecordCall(String recordId, String actorId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // verify the required parameter 'recordId' is set
         if (recordId == null) {
-            throw new ApiException("Missing the required parameter 'recordId' when calling getUsingGET(Async)");
+            throw new ApiException("Missing the required parameter 'recordId' when calling getRecord(Async)");
         }
         
 
@@ -365,8 +365,8 @@ public class RecordsApi {
      * @return Record
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Record getUsingGET(String recordId, String actorId) throws ApiException {
-        ApiResponse<Record> resp = getUsingGETWithHttpInfo(recordId, actorId);
+    public Record getRecord(String recordId, String actorId) throws ApiException {
+        ApiResponse<Record> resp = getRecordWithHttpInfo(recordId, actorId);
         return resp.getData();
     }
 
@@ -378,8 +378,8 @@ public class RecordsApi {
      * @return ApiResponse&lt;Record&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Record> getUsingGETWithHttpInfo(String recordId, String actorId) throws ApiException {
-        com.squareup.okhttp.Call call = getUsingGETCall(recordId, actorId, null, null);
+    public ApiResponse<Record> getRecordWithHttpInfo(String recordId, String actorId) throws ApiException {
+        com.squareup.okhttp.Call call = getRecordCall(recordId, actorId, null, null);
         Type localVarReturnType = new TypeToken<Record>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -393,7 +393,7 @@ public class RecordsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getUsingGETAsync(String recordId, String actorId, final ApiCallback<Record> callback) throws ApiException {
+    public com.squareup.okhttp.Call getRecordAsync(String recordId, String actorId, final ApiCallback<Record> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -414,23 +414,23 @@ public class RecordsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getUsingGETCall(recordId, actorId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getRecordCall(recordId, actorId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Record>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-    /* Build call for getVersionUsingGET */
-    private com.squareup.okhttp.Call getVersionUsingGETCall(String recordId, Integer version, String actorId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for getRecordVersion */
+    private com.squareup.okhttp.Call getRecordVersionCall(String recordId, Integer version, String actorId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // verify the required parameter 'recordId' is set
         if (recordId == null) {
-            throw new ApiException("Missing the required parameter 'recordId' when calling getVersionUsingGET(Async)");
+            throw new ApiException("Missing the required parameter 'recordId' when calling getRecordVersion(Async)");
         }
         
         // verify the required parameter 'version' is set
         if (version == null) {
-            throw new ApiException("Missing the required parameter 'version' when calling getVersionUsingGET(Async)");
+            throw new ApiException("Missing the required parameter 'version' when calling getRecordVersion(Async)");
         }
         
 
@@ -484,8 +484,8 @@ public class RecordsApi {
      * @return Record
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Record getVersionUsingGET(String recordId, Integer version, String actorId) throws ApiException {
-        ApiResponse<Record> resp = getVersionUsingGETWithHttpInfo(recordId, version, actorId);
+    public Record getRecordVersion(String recordId, Integer version, String actorId) throws ApiException {
+        ApiResponse<Record> resp = getRecordVersionWithHttpInfo(recordId, version, actorId);
         return resp.getData();
     }
 
@@ -498,8 +498,8 @@ public class RecordsApi {
      * @return ApiResponse&lt;Record&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Record> getVersionUsingGETWithHttpInfo(String recordId, Integer version, String actorId) throws ApiException {
-        com.squareup.okhttp.Call call = getVersionUsingGETCall(recordId, version, actorId, null, null);
+    public ApiResponse<Record> getRecordVersionWithHttpInfo(String recordId, Integer version, String actorId) throws ApiException {
+        com.squareup.okhttp.Call call = getRecordVersionCall(recordId, version, actorId, null, null);
         Type localVarReturnType = new TypeToken<Record>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -514,7 +514,7 @@ public class RecordsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getVersionUsingGETAsync(String recordId, Integer version, String actorId, final ApiCallback<Record> callback) throws ApiException {
+    public com.squareup.okhttp.Call getRecordVersionAsync(String recordId, Integer version, String actorId, final ApiCallback<Record> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -535,18 +535,18 @@ public class RecordsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getVersionUsingGETCall(recordId, version, actorId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getRecordVersionCall(recordId, version, actorId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Record>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-    /* Build call for getVersionsUsingGET */
-    private com.squareup.okhttp.Call getVersionsUsingGETCall(String recordId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for getRecordVersions */
+    private com.squareup.okhttp.Call getRecordVersionsCall(String recordId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // verify the required parameter 'recordId' is set
         if (recordId == null) {
-            throw new ApiException("Missing the required parameter 'recordId' when calling getVersionsUsingGET(Async)");
+            throw new ApiException("Missing the required parameter 'recordId' when calling getRecordVersions(Async)");
         }
         
 
@@ -595,8 +595,8 @@ public class RecordsApi {
      * @return List&lt;Integer&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Integer> getVersionsUsingGET(String recordId) throws ApiException {
-        ApiResponse<List<Integer>> resp = getVersionsUsingGETWithHttpInfo(recordId);
+    public List<Integer> getRecordVersions(String recordId) throws ApiException {
+        ApiResponse<List<Integer>> resp = getRecordVersionsWithHttpInfo(recordId);
         return resp.getData();
     }
 
@@ -607,8 +607,8 @@ public class RecordsApi {
      * @return ApiResponse&lt;List&lt;Integer&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Integer>> getVersionsUsingGETWithHttpInfo(String recordId) throws ApiException {
-        com.squareup.okhttp.Call call = getVersionsUsingGETCall(recordId, null, null);
+    public ApiResponse<List<Integer>> getRecordVersionsWithHttpInfo(String recordId) throws ApiException {
+        com.squareup.okhttp.Call call = getRecordVersionsCall(recordId, null, null);
         Type localVarReturnType = new TypeToken<List<Integer>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -621,7 +621,7 @@ public class RecordsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getVersionsUsingGETAsync(String recordId, final ApiCallback<List<Integer>> callback) throws ApiException {
+    public com.squareup.okhttp.Call getRecordVersionsAsync(String recordId, final ApiCallback<List<Integer>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -642,23 +642,134 @@ public class RecordsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getVersionsUsingGETCall(recordId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getRecordVersionsCall(recordId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Integer>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-    /* Build call for updateOwnerUsingPUT */
-    private com.squareup.okhttp.Call updateOwnerUsingPUTCall(String ownerId, String recordId, String actorId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for updateRecord */
+    private com.squareup.okhttp.Call updateRecordCall(Record record, String actorId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = record;
+        
+        // verify the required parameter 'record' is set
+        if (record == null) {
+            throw new ApiException("Missing the required parameter 'record' when calling updateRecord(Async)");
+        }
+        
+
+        // create path and map variables
+        String localVarPath = "/api/record".replaceAll("\\{format\\}","json");
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        if (actorId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "actorId", actorId));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/xml", "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "*_/_*"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    /**
+     * Updates record
+     * 
+     * @param record record (required)
+     * @param actorId actorId (optional)
+     * @return Record
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Record updateRecord(Record record, String actorId) throws ApiException {
+        ApiResponse<Record> resp = updateRecordWithHttpInfo(record, actorId);
+        return resp.getData();
+    }
+
+    /**
+     * Updates record
+     * 
+     * @param record record (required)
+     * @param actorId actorId (optional)
+     * @return ApiResponse&lt;Record&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Record> updateRecordWithHttpInfo(Record record, String actorId) throws ApiException {
+        com.squareup.okhttp.Call call = updateRecordCall(record, actorId, null, null);
+        Type localVarReturnType = new TypeToken<Record>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Updates record (asynchronously)
+     * 
+     * @param record record (required)
+     * @param actorId actorId (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call updateRecordAsync(Record record, String actorId, final ApiCallback<Record> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = updateRecordCall(record, actorId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Record>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /* Build call for updateRecordOwner */
+    private com.squareup.okhttp.Call updateRecordOwnerCall(String ownerId, String recordId, String actorId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // verify the required parameter 'ownerId' is set
         if (ownerId == null) {
-            throw new ApiException("Missing the required parameter 'ownerId' when calling updateOwnerUsingPUT(Async)");
+            throw new ApiException("Missing the required parameter 'ownerId' when calling updateRecordOwner(Async)");
         }
         
         // verify the required parameter 'recordId' is set
         if (recordId == null) {
-            throw new ApiException("Missing the required parameter 'recordId' when calling updateOwnerUsingPUT(Async)");
+            throw new ApiException("Missing the required parameter 'recordId' when calling updateRecordOwner(Async)");
         }
         
 
@@ -712,8 +823,8 @@ public class RecordsApi {
      * @return Record
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Record updateOwnerUsingPUT(String ownerId, String recordId, String actorId) throws ApiException {
-        ApiResponse<Record> resp = updateOwnerUsingPUTWithHttpInfo(ownerId, recordId, actorId);
+    public Record updateRecordOwner(String ownerId, String recordId, String actorId) throws ApiException {
+        ApiResponse<Record> resp = updateRecordOwnerWithHttpInfo(ownerId, recordId, actorId);
         return resp.getData();
     }
 
@@ -726,8 +837,8 @@ public class RecordsApi {
      * @return ApiResponse&lt;Record&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Record> updateOwnerUsingPUTWithHttpInfo(String ownerId, String recordId, String actorId) throws ApiException {
-        com.squareup.okhttp.Call call = updateOwnerUsingPUTCall(ownerId, recordId, actorId, null, null);
+    public ApiResponse<Record> updateRecordOwnerWithHttpInfo(String ownerId, String recordId, String actorId) throws ApiException {
+        com.squareup.okhttp.Call call = updateRecordOwnerCall(ownerId, recordId, actorId, null, null);
         Type localVarReturnType = new TypeToken<Record>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -742,7 +853,7 @@ public class RecordsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateOwnerUsingPUTAsync(String ownerId, String recordId, String actorId, final ApiCallback<Record> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateRecordOwnerAsync(String ownerId, String recordId, String actorId, final ApiCallback<Record> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -763,118 +874,7 @@ public class RecordsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateOwnerUsingPUTCall(ownerId, recordId, actorId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Record>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /* Build call for updateUsingPUT */
-    private com.squareup.okhttp.Call updateUsingPUTCall(Record record, String actorId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = record;
-        
-        // verify the required parameter 'record' is set
-        if (record == null) {
-            throw new ApiException("Missing the required parameter 'record' when calling updateUsingPUT(Async)");
-        }
-        
-
-        // create path and map variables
-        String localVarPath = "/api/record".replaceAll("\\{format\\}","json");
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        if (actorId != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "actorId", actorId));
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/xml", "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            "application/json", "*_/_*"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] { "basicAuth" };
-        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    /**
-     * Updates record
-     * 
-     * @param record record (required)
-     * @param actorId actorId (optional)
-     * @return Record
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public Record updateUsingPUT(Record record, String actorId) throws ApiException {
-        ApiResponse<Record> resp = updateUsingPUTWithHttpInfo(record, actorId);
-        return resp.getData();
-    }
-
-    /**
-     * Updates record
-     * 
-     * @param record record (required)
-     * @param actorId actorId (optional)
-     * @return ApiResponse&lt;Record&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<Record> updateUsingPUTWithHttpInfo(Record record, String actorId) throws ApiException {
-        com.squareup.okhttp.Call call = updateUsingPUTCall(record, actorId, null, null);
-        Type localVarReturnType = new TypeToken<Record>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * Updates record (asynchronously)
-     * 
-     * @param record record (required)
-     * @param actorId actorId (optional)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call updateUsingPUTAsync(Record record, String actorId, final ApiCallback<Record> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = updateUsingPUTCall(record, actorId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = updateRecordOwnerCall(ownerId, recordId, actorId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Record>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

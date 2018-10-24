@@ -51,10 +51,10 @@ public class UserApiTest {
      *          if the Api call fails
      */
     @Test
-    public void createUsingPOST1Test() throws ApiException {
+    public void createUserTest() throws ApiException {
         User user = null;
         String actorId = null;
-        // User response = api.createUsingPOST1(user, actorId);
+        // User response = api.createUser(user, actorId);
 
         // TODO: test validations
     }
@@ -68,10 +68,10 @@ public class UserApiTest {
      *          if the Api call fails
      */
     @Test
-    public void deleteUsingDELETE1Test() throws ApiException {
+    public void deleteUserTest() throws ApiException {
         String userId = null;
         String actorId = null;
-        // Object response = api.deleteUsingDELETE1(userId, actorId);
+        // Object response = api.deleteUser(userId, actorId);
 
         // TODO: test validations
     }
@@ -85,10 +85,10 @@ public class UserApiTest {
      *          if the Api call fails
      */
     @Test
-    public void forgetUserUsingPUTTest() throws ApiException {
+    public void forgetUserTest() throws ApiException {
         String userId = null;
         String actorId = null;
-        // Object response = api.forgetUserUsingPUT(userId, actorId);
+        // Object response = api.forgetUser(userId, actorId);
 
         // TODO: test validations
     }
@@ -102,10 +102,10 @@ public class UserApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getUsingGET1Test() throws ApiException {
+    public void getUserTest() throws ApiException {
         String userId = null;
         String actorId = null;
-        // User response = api.getUsingGET1(userId, actorId);
+        // User response = api.getUser(userId, actorId);
 
         // TODO: test validations
     }
@@ -119,11 +119,11 @@ public class UserApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getVersionUsingGET1Test() throws ApiException {
+    public void getUserVersionTest() throws ApiException {
         String userId = null;
         Integer version = null;
         String actorId = null;
-        // User response = api.getVersionUsingGET1(userId, version, actorId);
+        // User response = api.getUserVersion(userId, version, actorId);
 
         // TODO: test validations
     }
@@ -137,9 +137,9 @@ public class UserApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getVersionsUsingGET1Test() throws ApiException {
+    public void getUserVersionsTest() throws ApiException {
         String userId = null;
-        // List<Integer> response = api.getVersionsUsingGET1(userId);
+        // List<Integer> response = api.getUserVersions(userId);
 
         // TODO: test validations
     }
@@ -153,10 +153,10 @@ public class UserApiTest {
      *          if the Api call fails
      */
     @Test
-    public void updateUsingPUT1Test() throws ApiException {
+    public void updateUserTest() throws ApiException {
         User user = null;
         String actorId = null;
-        // User response = api.updateUsingPUT1(user, actorId);
+        // User response = api.updateUser(user, actorId);
 
         // TODO: test validations
     }

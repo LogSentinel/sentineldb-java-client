@@ -82,10 +82,10 @@ public class DatastoreApiExample {
         Integer pageNumber = 0; // Integer | pageNumber
         Integer pageSize = 20; // Integer | pageSize
         try {
-            List<Record> result = apiInstance.getRecordsByDatastoreUsingGET(datastoreId, actor, pageNumber, pageSize);
+            List<Record> result = apiInstance.getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DatastoreApi#getRecordsByDatastoreUsingGET");
+            System.err.println("Exception when calling DatastoreApi#getRecordsByDatastore");
             e.printStackTrace();
         }
     }
@@ -99,24 +99,24 @@ All URIs are relative to *https://localhost:8090/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DatastoreApi* | [**getRecordsByDatastoreUsingGET**](docs/DatastoreApi.md#getRecordsByDatastoreUsingGET) | **GET** /api/datastore/{datastoreId}/records | Gets records by datastore with pagination
-*DatastoreApi* | [**getUsersByDatastoreUsingGET**](docs/DatastoreApi.md#getUsersByDatastoreUsingGET) | **GET** /api/datastore/{datastoreId}/users | Gets users by datastore with pagination
-*RecordsApi* | [**createUsingPOST**](docs/RecordsApi.md#createUsingPOST) | **POST** /api/record/datastore/{datastoreId} | Creates a record
-*RecordsApi* | [**deleteUsingDELETE**](docs/RecordsApi.md#deleteUsingDELETE) | **DELETE** /api/record/{recordId} | Deletes an existing record
-*RecordsApi* | [**getUsingGET**](docs/RecordsApi.md#getUsingGET) | **GET** /api/record/{recordId} | Gets record by id
-*RecordsApi* | [**getVersionUsingGET**](docs/RecordsApi.md#getVersionUsingGET) | **GET** /api/record/{recordId}/versions/{version} | Gets concrete record version
-*RecordsApi* | [**getVersionsUsingGET**](docs/RecordsApi.md#getVersionsUsingGET) | **GET** /api/record/{recordId}/versions | Gets all record versions by id
-*RecordsApi* | [**updateOwnerUsingPUT**](docs/RecordsApi.md#updateOwnerUsingPUT) | **PUT** /api/record/{recordId}/owner/{ownerId} | Updates a record&#39;s owner
-*RecordsApi* | [**updateUsingPUT**](docs/RecordsApi.md#updateUsingPUT) | **PUT** /api/record | Updates record
-*SearchApi* | [**searchRecordsUsingPOST**](docs/SearchApi.md#searchRecordsUsingPOST) | **POST** /api/search/records/{type}/datastore/{datastoreId} | Search records
-*SearchApi* | [**searchUsersUsingPOST**](docs/SearchApi.md#searchUsersUsingPOST) | **POST** /api/search/users/datastore/{datastoreId} | Search users
-*UserApi* | [**createUsingPOST1**](docs/UserApi.md#createUsingPOST1) | **POST** /api/user | Creates a user
-*UserApi* | [**deleteUsingDELETE1**](docs/UserApi.md#deleteUsingDELETE1) | **DELETE** /api/user/{userId} | Deletes an existing user
-*UserApi* | [**forgetUserUsingPUT**](docs/UserApi.md#forgetUserUsingPUT) | **PUT** /api/user/forget/{userId} | Forgets user
-*UserApi* | [**getUsingGET1**](docs/UserApi.md#getUsingGET1) | **GET** /api/user/{userId} | Gets user by id
-*UserApi* | [**getVersionUsingGET1**](docs/UserApi.md#getVersionUsingGET1) | **GET** /api/user/{userId}/versions/{version} | Gets concrete user version
-*UserApi* | [**getVersionsUsingGET1**](docs/UserApi.md#getVersionsUsingGET1) | **GET** /api/user/{userId}/versions | Gets all record versions by id
-*UserApi* | [**updateUsingPUT1**](docs/UserApi.md#updateUsingPUT1) | **PUT** /api/user | Updates user
+*DatastoreApi* | [**getRecordsByDatastore**](docs/DatastoreApi.md#getRecordsByDatastore) | **GET** /api/datastore/{datastoreId}/records | Gets records by datastore with pagination
+*DatastoreApi* | [**getUsersByDatastore**](docs/DatastoreApi.md#getUsersByDatastore) | **GET** /api/datastore/{datastoreId}/users | Gets users by datastore with pagination
+*RecordsApi* | [**createRecord**](docs/RecordsApi.md#createRecord) | **POST** /api/record/datastore/{datastoreId} | Creates a record
+*RecordsApi* | [**deleteRecord**](docs/RecordsApi.md#deleteRecord) | **DELETE** /api/record/{recordId} | Deletes an existing record
+*RecordsApi* | [**getRecord**](docs/RecordsApi.md#getRecord) | **GET** /api/record/{recordId} | Gets record by id
+*RecordsApi* | [**getRecordVersion**](docs/RecordsApi.md#getRecordVersion) | **GET** /api/record/{recordId}/versions/{version} | Gets concrete record version
+*RecordsApi* | [**getRecordVersions**](docs/RecordsApi.md#getRecordVersions) | **GET** /api/record/{recordId}/versions | Gets all record versions by id
+*RecordsApi* | [**updateRecord**](docs/RecordsApi.md#updateRecord) | **PUT** /api/record | Updates record
+*RecordsApi* | [**updateRecordOwner**](docs/RecordsApi.md#updateRecordOwner) | **PUT** /api/record/{recordId}/owner/{ownerId} | Updates a record&#39;s owner
+*SearchApi* | [**searchRecords**](docs/SearchApi.md#searchRecords) | **POST** /api/search/records/{type}/datastore/{datastoreId} | Search records
+*SearchApi* | [**searchUsers**](docs/SearchApi.md#searchUsers) | **POST** /api/search/users/datastore/{datastoreId} | Search users
+*UserApi* | [**createUser**](docs/UserApi.md#createUser) | **POST** /api/user | Creates a user
+*UserApi* | [**deleteUser**](docs/UserApi.md#deleteUser) | **DELETE** /api/user/{userId} | Deletes an existing user
+*UserApi* | [**forgetUser**](docs/UserApi.md#forgetUser) | **PUT** /api/user/forget/{userId} | Forgets user
+*UserApi* | [**getUser**](docs/UserApi.md#getUser) | **GET** /api/user/{userId} | Gets user by id
+*UserApi* | [**getUserVersion**](docs/UserApi.md#getUserVersion) | **GET** /api/user/{userId}/versions/{version} | Gets concrete user version
+*UserApi* | [**getUserVersions**](docs/UserApi.md#getUserVersions) | **GET** /api/user/{userId}/versions | Gets all record versions by id
+*UserApi* | [**updateUser**](docs/UserApi.md#updateUser) | **PUT** /api/user | Updates user
 
 
 ## Documentation for Models

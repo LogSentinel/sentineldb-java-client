@@ -52,12 +52,12 @@ public class DatastoreApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getRecordsByDatastoreUsingGETTest() throws ApiException {
+    public void getRecordsByDatastoreTest() throws ApiException {
         String datastoreId = null;
         String actor = null;
         Integer pageNumber = null;
         Integer pageSize = null;
-        // List<Record> response = api.getRecordsByDatastoreUsingGET(datastoreId, actor, pageNumber, pageSize);
+        // List<Record> response = api.getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize);
 
         // TODO: test validations
     }
@@ -71,12 +71,12 @@ public class DatastoreApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getUsersByDatastoreUsingGETTest() throws ApiException {
+    public void getUsersByDatastoreTest() throws ApiException {
         String datastoreId = null;
         String actor = null;
         Integer pageNumber = null;
         Integer pageSize = null;
-        // List<User> response = api.getUsersByDatastoreUsingGET(datastoreId, actor, pageNumber, pageSize);
+        // List<User> response = api.getUsersByDatastore(datastoreId, actor, pageNumber, pageSize);
 
         // TODO: test validations
     }

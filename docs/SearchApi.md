@@ -4,13 +4,13 @@ All URIs are relative to *https://localhost:8090/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**searchRecordsUsingPOST**](SearchApi.md#searchRecordsUsingPOST) | **POST** /api/search/records/{type}/datastore/{datastoreId} | Search records
-[**searchUsersUsingPOST**](SearchApi.md#searchUsersUsingPOST) | **POST** /api/search/users/datastore/{datastoreId} | Search users
+[**searchRecords**](SearchApi.md#searchRecords) | **POST** /api/search/records/{type}/datastore/{datastoreId} | Search records
+[**searchUsers**](SearchApi.md#searchUsers) | **POST** /api/search/users/datastore/{datastoreId} | Search users
 
 
-<a name="searchRecordsUsingPOST"></a>
-# **searchRecordsUsingPOST**
-> List&lt;Record&gt; searchRecordsUsingPOST(datastoreId, request, type, pageNumber, pageSize)
+<a name="searchRecords"></a>
+# **searchRecords**
+> List&lt;Record&gt; searchRecords(datastoreId, request, type, pageNumber, pageSize)
 
 Search records
 
@@ -37,10 +37,10 @@ String type = "type_example"; // String | type
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
 try {
-    List<Record> result = apiInstance.searchRecordsUsingPOST(datastoreId, request, type, pageNumber, pageSize);
+    List<Record> result = apiInstance.searchRecords(datastoreId, request, type, pageNumber, pageSize);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling SearchApi#searchRecordsUsingPOST");
+    System.err.println("Exception when calling SearchApi#searchRecords");
     e.printStackTrace();
 }
 ```
@@ -68,9 +68,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="searchUsersUsingPOST"></a>
-# **searchUsersUsingPOST**
-> List&lt;User&gt; searchUsersUsingPOST(datastoreId, request, pageNumber, pageSize)
+<a name="searchUsers"></a>
+# **searchUsers**
+> List&lt;User&gt; searchUsers(datastoreId, request, pageNumber, pageSize)
 
 Search users
 
@@ -96,10 +96,10 @@ Object request = null; // Object | request
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
 try {
-    List<User> result = apiInstance.searchUsersUsingPOST(datastoreId, request, pageNumber, pageSize);
+    List<User> result = apiInstance.searchUsers(datastoreId, request, pageNumber, pageSize);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling SearchApi#searchUsersUsingPOST");
+    System.err.println("Exception when calling SearchApi#searchUsers");
     e.printStackTrace();
 }
 ```

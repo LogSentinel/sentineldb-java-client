@@ -4,18 +4,18 @@ All URIs are relative to *https://localhost:8090/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createUsingPOST**](RecordsApi.md#createUsingPOST) | **POST** /api/record/datastore/{datastoreId} | Creates a record
-[**deleteUsingDELETE**](RecordsApi.md#deleteUsingDELETE) | **DELETE** /api/record/{recordId} | Deletes an existing record
-[**getUsingGET**](RecordsApi.md#getUsingGET) | **GET** /api/record/{recordId} | Gets record by id
-[**getVersionUsingGET**](RecordsApi.md#getVersionUsingGET) | **GET** /api/record/{recordId}/versions/{version} | Gets concrete record version
-[**getVersionsUsingGET**](RecordsApi.md#getVersionsUsingGET) | **GET** /api/record/{recordId}/versions | Gets all record versions by id
-[**updateOwnerUsingPUT**](RecordsApi.md#updateOwnerUsingPUT) | **PUT** /api/record/{recordId}/owner/{ownerId} | Updates a record&#39;s owner
-[**updateUsingPUT**](RecordsApi.md#updateUsingPUT) | **PUT** /api/record | Updates record
+[**createRecord**](RecordsApi.md#createRecord) | **POST** /api/record/datastore/{datastoreId} | Creates a record
+[**deleteRecord**](RecordsApi.md#deleteRecord) | **DELETE** /api/record/{recordId} | Deletes an existing record
+[**getRecord**](RecordsApi.md#getRecord) | **GET** /api/record/{recordId} | Gets record by id
+[**getRecordVersion**](RecordsApi.md#getRecordVersion) | **GET** /api/record/{recordId}/versions/{version} | Gets concrete record version
+[**getRecordVersions**](RecordsApi.md#getRecordVersions) | **GET** /api/record/{recordId}/versions | Gets all record versions by id
+[**updateRecord**](RecordsApi.md#updateRecord) | **PUT** /api/record | Updates record
+[**updateRecordOwner**](RecordsApi.md#updateRecordOwner) | **PUT** /api/record/{recordId}/owner/{ownerId} | Updates a record&#39;s owner
 
 
-<a name="createUsingPOST"></a>
-# **createUsingPOST**
-> Record createUsingPOST(body, datastoreId, actorId, ownerId, type)
+<a name="createRecord"></a>
+# **createRecord**
+> Record createRecord(body, datastoreId, actorId, ownerId, type)
 
 Creates a record
 
@@ -42,10 +42,10 @@ String actorId = "actorId_example"; // String | actorId
 String ownerId = "ownerId_example"; // String | ownerId
 String type = "type_example"; // String | type
 try {
-    Record result = apiInstance.createUsingPOST(body, datastoreId, actorId, ownerId, type);
+    Record result = apiInstance.createRecord(body, datastoreId, actorId, ownerId, type);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling RecordsApi#createUsingPOST");
+    System.err.println("Exception when calling RecordsApi#createRecord");
     e.printStackTrace();
 }
 ```
@@ -73,9 +73,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="deleteUsingDELETE"></a>
-# **deleteUsingDELETE**
-> Object deleteUsingDELETE(recordId, actorId)
+<a name="deleteRecord"></a>
+# **deleteRecord**
+> Object deleteRecord(recordId, actorId)
 
 Deletes an existing record
 
@@ -99,10 +99,10 @@ RecordsApi apiInstance = new RecordsApi();
 String recordId = "recordId_example"; // String | recordId
 String actorId = "actorId_example"; // String | actorId
 try {
-    Object result = apiInstance.deleteUsingDELETE(recordId, actorId);
+    Object result = apiInstance.deleteRecord(recordId, actorId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling RecordsApi#deleteUsingDELETE");
+    System.err.println("Exception when calling RecordsApi#deleteRecord");
     e.printStackTrace();
 }
 ```
@@ -127,9 +127,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="getUsingGET"></a>
-# **getUsingGET**
-> Record getUsingGET(recordId, actorId)
+<a name="getRecord"></a>
+# **getRecord**
+> Record getRecord(recordId, actorId)
 
 Gets record by id
 
@@ -153,10 +153,10 @@ RecordsApi apiInstance = new RecordsApi();
 String recordId = "recordId_example"; // String | recordId
 String actorId = "actorId_example"; // String | actorId
 try {
-    Record result = apiInstance.getUsingGET(recordId, actorId);
+    Record result = apiInstance.getRecord(recordId, actorId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling RecordsApi#getUsingGET");
+    System.err.println("Exception when calling RecordsApi#getRecord");
     e.printStackTrace();
 }
 ```
@@ -181,9 +181,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="getVersionUsingGET"></a>
-# **getVersionUsingGET**
-> Record getVersionUsingGET(recordId, version, actorId)
+<a name="getRecordVersion"></a>
+# **getRecordVersion**
+> Record getRecordVersion(recordId, version, actorId)
 
 Gets concrete record version
 
@@ -208,10 +208,10 @@ String recordId = "recordId_example"; // String | recordId
 Integer version = 56; // Integer | version
 String actorId = "actorId_example"; // String | actorId
 try {
-    Record result = apiInstance.getVersionUsingGET(recordId, version, actorId);
+    Record result = apiInstance.getRecordVersion(recordId, version, actorId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling RecordsApi#getVersionUsingGET");
+    System.err.println("Exception when calling RecordsApi#getRecordVersion");
     e.printStackTrace();
 }
 ```
@@ -237,9 +237,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="getVersionsUsingGET"></a>
-# **getVersionsUsingGET**
-> List&lt;Integer&gt; getVersionsUsingGET(recordId)
+<a name="getRecordVersions"></a>
+# **getRecordVersions**
+> List&lt;Integer&gt; getRecordVersions(recordId)
 
 Gets all record versions by id
 
@@ -262,10 +262,10 @@ basicAuth.setPassword("YOUR PASSWORD");
 RecordsApi apiInstance = new RecordsApi();
 String recordId = "recordId_example"; // String | recordId
 try {
-    List<Integer> result = apiInstance.getVersionsUsingGET(recordId);
+    List<Integer> result = apiInstance.getRecordVersions(recordId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling RecordsApi#getVersionsUsingGET");
+    System.err.println("Exception when calling RecordsApi#getRecordVersions");
     e.printStackTrace();
 }
 ```
@@ -289,9 +289,63 @@ Name | Type | Description  | Notes
  - **Content-Type**: *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="updateOwnerUsingPUT"></a>
-# **updateOwnerUsingPUT**
-> Record updateOwnerUsingPUT(ownerId, recordId, actorId)
+<a name="updateRecord"></a>
+# **updateRecord**
+> Record updateRecord(record, actorId)
+
+Updates record
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.RecordsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+RecordsApi apiInstance = new RecordsApi();
+Record record = new Record(); // Record | record
+String actorId = "actorId_example"; // String | actorId
+try {
+    Record result = apiInstance.updateRecord(record, actorId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling RecordsApi#updateRecord");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **record** | [**Record**](Record.md)| record |
+ **actorId** | **String**| actorId | [optional]
+
+### Return type
+
+[**Record**](Record.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, *_/_*
+ - **Accept**: application/xml, application/json
+
+<a name="updateRecordOwner"></a>
+# **updateRecordOwner**
+> Record updateRecordOwner(ownerId, recordId, actorId)
 
 Updates a record&#39;s owner
 
@@ -316,10 +370,10 @@ String ownerId = "ownerId_example"; // String | ownerId
 String recordId = "recordId_example"; // String | recordId
 String actorId = "actorId_example"; // String | actorId
 try {
-    Record result = apiInstance.updateOwnerUsingPUT(ownerId, recordId, actorId);
+    Record result = apiInstance.updateRecordOwner(ownerId, recordId, actorId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling RecordsApi#updateOwnerUsingPUT");
+    System.err.println("Exception when calling RecordsApi#updateRecordOwner");
     e.printStackTrace();
 }
 ```
@@ -330,60 +384,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ownerId** | **String**| ownerId |
  **recordId** | **String**| recordId |
- **actorId** | **String**| actorId | [optional]
-
-### Return type
-
-[**Record**](Record.md)
-
-### Authorization
-
-[basicAuth](../README.md#basicAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, *_/_*
- - **Accept**: application/xml, application/json
-
-<a name="updateUsingPUT"></a>
-# **updateUsingPUT**
-> Record updateUsingPUT(record, actorId)
-
-Updates record
-
-### Example
-```java
-// Import classes:
-//import com.logsentinel.sentineldb.ApiClient;
-//import com.logsentinel.sentineldb.ApiException;
-//import com.logsentinel.sentineldb.Configuration;
-//import com.logsentinel.sentineldb.auth.*;
-//import com.logsentinel.sentineldb.api.RecordsApi;
-
-ApiClient defaultClient = Configuration.getDefaultApiClient();
-
-// Configure HTTP basic authorization: basicAuth
-HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
-basicAuth.setUsername("YOUR USERNAME");
-basicAuth.setPassword("YOUR PASSWORD");
-
-RecordsApi apiInstance = new RecordsApi();
-Record record = new Record(); // Record | record
-String actorId = "actorId_example"; // String | actorId
-try {
-    Record result = apiInstance.updateUsingPUT(record, actorId);
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling RecordsApi#updateUsingPUT");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **record** | [**Record**](Record.md)| record |
  **actorId** | **String**| actorId | [optional]
 
 ### Return type

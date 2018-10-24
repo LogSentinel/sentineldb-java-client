@@ -66,13 +66,13 @@ public class DatastoreApi {
         this.apiClient = apiClient;
     }
 
-    /* Build call for getRecordsByDatastoreUsingGET */
-    private com.squareup.okhttp.Call getRecordsByDatastoreUsingGETCall(String datastoreId, String actor, Integer pageNumber, Integer pageSize, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for getRecordsByDatastore */
+    private com.squareup.okhttp.Call getRecordsByDatastoreCall(String datastoreId, String actor, Integer pageNumber, Integer pageSize, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // verify the required parameter 'datastoreId' is set
         if (datastoreId == null) {
-            throw new ApiException("Missing the required parameter 'datastoreId' when calling getRecordsByDatastoreUsingGET(Async)");
+            throw new ApiException("Missing the required parameter 'datastoreId' when calling getRecordsByDatastore(Async)");
         }
         
 
@@ -130,8 +130,8 @@ public class DatastoreApi {
      * @return List&lt;Record&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Record> getRecordsByDatastoreUsingGET(String datastoreId, String actor, Integer pageNumber, Integer pageSize) throws ApiException {
-        ApiResponse<List<Record>> resp = getRecordsByDatastoreUsingGETWithHttpInfo(datastoreId, actor, pageNumber, pageSize);
+    public List<Record> getRecordsByDatastore(String datastoreId, String actor, Integer pageNumber, Integer pageSize) throws ApiException {
+        ApiResponse<List<Record>> resp = getRecordsByDatastoreWithHttpInfo(datastoreId, actor, pageNumber, pageSize);
         return resp.getData();
     }
 
@@ -145,8 +145,8 @@ public class DatastoreApi {
      * @return ApiResponse&lt;List&lt;Record&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Record>> getRecordsByDatastoreUsingGETWithHttpInfo(String datastoreId, String actor, Integer pageNumber, Integer pageSize) throws ApiException {
-        com.squareup.okhttp.Call call = getRecordsByDatastoreUsingGETCall(datastoreId, actor, pageNumber, pageSize, null, null);
+    public ApiResponse<List<Record>> getRecordsByDatastoreWithHttpInfo(String datastoreId, String actor, Integer pageNumber, Integer pageSize) throws ApiException {
+        com.squareup.okhttp.Call call = getRecordsByDatastoreCall(datastoreId, actor, pageNumber, pageSize, null, null);
         Type localVarReturnType = new TypeToken<List<Record>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -162,7 +162,7 @@ public class DatastoreApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getRecordsByDatastoreUsingGETAsync(String datastoreId, String actor, Integer pageNumber, Integer pageSize, final ApiCallback<List<Record>> callback) throws ApiException {
+    public com.squareup.okhttp.Call getRecordsByDatastoreAsync(String datastoreId, String actor, Integer pageNumber, Integer pageSize, final ApiCallback<List<Record>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -183,18 +183,18 @@ public class DatastoreApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getRecordsByDatastoreUsingGETCall(datastoreId, actor, pageNumber, pageSize, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getRecordsByDatastoreCall(datastoreId, actor, pageNumber, pageSize, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Record>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-    /* Build call for getUsersByDatastoreUsingGET */
-    private com.squareup.okhttp.Call getUsersByDatastoreUsingGETCall(String datastoreId, String actor, Integer pageNumber, Integer pageSize, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for getUsersByDatastore */
+    private com.squareup.okhttp.Call getUsersByDatastoreCall(String datastoreId, String actor, Integer pageNumber, Integer pageSize, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // verify the required parameter 'datastoreId' is set
         if (datastoreId == null) {
-            throw new ApiException("Missing the required parameter 'datastoreId' when calling getUsersByDatastoreUsingGET(Async)");
+            throw new ApiException("Missing the required parameter 'datastoreId' when calling getUsersByDatastore(Async)");
         }
         
 
@@ -252,8 +252,8 @@ public class DatastoreApi {
      * @return List&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<User> getUsersByDatastoreUsingGET(String datastoreId, String actor, Integer pageNumber, Integer pageSize) throws ApiException {
-        ApiResponse<List<User>> resp = getUsersByDatastoreUsingGETWithHttpInfo(datastoreId, actor, pageNumber, pageSize);
+    public List<User> getUsersByDatastore(String datastoreId, String actor, Integer pageNumber, Integer pageSize) throws ApiException {
+        ApiResponse<List<User>> resp = getUsersByDatastoreWithHttpInfo(datastoreId, actor, pageNumber, pageSize);
         return resp.getData();
     }
 
@@ -267,8 +267,8 @@ public class DatastoreApi {
      * @return ApiResponse&lt;List&lt;User&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<User>> getUsersByDatastoreUsingGETWithHttpInfo(String datastoreId, String actor, Integer pageNumber, Integer pageSize) throws ApiException {
-        com.squareup.okhttp.Call call = getUsersByDatastoreUsingGETCall(datastoreId, actor, pageNumber, pageSize, null, null);
+    public ApiResponse<List<User>> getUsersByDatastoreWithHttpInfo(String datastoreId, String actor, Integer pageNumber, Integer pageSize) throws ApiException {
+        com.squareup.okhttp.Call call = getUsersByDatastoreCall(datastoreId, actor, pageNumber, pageSize, null, null);
         Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -284,7 +284,7 @@ public class DatastoreApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getUsersByDatastoreUsingGETAsync(String datastoreId, String actor, Integer pageNumber, Integer pageSize, final ApiCallback<List<User>> callback) throws ApiException {
+    public com.squareup.okhttp.Call getUsersByDatastoreAsync(String datastoreId, String actor, Integer pageNumber, Integer pageSize, final ApiCallback<List<User>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -305,7 +305,7 @@ public class DatastoreApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getUsersByDatastoreUsingGETCall(datastoreId, actor, pageNumber, pageSize, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getUsersByDatastoreCall(datastoreId, actor, pageNumber, pageSize, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

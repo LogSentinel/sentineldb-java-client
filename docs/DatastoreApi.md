@@ -4,13 +4,13 @@ All URIs are relative to *https://localhost:8090/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getRecordsByDatastoreUsingGET**](DatastoreApi.md#getRecordsByDatastoreUsingGET) | **GET** /api/datastore/{datastoreId}/records | Gets records by datastore with pagination
-[**getUsersByDatastoreUsingGET**](DatastoreApi.md#getUsersByDatastoreUsingGET) | **GET** /api/datastore/{datastoreId}/users | Gets users by datastore with pagination
+[**getRecordsByDatastore**](DatastoreApi.md#getRecordsByDatastore) | **GET** /api/datastore/{datastoreId}/records | Gets records by datastore with pagination
+[**getUsersByDatastore**](DatastoreApi.md#getUsersByDatastore) | **GET** /api/datastore/{datastoreId}/users | Gets users by datastore with pagination
 
 
-<a name="getRecordsByDatastoreUsingGET"></a>
-# **getRecordsByDatastoreUsingGET**
-> List&lt;Record&gt; getRecordsByDatastoreUsingGET(datastoreId, actor, pageNumber, pageSize)
+<a name="getRecordsByDatastore"></a>
+# **getRecordsByDatastore**
+> List&lt;Record&gt; getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize)
 
 Gets records by datastore with pagination
 
@@ -36,10 +36,10 @@ String actor = "actor_example"; // String | actor
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
 try {
-    List<Record> result = apiInstance.getRecordsByDatastoreUsingGET(datastoreId, actor, pageNumber, pageSize);
+    List<Record> result = apiInstance.getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling DatastoreApi#getRecordsByDatastoreUsingGET");
+    System.err.println("Exception when calling DatastoreApi#getRecordsByDatastore");
     e.printStackTrace();
 }
 ```
@@ -66,9 +66,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="getUsersByDatastoreUsingGET"></a>
-# **getUsersByDatastoreUsingGET**
-> List&lt;User&gt; getUsersByDatastoreUsingGET(datastoreId, actor, pageNumber, pageSize)
+<a name="getUsersByDatastore"></a>
+# **getUsersByDatastore**
+> List&lt;User&gt; getUsersByDatastore(datastoreId, actor, pageNumber, pageSize)
 
 Gets users by datastore with pagination
 
@@ -94,10 +94,10 @@ String actor = "actor_example"; // String | actor
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
 try {
-    List<User> result = apiInstance.getUsersByDatastoreUsingGET(datastoreId, actor, pageNumber, pageSize);
+    List<User> result = apiInstance.getUsersByDatastore(datastoreId, actor, pageNumber, pageSize);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling DatastoreApi#getUsersByDatastoreUsingGET");
+    System.err.println("Exception when calling DatastoreApi#getUsersByDatastore");
     e.printStackTrace();
 }
 ```

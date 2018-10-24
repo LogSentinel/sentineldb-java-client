@@ -51,13 +51,13 @@ public class RecordsApiTest {
      *          if the Api call fails
      */
     @Test
-    public void createUsingPOSTTest() throws ApiException {
+    public void createRecordTest() throws ApiException {
         String body = null;
         String datastoreId = null;
         String actorId = null;
         String ownerId = null;
         String type = null;
-        // Record response = api.createUsingPOST(body, datastoreId, actorId, ownerId, type);
+        // Record response = api.createRecord(body, datastoreId, actorId, ownerId, type);
 
         // TODO: test validations
     }
@@ -71,10 +71,10 @@ public class RecordsApiTest {
      *          if the Api call fails
      */
     @Test
-    public void deleteUsingDELETETest() throws ApiException {
+    public void deleteRecordTest() throws ApiException {
         String recordId = null;
         String actorId = null;
-        // Object response = api.deleteUsingDELETE(recordId, actorId);
+        // Object response = api.deleteRecord(recordId, actorId);
 
         // TODO: test validations
     }
@@ -88,10 +88,10 @@ public class RecordsApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getUsingGETTest() throws ApiException {
+    public void getRecordTest() throws ApiException {
         String recordId = null;
         String actorId = null;
-        // Record response = api.getUsingGET(recordId, actorId);
+        // Record response = api.getRecord(recordId, actorId);
 
         // TODO: test validations
     }
@@ -105,11 +105,11 @@ public class RecordsApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getVersionUsingGETTest() throws ApiException {
+    public void getRecordVersionTest() throws ApiException {
         String recordId = null;
         Integer version = null;
         String actorId = null;
-        // Record response = api.getVersionUsingGET(recordId, version, actorId);
+        // Record response = api.getRecordVersion(recordId, version, actorId);
 
         // TODO: test validations
     }
@@ -123,27 +123,9 @@ public class RecordsApiTest {
      *          if the Api call fails
      */
     @Test
-    public void getVersionsUsingGETTest() throws ApiException {
+    public void getRecordVersionsTest() throws ApiException {
         String recordId = null;
-        // List<Integer> response = api.getVersionsUsingGET(recordId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Updates a record&#39;s owner
-     *
-     * 
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void updateOwnerUsingPUTTest() throws ApiException {
-        String ownerId = null;
-        String recordId = null;
-        String actorId = null;
-        // Record response = api.updateOwnerUsingPUT(ownerId, recordId, actorId);
+        // List<Integer> response = api.getRecordVersions(recordId);
 
         // TODO: test validations
     }
@@ -157,10 +139,28 @@ public class RecordsApiTest {
      *          if the Api call fails
      */
     @Test
-    public void updateUsingPUTTest() throws ApiException {
+    public void updateRecordTest() throws ApiException {
         Record record = null;
         String actorId = null;
-        // Record response = api.updateUsingPUT(record, actorId);
+        // Record response = api.updateRecord(record, actorId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Updates a record&#39;s owner
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void updateRecordOwnerTest() throws ApiException {
+        String ownerId = null;
+        String recordId = null;
+        String actorId = null;
+        // Record response = api.updateRecordOwner(ownerId, recordId, actorId);
 
         // TODO: test validations
     }

@@ -37,7 +37,7 @@ import org.joda.time.DateTime;
 /**
  * User
  */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-24T12:51:32.770+03:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-24T13:21:53.207+03:00")
 public class User   {
   @SerializedName("attributes")
   private String attributes = null;

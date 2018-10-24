@@ -4,18 +4,18 @@ All URIs are relative to *https://localhost:8090/*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createUsingPOST1**](UserApi.md#createUsingPOST1) | **POST** /api/user | Creates a user
-[**deleteUsingDELETE1**](UserApi.md#deleteUsingDELETE1) | **DELETE** /api/user/{userId} | Deletes an existing user
-[**forgetUserUsingPUT**](UserApi.md#forgetUserUsingPUT) | **PUT** /api/user/forget/{userId} | Forgets user
-[**getUsingGET1**](UserApi.md#getUsingGET1) | **GET** /api/user/{userId} | Gets user by id
-[**getVersionUsingGET1**](UserApi.md#getVersionUsingGET1) | **GET** /api/user/{userId}/versions/{version} | Gets concrete user version
-[**getVersionsUsingGET1**](UserApi.md#getVersionsUsingGET1) | **GET** /api/user/{userId}/versions | Gets all record versions by id
-[**updateUsingPUT1**](UserApi.md#updateUsingPUT1) | **PUT** /api/user | Updates user
+[**createUser**](UserApi.md#createUser) | **POST** /api/user | Creates a user
+[**deleteUser**](UserApi.md#deleteUser) | **DELETE** /api/user/{userId} | Deletes an existing user
+[**forgetUser**](UserApi.md#forgetUser) | **PUT** /api/user/forget/{userId} | Forgets user
+[**getUser**](UserApi.md#getUser) | **GET** /api/user/{userId} | Gets user by id
+[**getUserVersion**](UserApi.md#getUserVersion) | **GET** /api/user/{userId}/versions/{version} | Gets concrete user version
+[**getUserVersions**](UserApi.md#getUserVersions) | **GET** /api/user/{userId}/versions | Gets all record versions by id
+[**updateUser**](UserApi.md#updateUser) | **PUT** /api/user | Updates user
 
 
-<a name="createUsingPOST1"></a>
-# **createUsingPOST1**
-> User createUsingPOST1(user, actorId)
+<a name="createUser"></a>
+# **createUser**
+> User createUser(user, actorId)
 
 Creates a user
 
@@ -39,10 +39,10 @@ UserApi apiInstance = new UserApi();
 User user = new User(); // User | user
 String actorId = "actorId_example"; // String | actorId
 try {
-    User result = apiInstance.createUsingPOST1(user, actorId);
+    User result = apiInstance.createUser(user, actorId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#createUsingPOST1");
+    System.err.println("Exception when calling UserApi#createUser");
     e.printStackTrace();
 }
 ```
@@ -67,9 +67,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="deleteUsingDELETE1"></a>
-# **deleteUsingDELETE1**
-> Object deleteUsingDELETE1(userId, actorId)
+<a name="deleteUser"></a>
+# **deleteUser**
+> Object deleteUser(userId, actorId)
 
 Deletes an existing user
 
@@ -93,10 +93,10 @@ UserApi apiInstance = new UserApi();
 String userId = "userId_example"; // String | userId
 String actorId = "actorId_example"; // String | actorId
 try {
-    Object result = apiInstance.deleteUsingDELETE1(userId, actorId);
+    Object result = apiInstance.deleteUser(userId, actorId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#deleteUsingDELETE1");
+    System.err.println("Exception when calling UserApi#deleteUser");
     e.printStackTrace();
 }
 ```
@@ -121,9 +121,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="forgetUserUsingPUT"></a>
-# **forgetUserUsingPUT**
-> Object forgetUserUsingPUT(userId, actorId)
+<a name="forgetUser"></a>
+# **forgetUser**
+> Object forgetUser(userId, actorId)
 
 Forgets user
 
@@ -147,10 +147,10 @@ UserApi apiInstance = new UserApi();
 String userId = "userId_example"; // String | userId
 String actorId = "actorId_example"; // String | actorId
 try {
-    Object result = apiInstance.forgetUserUsingPUT(userId, actorId);
+    Object result = apiInstance.forgetUser(userId, actorId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#forgetUserUsingPUT");
+    System.err.println("Exception when calling UserApi#forgetUser");
     e.printStackTrace();
 }
 ```
@@ -175,9 +175,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="getUsingGET1"></a>
-# **getUsingGET1**
-> User getUsingGET1(userId, actorId)
+<a name="getUser"></a>
+# **getUser**
+> User getUser(userId, actorId)
 
 Gets user by id
 
@@ -201,10 +201,10 @@ UserApi apiInstance = new UserApi();
 String userId = "userId_example"; // String | userId
 String actorId = "actorId_example"; // String | actorId
 try {
-    User result = apiInstance.getUsingGET1(userId, actorId);
+    User result = apiInstance.getUser(userId, actorId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#getUsingGET1");
+    System.err.println("Exception when calling UserApi#getUser");
     e.printStackTrace();
 }
 ```
@@ -229,9 +229,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="getVersionUsingGET1"></a>
-# **getVersionUsingGET1**
-> User getVersionUsingGET1(userId, version, actorId)
+<a name="getUserVersion"></a>
+# **getUserVersion**
+> User getUserVersion(userId, version, actorId)
 
 Gets concrete user version
 
@@ -256,10 +256,10 @@ String userId = "userId_example"; // String | userId
 Integer version = 56; // Integer | version
 String actorId = "actorId_example"; // String | actorId
 try {
-    User result = apiInstance.getVersionUsingGET1(userId, version, actorId);
+    User result = apiInstance.getUserVersion(userId, version, actorId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#getVersionUsingGET1");
+    System.err.println("Exception when calling UserApi#getUserVersion");
     e.printStackTrace();
 }
 ```
@@ -285,9 +285,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="getVersionsUsingGET1"></a>
-# **getVersionsUsingGET1**
-> List&lt;Integer&gt; getVersionsUsingGET1(userId)
+<a name="getUserVersions"></a>
+# **getUserVersions**
+> List&lt;Integer&gt; getUserVersions(userId)
 
 Gets all record versions by id
 
@@ -310,10 +310,10 @@ basicAuth.setPassword("YOUR PASSWORD");
 UserApi apiInstance = new UserApi();
 String userId = "userId_example"; // String | userId
 try {
-    List<Integer> result = apiInstance.getVersionsUsingGET1(userId);
+    List<Integer> result = apiInstance.getUserVersions(userId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#getVersionsUsingGET1");
+    System.err.println("Exception when calling UserApi#getUserVersions");
     e.printStackTrace();
 }
 ```
@@ -337,9 +337,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: *_/_*
  - **Accept**: application/xml, application/json
 
-<a name="updateUsingPUT1"></a>
-# **updateUsingPUT1**
-> User updateUsingPUT1(user, actorId)
+<a name="updateUser"></a>
+# **updateUser**
+> User updateUser(user, actorId)
 
 Updates user
 
@@ -363,10 +363,10 @@ UserApi apiInstance = new UserApi();
 User user = new User(); // User | user
 String actorId = "actorId_example"; // String | actorId
 try {
-    User result = apiInstance.updateUsingPUT1(user, actorId);
+    User result = apiInstance.updateUser(user, actorId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling UserApi#updateUsingPUT1");
+    System.err.println("Exception when calling UserApi#updateUser");
     e.printStackTrace();
 }
 ```

@@ -52,13 +52,13 @@ public class SearchApiTest {
      *          if the Api call fails
      */
     @Test
-    public void searchRecordsUsingPOSTTest() throws ApiException {
+    public void searchRecordsTest() throws ApiException {
         String datastoreId = null;
         Object request = null;
         String type = null;
         Integer pageNumber = null;
         Integer pageSize = null;
-        // List<Record> response = api.searchRecordsUsingPOST(datastoreId, request, type, pageNumber, pageSize);
+        // List<Record> response = api.searchRecords(datastoreId, request, type, pageNumber, pageSize);
 
         // TODO: test validations
     }
@@ -72,12 +72,12 @@ public class SearchApiTest {
      *          if the Api call fails
      */
     @Test
-    public void searchUsersUsingPOSTTest() throws ApiException {
+    public void searchUsersTest() throws ApiException {
         String datastoreId = null;
         Object request = null;
         Integer pageNumber = null;
         Integer pageSize = null;
-        // List<User> response = api.searchUsersUsingPOST(datastoreId, request, pageNumber, pageSize);
+        // List<User> response = api.searchUsers(datastoreId, request, pageNumber, pageSize);
 
         // TODO: test validations
     }

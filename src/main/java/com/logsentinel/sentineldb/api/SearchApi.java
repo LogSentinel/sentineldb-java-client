@@ -66,23 +66,23 @@ public class SearchApi {
         this.apiClient = apiClient;
     }
 
-    /* Build call for searchRecordsUsingPOST */
-    private com.squareup.okhttp.Call searchRecordsUsingPOSTCall(String datastoreId, Object request, String type, Integer pageNumber, Integer pageSize, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for searchRecords */
+    private com.squareup.okhttp.Call searchRecordsCall(String datastoreId, Object request, String type, Integer pageNumber, Integer pageSize, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = request;
         
         // verify the required parameter 'datastoreId' is set
         if (datastoreId == null) {
-            throw new ApiException("Missing the required parameter 'datastoreId' when calling searchRecordsUsingPOST(Async)");
+            throw new ApiException("Missing the required parameter 'datastoreId' when calling searchRecords(Async)");
         }
         
         // verify the required parameter 'request' is set
         if (request == null) {
-            throw new ApiException("Missing the required parameter 'request' when calling searchRecordsUsingPOST(Async)");
+            throw new ApiException("Missing the required parameter 'request' when calling searchRecords(Async)");
         }
         
         // verify the required parameter 'type' is set
         if (type == null) {
-            throw new ApiException("Missing the required parameter 'type' when calling searchRecordsUsingPOST(Async)");
+            throw new ApiException("Missing the required parameter 'type' when calling searchRecords(Async)");
         }
         
 
@@ -140,8 +140,8 @@ public class SearchApi {
      * @return List&lt;Record&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Record> searchRecordsUsingPOST(String datastoreId, Object request, String type, Integer pageNumber, Integer pageSize) throws ApiException {
-        ApiResponse<List<Record>> resp = searchRecordsUsingPOSTWithHttpInfo(datastoreId, request, type, pageNumber, pageSize);
+    public List<Record> searchRecords(String datastoreId, Object request, String type, Integer pageNumber, Integer pageSize) throws ApiException {
+        ApiResponse<List<Record>> resp = searchRecordsWithHttpInfo(datastoreId, request, type, pageNumber, pageSize);
         return resp.getData();
     }
 
@@ -156,8 +156,8 @@ public class SearchApi {
      * @return ApiResponse&lt;List&lt;Record&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Record>> searchRecordsUsingPOSTWithHttpInfo(String datastoreId, Object request, String type, Integer pageNumber, Integer pageSize) throws ApiException {
-        com.squareup.okhttp.Call call = searchRecordsUsingPOSTCall(datastoreId, request, type, pageNumber, pageSize, null, null);
+    public ApiResponse<List<Record>> searchRecordsWithHttpInfo(String datastoreId, Object request, String type, Integer pageNumber, Integer pageSize) throws ApiException {
+        com.squareup.okhttp.Call call = searchRecordsCall(datastoreId, request, type, pageNumber, pageSize, null, null);
         Type localVarReturnType = new TypeToken<List<Record>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -174,7 +174,7 @@ public class SearchApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call searchRecordsUsingPOSTAsync(String datastoreId, Object request, String type, Integer pageNumber, Integer pageSize, final ApiCallback<List<Record>> callback) throws ApiException {
+    public com.squareup.okhttp.Call searchRecordsAsync(String datastoreId, Object request, String type, Integer pageNumber, Integer pageSize, final ApiCallback<List<Record>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -195,23 +195,23 @@ public class SearchApi {
             };
         }
 
-        com.squareup.okhttp.Call call = searchRecordsUsingPOSTCall(datastoreId, request, type, pageNumber, pageSize, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = searchRecordsCall(datastoreId, request, type, pageNumber, pageSize, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Record>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-    /* Build call for searchUsersUsingPOST */
-    private com.squareup.okhttp.Call searchUsersUsingPOSTCall(String datastoreId, Object request, Integer pageNumber, Integer pageSize, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for searchUsers */
+    private com.squareup.okhttp.Call searchUsersCall(String datastoreId, Object request, Integer pageNumber, Integer pageSize, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = request;
         
         // verify the required parameter 'datastoreId' is set
         if (datastoreId == null) {
-            throw new ApiException("Missing the required parameter 'datastoreId' when calling searchUsersUsingPOST(Async)");
+            throw new ApiException("Missing the required parameter 'datastoreId' when calling searchUsers(Async)");
         }
         
         // verify the required parameter 'request' is set
         if (request == null) {
-            throw new ApiException("Missing the required parameter 'request' when calling searchUsersUsingPOST(Async)");
+            throw new ApiException("Missing the required parameter 'request' when calling searchUsers(Async)");
         }
         
 
@@ -267,8 +267,8 @@ public class SearchApi {
      * @return List&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<User> searchUsersUsingPOST(String datastoreId, Object request, Integer pageNumber, Integer pageSize) throws ApiException {
-        ApiResponse<List<User>> resp = searchUsersUsingPOSTWithHttpInfo(datastoreId, request, pageNumber, pageSize);
+    public List<User> searchUsers(String datastoreId, Object request, Integer pageNumber, Integer pageSize) throws ApiException {
+        ApiResponse<List<User>> resp = searchUsersWithHttpInfo(datastoreId, request, pageNumber, pageSize);
         return resp.getData();
     }
 
@@ -282,8 +282,8 @@ public class SearchApi {
      * @return ApiResponse&lt;List&lt;User&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<User>> searchUsersUsingPOSTWithHttpInfo(String datastoreId, Object request, Integer pageNumber, Integer pageSize) throws ApiException {
-        com.squareup.okhttp.Call call = searchUsersUsingPOSTCall(datastoreId, request, pageNumber, pageSize, null, null);
+    public ApiResponse<List<User>> searchUsersWithHttpInfo(String datastoreId, Object request, Integer pageNumber, Integer pageSize) throws ApiException {
+        com.squareup.okhttp.Call call = searchUsersCall(datastoreId, request, pageNumber, pageSize, null, null);
         Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -299,7 +299,7 @@ public class SearchApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call searchUsersUsingPOSTAsync(String datastoreId, Object request, Integer pageNumber, Integer pageSize, final ApiCallback<List<User>> callback) throws ApiException {
+    public com.squareup.okhttp.Call searchUsersAsync(String datastoreId, Object request, Integer pageNumber, Integer pageSize, final ApiCallback<List<User>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -320,7 +320,7 @@ public class SearchApi {
             };
         }
 
-        com.squareup.okhttp.Call call = searchUsersUsingPOSTCall(datastoreId, request, pageNumber, pageSize, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = searchUsersCall(datastoreId, request, pageNumber, pageSize, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
