@@ -69,14 +69,9 @@ import java.util.*;
 public class DatastoreApiExample {
 
     public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
-        // Configure HTTP basic authorization: basicAuth
-        HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
-        basicAuth.setUsername("YOUR USERNAME");
-        basicAuth.setPassword("YOUR PASSWORD");
+        SentinelDBClient client = SentinelDBClientBuilder.create(orgId, secret).build();
 
-        DatastoreApi apiInstance = new DatastoreApi();
+        DatastoreApi apiInstance = client.getDatastoreActions();
         String datastoreId = "datastoreId_example"; // String | datastoreId
         String actor = "actor_example"; // String | actor
         Integer pageNumber = 0; // Integer | pageNumber
@@ -95,7 +90,7 @@ public class DatastoreApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://localhost:8090/*
+All URIs are relative to *https://api.db.logsentinel.com/*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
