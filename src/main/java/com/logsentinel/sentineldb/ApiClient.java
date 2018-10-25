@@ -52,7 +52,7 @@ import com.logsentinel.sentineldb.auth.OAuth;
 
 public class ApiClient {
 
-    private String basePath = "https://localhost:8090";
+    private String basePath = "https://api.db.logsentinel.com";
     private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private String tempFolderPath = null;
