@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attributes** | **String** |  |  [optional]
-**created** | [**DateTime**](DateTime.md) |  |  [optional]
-**datastoreId** | **String** |  |  [optional]
+**created** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**datastoreId** | [**UUID**](UUID.md) |  |  [optional]
 **email** | **String** |  |  [optional]
-**id** | **String** |  |  [optional]
+**id** | [**UUID**](UUID.md) |  |  [optional]
 **password** | **String** |  |  [optional]
 **roles** | **List&lt;String&gt;** |  |  [optional]
 **status** | **String** |  |  [optional]
-**updated** | [**DateTime**](DateTime.md) |  |  [optional]
+**updated** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **username** | **String** |  |  [optional]
 **version** | **Integer** |  |  [optional]
 

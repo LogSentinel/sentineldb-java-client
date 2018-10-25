@@ -1,6 +1,6 @@
 # DatastoreApi
 
-All URIs are relative to *https://localhost:8090/*
+All URIs are relative to *https://localhost:8090*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -32,7 +32,7 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 DatastoreApi apiInstance = new DatastoreApi();
-String datastoreId = "datastoreId_example"; // String | datastoreId
+UUID datastoreId = new UUID(); // UUID | datastoreId
 String actor = "actor_example"; // String | actor
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
@@ -49,7 +49,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **datastoreId** | **String**| datastoreId |
+ **datastoreId** | [**UUID**](.md)| datastoreId |
  **actor** | **String**| actor | [optional]
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: *_/_*
+ - **Content-Type**: */*
  - **Accept**: application/xml, application/json
 
 <a name="getUsersByDatastore"></a>
@@ -90,7 +90,7 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 DatastoreApi apiInstance = new DatastoreApi();
-String datastoreId = "datastoreId_example"; // String | datastoreId
+UUID datastoreId = new UUID(); // UUID | datastoreId
 String actor = "actor_example"; // String | actor
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
@@ -107,7 +107,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **datastoreId** | **String**| datastoreId |
+ **datastoreId** | [**UUID**](.md)| datastoreId |
  **actor** | **String**| actor | [optional]
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]
@@ -122,7 +122,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: *_/_*
+ - **Content-Type**: */*
  - **Accept**: application/xml, application/json
 
 <a name="listDatastores"></a>
@@ -170,6 +170,6 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: *_/_*
+ - **Content-Type**: */*
  - **Accept**: application/xml, application/json
 

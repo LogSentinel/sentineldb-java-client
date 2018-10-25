@@ -1,6 +1,6 @@
 # SearchApi
 
-All URIs are relative to *https://localhost:8090/*
+All URIs are relative to *https://localhost:8090*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -31,7 +31,7 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 SearchApi apiInstance = new SearchApi();
-String datastoreId = "datastoreId_example"; // String | datastoreId
+UUID datastoreId = new UUID(); // UUID | datastoreId
 Object request = null; // Object | request
 String type = "type_example"; // String | type
 Integer pageNumber = 0; // Integer | pageNumber
@@ -49,7 +49,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **datastoreId** | **String**| datastoreId |
+ **datastoreId** | [**UUID**](.md)| datastoreId |
  **request** | **Object**| request |
  **type** | **String**| type |
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, *_/_*
+ - **Content-Type**: application/json, */*
  - **Accept**: application/xml, application/json
 
 <a name="searchUsers"></a>
@@ -91,7 +91,7 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 SearchApi apiInstance = new SearchApi();
-String datastoreId = "datastoreId_example"; // String | datastoreId
+UUID datastoreId = new UUID(); // UUID | datastoreId
 Object request = null; // Object | request
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
@@ -108,7 +108,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **datastoreId** | **String**| datastoreId |
+ **datastoreId** | [**UUID**](.md)| datastoreId |
  **request** | **Object**| request |
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]
@@ -123,6 +123,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, *_/_*
+ - **Content-Type**: application/json, */*
  - **Accept**: application/xml, application/json
 

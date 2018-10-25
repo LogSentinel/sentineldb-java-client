@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  |  [optional]
+**id** | [**UUID**](UUID.md) |  |  [optional]
 **name** | **String** |  |  [optional]
 
 

@@ -90,32 +90,34 @@ public class DatastoreApiExample {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.db.logsentinel.com/*
+All URIs are relative to *https://localhost:8090*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DatastoreApi* | [**getRecordsByDatastore**](docs/DatastoreApi.md#getRecordsByDatastore) | **GET** /api/datastore/{datastoreId}/records | Gets records by datastore with pagination
 *DatastoreApi* | [**getUsersByDatastore**](docs/DatastoreApi.md#getUsersByDatastore) | **GET** /api/datastore/{datastoreId}/users | Gets users by datastore with pagination
+*DatastoreApi* | [**listDatastores**](docs/DatastoreApi.md#listDatastores) | **GET** /api/datastore/list | Gets a list of datastores
 *RecordsApi* | [**createRecord**](docs/RecordsApi.md#createRecord) | **POST** /api/record/datastore/{datastoreId} | Creates a record
 *RecordsApi* | [**deleteRecord**](docs/RecordsApi.md#deleteRecord) | **DELETE** /api/record/{recordId} | Deletes an existing record
 *RecordsApi* | [**getRecord**](docs/RecordsApi.md#getRecord) | **GET** /api/record/{recordId} | Gets record by id
 *RecordsApi* | [**getRecordVersion**](docs/RecordsApi.md#getRecordVersion) | **GET** /api/record/{recordId}/versions/{version} | Gets concrete record version
 *RecordsApi* | [**getRecordVersions**](docs/RecordsApi.md#getRecordVersions) | **GET** /api/record/{recordId}/versions | Gets all record versions by id
-*RecordsApi* | [**updateRecord**](docs/RecordsApi.md#updateRecord) | **PUT** /api/record | Updates record
+*RecordsApi* | [**updateRecord**](docs/RecordsApi.md#updateRecord) | **PUT** /api/record/{recordId} | Updates record
 *RecordsApi* | [**updateRecordOwner**](docs/RecordsApi.md#updateRecordOwner) | **PUT** /api/record/{recordId}/owner/{ownerId} | Updates a record&#39;s owner
 *SearchApi* | [**searchRecords**](docs/SearchApi.md#searchRecords) | **POST** /api/search/records/{type}/datastore/{datastoreId} | Search records
 *SearchApi* | [**searchUsers**](docs/SearchApi.md#searchUsers) | **POST** /api/search/users/datastore/{datastoreId} | Search users
-*UserApi* | [**createUser**](docs/UserApi.md#createUser) | **POST** /api/user | Creates a user
+*UserApi* | [**createUser**](docs/UserApi.md#createUser) | **POST** /api/user/{datastoreId} | Creates a user
 *UserApi* | [**deleteUser**](docs/UserApi.md#deleteUser) | **DELETE** /api/user/{userId} | Deletes an existing user
 *UserApi* | [**forgetUser**](docs/UserApi.md#forgetUser) | **PUT** /api/user/forget/{userId} | Forgets user
 *UserApi* | [**getUser**](docs/UserApi.md#getUser) | **GET** /api/user/{userId} | Gets user by id
 *UserApi* | [**getUserVersion**](docs/UserApi.md#getUserVersion) | **GET** /api/user/{userId}/versions/{version} | Gets concrete user version
 *UserApi* | [**getUserVersions**](docs/UserApi.md#getUserVersions) | **GET** /api/user/{userId}/versions | Gets all record versions by id
-*UserApi* | [**updateUser**](docs/UserApi.md#updateUser) | **PUT** /api/user | Updates user
+*UserApi* | [**updateUser**](docs/UserApi.md#updateUser) | **PUT** /api/user/{userId} | Updates user
 
 
 ## Documentation for Models
 
+ - [Datastore](docs/Datastore.md)
  - [Record](docs/Record.md)
  - [User](docs/User.md)
 
@@ -130,7 +132,7 @@ Authentication schemes defined for the API:
 
 ## Recommendation
 
-It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issue.
+It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.
 
 ## Author
 

@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **body** | **String** |  |  [optional]
-**created** | [**DateTime**](DateTime.md) |  |  [optional]
-**datastoreId** | **String** |  |  [optional]
-**id** | **String** |  |  [optional]
-**ownerId** | **String** |  |  [optional]
+**created** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**datastoreId** | [**UUID**](UUID.md) |  |  [optional]
+**id** | [**UUID**](UUID.md) |  |  [optional]
+**ownerId** | [**UUID**](UUID.md) |  |  [optional]
 **type** | **String** |  |  [optional]
-**updated** | [**DateTime**](DateTime.md) |  |  [optional]
+**updated** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **version** | **Integer** |  |  [optional]
 
 

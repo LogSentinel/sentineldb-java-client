@@ -1,6 +1,6 @@
 # RecordsApi
 
-All URIs are relative to *https://localhost:8090/*
+All URIs are relative to *https://localhost:8090*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**getRecord**](RecordsApi.md#getRecord) | **GET** /api/record/{recordId} | Gets record by id
 [**getRecordVersion**](RecordsApi.md#getRecordVersion) | **GET** /api/record/{recordId}/versions/{version} | Gets concrete record version
 [**getRecordVersions**](RecordsApi.md#getRecordVersions) | **GET** /api/record/{recordId}/versions | Gets all record versions by id
-[**updateRecord**](RecordsApi.md#updateRecord) | **PUT** /api/record | Updates record
+[**updateRecord**](RecordsApi.md#updateRecord) | **PUT** /api/record/{recordId} | Updates record
 [**updateRecordOwner**](RecordsApi.md#updateRecordOwner) | **PUT** /api/record/{recordId}/owner/{ownerId} | Updates a record&#39;s owner
 
 
@@ -37,9 +37,9 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 RecordsApi apiInstance = new RecordsApi();
 String body = "body_example"; // String | body
-String datastoreId = "datastoreId_example"; // String | datastoreId
+UUID datastoreId = new UUID(); // UUID | datastoreId
 String actorId = "actorId_example"; // String | actorId
-String ownerId = "ownerId_example"; // String | ownerId
+UUID ownerId = new UUID(); // UUID | ownerId
 String type = "type_example"; // String | type
 try {
     Record result = apiInstance.createRecord(body, datastoreId, actorId, ownerId, type);
@@ -55,9 +55,9 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **String**| body |
- **datastoreId** | **String**| datastoreId |
+ **datastoreId** | [**UUID**](.md)| datastoreId |
  **actorId** | **String**| actorId | [optional]
- **ownerId** | **String**| ownerId | [optional]
+ **ownerId** | [**UUID**](.md)| ownerId | [optional]
  **type** | **String**| type | [optional]
 
 ### Return type
@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, *_/_*
+ - **Content-Type**: application/json, */*
  - **Accept**: application/xml, application/json
 
 <a name="deleteRecord"></a>
@@ -96,7 +96,7 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 RecordsApi apiInstance = new RecordsApi();
-String recordId = "recordId_example"; // String | recordId
+UUID recordId = new UUID(); // UUID | recordId
 String actorId = "actorId_example"; // String | actorId
 try {
     Object result = apiInstance.deleteRecord(recordId, actorId);
@@ -111,7 +111,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **recordId** | **String**| recordId |
+ **recordId** | [**UUID**](.md)| recordId |
  **actorId** | **String**| actorId | [optional]
 
 ### Return type
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: *_/_*
+ - **Content-Type**: */*
  - **Accept**: application/xml, application/json
 
 <a name="getRecord"></a>
@@ -150,7 +150,7 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 RecordsApi apiInstance = new RecordsApi();
-String recordId = "recordId_example"; // String | recordId
+UUID recordId = new UUID(); // UUID | recordId
 String actorId = "actorId_example"; // String | actorId
 try {
     Record result = apiInstance.getRecord(recordId, actorId);
@@ -165,7 +165,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **recordId** | **String**| recordId |
+ **recordId** | [**UUID**](.md)| recordId |
  **actorId** | **String**| actorId | [optional]
 
 ### Return type
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: *_/_*
+ - **Content-Type**: */*
  - **Accept**: application/xml, application/json
 
 <a name="getRecordVersion"></a>
@@ -204,7 +204,7 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 RecordsApi apiInstance = new RecordsApi();
-String recordId = "recordId_example"; // String | recordId
+UUID recordId = new UUID(); // UUID | recordId
 Integer version = 56; // Integer | version
 String actorId = "actorId_example"; // String | actorId
 try {
@@ -220,7 +220,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **recordId** | **String**| recordId |
+ **recordId** | [**UUID**](.md)| recordId |
  **version** | **Integer**| version |
  **actorId** | **String**| actorId | [optional]
 
@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: *_/_*
+ - **Content-Type**: */*
  - **Accept**: application/xml, application/json
 
 <a name="getRecordVersions"></a>
@@ -260,7 +260,7 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 RecordsApi apiInstance = new RecordsApi();
-String recordId = "recordId_example"; // String | recordId
+UUID recordId = new UUID(); // UUID | recordId
 try {
     List<Integer> result = apiInstance.getRecordVersions(recordId);
     System.out.println(result);
@@ -274,7 +274,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **recordId** | **String**| recordId |
+ **recordId** | [**UUID**](.md)| recordId |
 
 ### Return type
 
@@ -286,12 +286,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: *_/_*
+ - **Content-Type**: */*
  - **Accept**: application/xml, application/json
 
 <a name="updateRecord"></a>
 # **updateRecord**
-> Record updateRecord(record, actorId)
+> Record updateRecord(record, recordId, actorId)
 
 Updates record
 
@@ -313,9 +313,10 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 RecordsApi apiInstance = new RecordsApi();
 Record record = new Record(); // Record | record
+UUID recordId = new UUID(); // UUID | recordId
 String actorId = "actorId_example"; // String | actorId
 try {
-    Record result = apiInstance.updateRecord(record, actorId);
+    Record result = apiInstance.updateRecord(record, recordId, actorId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RecordsApi#updateRecord");
@@ -328,6 +329,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **record** | [**Record**](Record.md)| record |
+ **recordId** | [**UUID**](.md)| recordId |
  **actorId** | **String**| actorId | [optional]
 
 ### Return type
@@ -340,7 +342,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, *_/_*
+ - **Content-Type**: application/json, */*
  - **Accept**: application/xml, application/json
 
 <a name="updateRecordOwner"></a>
@@ -366,8 +368,8 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 RecordsApi apiInstance = new RecordsApi();
-String ownerId = "ownerId_example"; // String | ownerId
-String recordId = "recordId_example"; // String | recordId
+UUID ownerId = new UUID(); // UUID | ownerId
+UUID recordId = new UUID(); // UUID | recordId
 String actorId = "actorId_example"; // String | actorId
 try {
     Record result = apiInstance.updateRecordOwner(ownerId, recordId, actorId);
@@ -382,8 +384,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ownerId** | **String**| ownerId |
- **recordId** | **String**| recordId |
+ **ownerId** | [**UUID**](.md)| ownerId |
+ **recordId** | [**UUID**](.md)| recordId |
  **actorId** | **String**| actorId | [optional]
 
 ### Return type
@@ -396,6 +398,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, *_/_*
+ - **Content-Type**: application/json, */*
  - **Accept**: application/xml, application/json
 
