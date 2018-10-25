@@ -28,6 +28,7 @@ package com.logsentinel.sentineldb.api;
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.model.Record;
 import com.logsentinel.sentineldb.model.User;
+import com.logsentinel.sentineldb.model.Datastore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -77,6 +78,21 @@ public class DatastoreApiTest {
         Integer pageNumber = null;
         Integer pageSize = null;
         // List<User> response = api.getUsersByDatastore(datastoreId, actor, pageNumber, pageSize);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Gets a list of datastores
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void listDatastoresTest() throws ApiException {
+        // List<Datastore> response = api.listDatastores();
 
         // TODO: test validations
     }

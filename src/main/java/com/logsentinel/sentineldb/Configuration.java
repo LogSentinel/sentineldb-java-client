@@ -25,7 +25,7 @@
 
 package com.logsentinel.sentineldb;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-24T13:21:53.207+03:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-25T14:23:35.929+03:00")
 public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
 

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getRecordsByDatastore**](DatastoreApi.md#getRecordsByDatastore) | **GET** /api/datastore/{datastoreId}/records | Gets records by datastore with pagination
 [**getUsersByDatastore**](DatastoreApi.md#getUsersByDatastore) | **GET** /api/datastore/{datastoreId}/users | Gets users by datastore with pagination
+[**listDatastores**](DatastoreApi.md#listDatastores) | **GET** /api/datastore/list | Gets a list of datastores
 
 
 <a name="getRecordsByDatastore"></a>
@@ -114,6 +115,54 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**List&lt;User&gt;**](User.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: *_/_*
+ - **Accept**: application/xml, application/json
+
+<a name="listDatastores"></a>
+# **listDatastores**
+> List&lt;Datastore&gt; listDatastores()
+
+Gets a list of datastores
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.DatastoreApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+DatastoreApi apiInstance = new DatastoreApi();
+try {
+    List<Datastore> result = apiInstance.listDatastores();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling DatastoreApi#listDatastores");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List&lt;Datastore&gt;**](Datastore.md)
 
 ### Authorization
 
