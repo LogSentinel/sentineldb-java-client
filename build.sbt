@@ -10,11 +10,13 @@ lazy val root = (project in file(".")).
     resolvers += Resolver.mavenLocal,
     libraryDependencies ++= Seq(
       "io.swagger" % "swagger-annotations" % "1.5.15",
-      "com.squareup.okhttp" % "okhttp" % "2.7.5",
-      "com.squareup.okhttp" % "logging-interceptor" % "2.7.5",
-      "com.google.code.gson" % "gson" % "2.8.1",
-      "org.threeten" % "threetenbp" % "1.3.5" % "compile",
-      "io.gsonfire" % "gson-fire" % "1.8.0" % "compile",
+      "org.glassfish.jersey.core" % "jersey-client" % "2.25.1",
+      "org.glassfish.jersey.media" % "jersey-media-multipart" % "2.25.1",
+      "org.glassfish.jersey.media" % "jersey-media-json-jackson" % "2.25.1",
+      "com.fasterxml.jackson.core" % "jackson-core" % "2.8.9" % "compile",
+      "com.fasterxml.jackson.core" % "jackson-annotations" % "2.8.9" % "compile",
+      "com.fasterxml.jackson.core" % "jackson-databind" % "2.8.9" % "compile",
+      "com.fasterxml.jackson.datatype" % "jackson-datatype-jsr310" % "2.8.9" % "compile",
       "junit" % "junit" % "4.12" % "test",
       "com.novocode" % "junit-interface" % "0.10" % "test"
     )

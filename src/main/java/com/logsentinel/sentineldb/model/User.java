@@ -13,56 +13,55 @@
 
 package com.logsentinel.sentineldb.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRawValue;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * User
  */
 
 public class User {
-  @SerializedName("attributes")
+  @JsonProperty("attributes")
+  @JsonRawValue
   private String attributes = null;
 
-  @SerializedName("created")
-  private OffsetDateTime created = null;
+  @JsonProperty("created")
+  private LocalDateTime created = null;
 
-  @SerializedName("datastoreId")
+  @JsonProperty("datastoreId")
   private UUID datastoreId = null;
 
-  @SerializedName("email")
+  @JsonProperty("email")
   private String email = null;
 
-  @SerializedName("id")
+  @JsonProperty("id")
   private UUID id = null;
 
-  @SerializedName("password")
+  @JsonProperty("password")
   private String password = null;
 
-  @SerializedName("roles")
+  @JsonProperty("roles")
   private List<String> roles = null;
 
-  @SerializedName("status")
+  @JsonProperty("status")
   private String status = null;
 
-  @SerializedName("updated")
-  private OffsetDateTime updated = null;
+  @JsonProperty("updated")
+  private LocalDateTime updated = null;
 
-  @SerializedName("username")
+  @JsonProperty("username")
   private String username = null;
 
-  @SerializedName("version")
+  @JsonProperty("version")
   private Integer version = null;
 
   public User attributes(String attributes) {
@@ -83,7 +82,7 @@ public class User {
     this.attributes = attributes;
   }
 
-  public User created(OffsetDateTime created) {
+  public User created(LocalDateTime created) {
     this.created = created;
     return this;
   }
@@ -93,11 +92,11 @@ public class User {
    * @return created
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getCreated() {
+  public LocalDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(LocalDateTime created) {
     this.created = created;
   }
 
@@ -217,7 +216,7 @@ public class User {
     this.status = status;
   }
 
-  public User updated(OffsetDateTime updated) {
+  public User updated(LocalDateTime updated) {
     this.updated = updated;
     return this;
   }
@@ -227,11 +226,11 @@ public class User {
    * @return updated
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getUpdated() {
+  public LocalDateTime getUpdated() {
     return updated;
   }
 
-  public void setUpdated(OffsetDateTime updated) {
+  public void setUpdated(LocalDateTime updated) {
     this.updated = updated;
   }
 

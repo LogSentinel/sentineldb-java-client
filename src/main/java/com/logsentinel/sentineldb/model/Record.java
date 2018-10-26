@@ -14,15 +14,13 @@
 package com.logsentinel.sentineldb.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.IOException;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -30,28 +28,29 @@ import java.util.UUID;
  */
 
 public class Record {
-  @SerializedName("body")
+  @JsonProperty("body")
+  @JsonRawValue
   private String body = null;
 
-  @SerializedName("created")
-  private OffsetDateTime created = null;
+  @JsonProperty("created")
+  private LocalDateTime created = null;
 
-  @SerializedName("datastoreId")
+  @JsonProperty("datastoreId")
   private UUID datastoreId = null;
 
-  @SerializedName("id")
+  @JsonProperty("id")
   private UUID id = null;
 
-  @SerializedName("ownerId")
+  @JsonProperty("ownerId")
   private UUID ownerId = null;
 
-  @SerializedName("type")
+  @JsonProperty("type")
   private String type = null;
 
-  @SerializedName("updated")
-  private OffsetDateTime updated = null;
+  @JsonProperty("updated")
+  private LocalDateTime updated = null;
 
-  @SerializedName("version")
+  @JsonProperty("version")
   private Integer version = null;
 
   public Record body(String body) {
@@ -72,7 +71,7 @@ public class Record {
     this.body = body;
   }
 
-  public Record created(OffsetDateTime created) {
+  public Record created(LocalDateTime created) {
     this.created = created;
     return this;
   }
@@ -82,11 +81,11 @@ public class Record {
    * @return created
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getCreated() {
+  public LocalDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(LocalDateTime created) {
     this.created = created;
   }
 
@@ -162,7 +161,7 @@ public class Record {
     this.type = type;
   }
 
-  public Record updated(OffsetDateTime updated) {
+  public Record updated(LocalDateTime updated) {
     this.updated = updated;
     return this;
   }
@@ -172,11 +171,11 @@ public class Record {
    * @return updated
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getUpdated() {
+  public LocalDateTime getUpdated() {
     return updated;
   }
 
-  public void setUpdated(OffsetDateTime updated) {
+  public void setUpdated(LocalDateTime updated) {
     this.updated = updated;
   }
 
