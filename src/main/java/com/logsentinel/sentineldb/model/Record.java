@@ -1,6 +1,6 @@
 /*
  * SentinelDB RESTful API
- * Read more at https://sentineldb.logsentinel.com/documentation/
+ * Read more at https://logsentinel.com/sentineldb/documentation/
  *
  * OpenAPI spec version: 1
  * 
@@ -16,9 +16,6 @@ package com.logsentinel.sentineldb.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRawValue;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.LocalDateTime;
 import java.util.UUID;

@@ -1,6 +1,6 @@
 /*
  * SentinelDB RESTful API
- * Read more at https://sentineldb.logsentinel.com/documentation/
+ * Read more at https://logsentinel.com/sentineldb/documentation/
  *
  * OpenAPI spec version: 1
  * 
@@ -13,7 +13,6 @@
 
 package com.logsentinel.sentineldb.model;
 
-import java.time.LocalDateTime;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +53,9 @@ public class User {
 
   @JsonProperty("status")
   private String status = null;
+
+  @JsonProperty("twoFactorAuthEnabled")
+  private Boolean twoFactorAuthEnabled = null;
 
   @JsonProperty("updated")
   private LocalDateTime updated = null;
@@ -216,6 +218,24 @@ public class User {
     this.status = status;
   }
 
+  public User twoFactorAuthEnabled(Boolean twoFactorAuthEnabled) {
+    this.twoFactorAuthEnabled = twoFactorAuthEnabled;
+    return this;
+  }
+
+   /**
+   * Get twoFactorAuthEnabled
+   * @return twoFactorAuthEnabled
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isTwoFactorAuthEnabled() {
+    return twoFactorAuthEnabled;
+  }
+
+  public void setTwoFactorAuthEnabled(Boolean twoFactorAuthEnabled) {
+    this.twoFactorAuthEnabled = twoFactorAuthEnabled;
+  }
+
   public User updated(LocalDateTime updated) {
     this.updated = updated;
     return this;
@@ -288,6 +308,7 @@ public class User {
         Objects.equals(this.password, user.password) &&
         Objects.equals(this.roles, user.roles) &&
         Objects.equals(this.status, user.status) &&
+        Objects.equals(this.twoFactorAuthEnabled, user.twoFactorAuthEnabled) &&
         Objects.equals(this.updated, user.updated) &&
         Objects.equals(this.username, user.username) &&
         Objects.equals(this.version, user.version);
@@ -295,7 +316,7 @@ public class User {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributes, created, datastoreId, email, id, password, roles, status, updated, username, version);
+    return Objects.hash(attributes, created, datastoreId, email, id, password, roles, status, twoFactorAuthEnabled, updated, username, version);
   }
 
 
@@ -312,6 +333,7 @@ public class User {
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    twoFactorAuthEnabled: ").append(toIndentedString(twoFactorAuthEnabled)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");

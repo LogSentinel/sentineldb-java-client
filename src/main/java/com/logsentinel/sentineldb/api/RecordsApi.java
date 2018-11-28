@@ -37,12 +37,12 @@ public class RecordsApi {
 
   /**
    * Creates a record
-   * 
+   * Creates a new record by specifying the record details (arbitrary JSON) as well as the ID of the owning user. 
    * @param body body (required)
    * @param datastoreId datastoreId (required)
-   * @param actorId actorId (optional)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
    * @param ownerId ownerId (optional)
-   * @param type type (optional)
+   * @param type type (optional, default to None)
    * @return Record
    * @throws ApiException if fails to make API call
    */
@@ -60,7 +60,7 @@ public class RecordsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/record/datastore/{datastoreId}"
+    String localVarPath = "/api/record/{datastoreId}"
       .replaceAll("\\{" + "datastoreId" + "\\}", apiClient.escapeString(datastoreId.toString()));
 
     // query params
@@ -91,9 +91,9 @@ public class RecordsApi {
       }
   /**
    * Deletes an existing record
-   * 
+   * Deletes a record by marking the latest version as deleted
    * @param recordId recordId (required)
-   * @param actorId actorId (optional)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
    * @return Object
    * @throws ApiException if fails to make API call
    */
@@ -135,9 +135,9 @@ public class RecordsApi {
       }
   /**
    * Gets record by id
-   * 
+   * Retrieves the latest version of a record by ID
    * @param recordId recordId (required)
-   * @param actorId actorId (optional)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
    * @return Record
    * @throws ApiException if fails to make API call
    */
@@ -179,10 +179,10 @@ public class RecordsApi {
       }
   /**
    * Gets concrete record version
-   * 
+   * Retrieves a specific (older) version for a given record.
    * @param recordId recordId (required)
    * @param version version (required)
-   * @param actorId actorId (optional)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
    * @return Record
    * @throws ApiException if fails to make API call
    */
@@ -230,7 +230,7 @@ public class RecordsApi {
       }
   /**
    * Gets all record versions by id
-   * 
+   * Retrieves all the versions for a given record. Each version is a historical snapshot of the record object prior to each update.
    * @param recordId recordId (required)
    * @return List&lt;Integer&gt;
    * @throws ApiException if fails to make API call
@@ -272,10 +272,10 @@ public class RecordsApi {
       }
   /**
    * Updates record
-   * 
+   * Updates a record, thus creating a newer version
    * @param record record (required)
    * @param recordId recordId (required)
-   * @param actorId actorId (optional)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
    * @return Record
    * @throws ApiException if fails to make API call
    */
@@ -322,10 +322,10 @@ public class RecordsApi {
       }
   /**
    * Updates a record&#39;s owner
-   * 
+   * Changes the owner of a given record by passing the ID of another user
    * @param ownerId ownerId (required)
    * @param recordId recordId (required)
-   * @param actorId actorId (optional)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
    * @return Record
    * @throws ApiException if fails to make API call
    */
