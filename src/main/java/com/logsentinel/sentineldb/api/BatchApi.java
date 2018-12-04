@@ -5,8 +5,6 @@ import com.logsentinel.sentineldb.ApiClient;
 import com.logsentinel.sentineldb.Configuration;
 import com.logsentinel.sentineldb.Pair;
 
-import javax.ws.rs.core.GenericType;
-
 import com.logsentinel.sentineldb.model.BatchRequestItem;
 import java.util.UUID;
 
@@ -14,7 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 
 public class BatchApi {
   private ApiClient apiClient;

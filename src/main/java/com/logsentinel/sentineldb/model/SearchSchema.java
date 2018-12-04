@@ -19,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,7 @@ public class SearchSchema {
   private List<String> analyzedFields = null;
 
   @JsonProperty("created")
-  private OffsetDateTime created = null;
+  private LocalDateTime created = null;
 
   @JsonProperty("datastoreId")
   private UUID datastoreId = null;
@@ -114,7 +116,7 @@ public class SearchSchema {
     this.analyzedFields = analyzedFields;
   }
 
-  public SearchSchema created(OffsetDateTime created) {
+  public SearchSchema created(LocalDateTime created) {
     this.created = created;
     return this;
   }
@@ -124,11 +126,11 @@ public class SearchSchema {
    * @return created
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getCreated() {
+  public LocalDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(LocalDateTime created) {
     this.created = created;
   }
 
