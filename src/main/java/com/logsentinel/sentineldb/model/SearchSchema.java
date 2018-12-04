@@ -21,7 +21,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -88,7 +87,7 @@ public class SearchSchema {
   private String recordType = null;
 
   @JsonProperty("updated")
-  private OffsetDateTime updated = null;
+  private LocalDateTime updated = null;
 
   public SearchSchema analyzedFields(List<String> analyzedFields) {
     this.analyzedFields = analyzedFields;
@@ -232,7 +231,7 @@ public class SearchSchema {
     this.recordType = recordType;
   }
 
-  public SearchSchema updated(OffsetDateTime updated) {
+  public SearchSchema updated(LocalDateTime updated) {
     this.updated = updated;
     return this;
   }
@@ -242,11 +241,11 @@ public class SearchSchema {
    * @return updated
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getUpdated() {
+  public LocalDateTime getUpdated() {
     return updated;
   }
 
-  public void setUpdated(OffsetDateTime updated) {
+  public void setUpdated(LocalDateTime updated) {
     this.updated = updated;
   }
 
