@@ -15,11 +15,10 @@ package com.logsentinel.sentineldb.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
+import com.fasterxml.jackson.annotation.JsonRawValue;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -28,10 +27,11 @@ import java.util.UUID;
 
 public class Record {
   @JsonProperty("body")
+  @JsonRawValue
   private String body = null;
 
   @JsonProperty("created")
-  private OffsetDateTime created = null;
+  private LocalDateTime created = null;
 
   @JsonProperty("datastoreId")
   private UUID datastoreId = null;
@@ -52,7 +52,7 @@ public class Record {
   private String type = null;
 
   @JsonProperty("updated")
-  private OffsetDateTime updated = null;
+  private LocalDateTime updated = null;
 
   @JsonProperty("version")
   private Integer version = null;
@@ -75,7 +75,7 @@ public class Record {
     this.body = body;
   }
 
-  public Record created(OffsetDateTime created) {
+  public Record created(LocalDateTime created) {
     this.created = created;
     return this;
   }
@@ -85,11 +85,11 @@ public class Record {
    * @return created
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getCreated() {
+  public LocalDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(LocalDateTime created) {
     this.created = created;
   }
 
@@ -201,7 +201,7 @@ public class Record {
     this.type = type;
   }
 
-  public Record updated(OffsetDateTime updated) {
+  public Record updated(LocalDateTime updated) {
     this.updated = updated;
     return this;
   }
@@ -211,11 +211,11 @@ public class Record {
    * @return updated
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getUpdated() {
+  public LocalDateTime getUpdated() {
     return updated;
   }
 
-  public void setUpdated(OffsetDateTime updated) {
+  public void setUpdated(LocalDateTime updated) {
     this.updated = updated;
   }
 

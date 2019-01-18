@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.logsentinel.sentineldb.model.SearchSchemaField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -31,7 +31,7 @@ import java.util.UUID;
 
 public class SearchSchema {
   @JsonProperty("created")
-  private OffsetDateTime created = null;
+  private LocalDateTime created = null;
 
   @JsonProperty("datastoreId")
   private UUID datastoreId = null;
@@ -90,9 +90,9 @@ public class SearchSchema {
   private String recordType = null;
 
   @JsonProperty("updated")
-  private OffsetDateTime updated = null;
+  private LocalDateTime updated = null;
 
-  public SearchSchema created(OffsetDateTime created) {
+  public SearchSchema created(LocalDateTime created) {
     this.created = created;
     return this;
   }
@@ -102,11 +102,11 @@ public class SearchSchema {
    * @return created
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getCreated() {
+  public LocalDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(LocalDateTime created) {
     this.created = created;
   }
 
@@ -244,7 +244,7 @@ public class SearchSchema {
     this.recordType = recordType;
   }
 
-  public SearchSchema updated(OffsetDateTime updated) {
+  public SearchSchema updated(LocalDateTime updated) {
     this.updated = updated;
     return this;
   }
@@ -254,11 +254,11 @@ public class SearchSchema {
    * @return updated
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getUpdated() {
+  public LocalDateTime getUpdated() {
     return updated;
   }
 
-  public void setUpdated(OffsetDateTime updated) {
+  public void setUpdated(LocalDateTime updated) {
     this.updated = updated;
   }
 

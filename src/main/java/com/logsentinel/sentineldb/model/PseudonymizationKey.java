@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -28,7 +28,7 @@ import java.util.UUID;
 
 public class PseudonymizationKey {
   @JsonProperty("created")
-  private OffsetDateTime created = null;
+  private LocalDateTime created = null;
 
   @JsonProperty("datastoreId")
   private UUID datastoreId = null;
@@ -42,7 +42,7 @@ public class PseudonymizationKey {
   @JsonProperty("pseudoId")
   private String pseudoId = null;
 
-  public PseudonymizationKey created(OffsetDateTime created) {
+  public PseudonymizationKey created(LocalDateTime created) {
     this.created = created;
     return this;
   }
@@ -52,11 +52,11 @@ public class PseudonymizationKey {
    * @return created
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getCreated() {
+  public LocalDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(LocalDateTime created) {
     this.created = created;
   }
 

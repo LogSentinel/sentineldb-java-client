@@ -15,11 +15,9 @@ package com.logsentinel.sentineldb.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
+import com.fasterxml.jackson.annotation.JsonRawValue;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -30,10 +28,11 @@ import java.util.UUID;
 
 public class User {
   @JsonProperty("attributes")
+  @JsonRawValue
   private String attributes = null;
 
   @JsonProperty("created")
-  private OffsetDateTime created = null;
+  private LocalDateTime created = null;
 
   @JsonProperty("datastoreId")
   private UUID datastoreId = null;
@@ -60,7 +59,7 @@ public class User {
   private Boolean twoFactorAuthEnabled = null;
 
   @JsonProperty("updated")
-  private OffsetDateTime updated = null;
+  private LocalDateTime updated = null;
 
   @JsonProperty("username")
   private String username = null;
@@ -86,7 +85,7 @@ public class User {
     this.attributes = attributes;
   }
 
-  public User created(OffsetDateTime created) {
+  public User created(LocalDateTime created) {
     this.created = created;
     return this;
   }
@@ -96,11 +95,11 @@ public class User {
    * @return created
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getCreated() {
+  public LocalDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(OffsetDateTime created) {
+  public void setCreated(LocalDateTime created) {
     this.created = created;
   }
 
@@ -256,7 +255,7 @@ public class User {
     this.twoFactorAuthEnabled = twoFactorAuthEnabled;
   }
 
-  public User updated(OffsetDateTime updated) {
+  public User updated(LocalDateTime updated) {
     this.updated = updated;
     return this;
   }
@@ -266,11 +265,11 @@ public class User {
    * @return updated
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getUpdated() {
+  public LocalDateTime getUpdated() {
     return updated;
   }
 
-  public void setUpdated(OffsetDateTime updated) {
+  public void setUpdated(LocalDateTime updated) {
     this.updated = updated;
   }
 
