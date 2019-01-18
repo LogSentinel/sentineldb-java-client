@@ -164,7 +164,8 @@ public class UsersApiTest {
     public void getUserTest() throws ApiException {
         UUID userId = null;
         String actorId = null;
-        User response = api.getUser(userId, actorId);
+        UUID pseudoId = null;
+        User response = api.getUser(userId, actorId, pseudoId);
 
         // TODO: test validations
     }

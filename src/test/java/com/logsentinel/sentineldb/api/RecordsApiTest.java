@@ -82,7 +82,8 @@ public class RecordsApiTest {
     public void getRecordTest() throws ApiException {
         UUID recordId = null;
         String actorId = null;
-        Record response = api.getRecord(recordId, actorId);
+        UUID pseudoId = null;
+        Record response = api.getRecord(recordId, actorId, pseudoId);
 
         // TODO: test validations
     }

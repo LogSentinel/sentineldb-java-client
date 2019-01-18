@@ -15,6 +15,8 @@ package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.model.SearchSchema;
+import com.logsentinel.sentineldb.model.SearchSchemaField;
+
 import java.util.UUID;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -46,7 +48,8 @@ public class SearchSchemaApiTest {
         String field = null;
         UUID id = null;
         Boolean analyzed = null;
-        Object response = api.addSearchSchemaField(field, id, analyzed);
+        UUID pseudoId = null;
+        Object response = api.addSearchSchemaField(field, id, analyzed, analyzed, "PUBLIC");
 
         // TODO: test validations
     }
@@ -63,8 +66,8 @@ public class SearchSchemaApiTest {
     public void createSearchSchemaTest() throws ApiException {
         UUID datastoreId = null;
         String entityType = null;
-        Object fields = null;
         String recordType = null;
+        List<SearchSchemaField> fields = null;
         SearchSchema response = api.createSearchSchema(datastoreId, entityType, fields, recordType);
 
         // TODO: test validations

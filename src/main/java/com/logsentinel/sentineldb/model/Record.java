@@ -15,9 +15,11 @@ package com.logsentinel.sentineldb.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRawValue;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 /**
@@ -26,11 +28,10 @@ import java.util.UUID;
 
 public class Record {
   @JsonProperty("body")
-  @JsonRawValue
   private String body = null;
 
   @JsonProperty("created")
-  private LocalDateTime created = null;
+  private OffsetDateTime created = null;
 
   @JsonProperty("datastoreId")
   private UUID datastoreId = null;
@@ -41,11 +42,17 @@ public class Record {
   @JsonProperty("ownerId")
   private UUID ownerId = null;
 
+  @JsonProperty("pseudoId")
+  private String pseudoId = null;
+
+  @JsonProperty("pseudoOwnerId")
+  private String pseudoOwnerId = null;
+
   @JsonProperty("type")
   private String type = null;
 
   @JsonProperty("updated")
-  private LocalDateTime updated = null;
+  private OffsetDateTime updated = null;
 
   @JsonProperty("version")
   private Integer version = null;
@@ -68,7 +75,7 @@ public class Record {
     this.body = body;
   }
 
-  public Record created(LocalDateTime created) {
+  public Record created(OffsetDateTime created) {
     this.created = created;
     return this;
   }
@@ -78,11 +85,11 @@ public class Record {
    * @return created
   **/
   @ApiModelProperty(value = "")
-  public LocalDateTime getCreated() {
+  public OffsetDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(LocalDateTime created) {
+  public void setCreated(OffsetDateTime created) {
     this.created = created;
   }
 
@@ -140,6 +147,42 @@ public class Record {
     this.ownerId = ownerId;
   }
 
+  public Record pseudoId(String pseudoId) {
+    this.pseudoId = pseudoId;
+    return this;
+  }
+
+   /**
+   * Get pseudoId
+   * @return pseudoId
+  **/
+  @ApiModelProperty(value = "")
+  public String getPseudoId() {
+    return pseudoId;
+  }
+
+  public void setPseudoId(String pseudoId) {
+    this.pseudoId = pseudoId;
+  }
+
+  public Record pseudoOwnerId(String pseudoOwnerId) {
+    this.pseudoOwnerId = pseudoOwnerId;
+    return this;
+  }
+
+   /**
+   * Get pseudoOwnerId
+   * @return pseudoOwnerId
+  **/
+  @ApiModelProperty(value = "")
+  public String getPseudoOwnerId() {
+    return pseudoOwnerId;
+  }
+
+  public void setPseudoOwnerId(String pseudoOwnerId) {
+    this.pseudoOwnerId = pseudoOwnerId;
+  }
+
   public Record type(String type) {
     this.type = type;
     return this;
@@ -158,7 +201,7 @@ public class Record {
     this.type = type;
   }
 
-  public Record updated(LocalDateTime updated) {
+  public Record updated(OffsetDateTime updated) {
     this.updated = updated;
     return this;
   }
@@ -168,11 +211,11 @@ public class Record {
    * @return updated
   **/
   @ApiModelProperty(value = "")
-  public LocalDateTime getUpdated() {
+  public OffsetDateTime getUpdated() {
     return updated;
   }
 
-  public void setUpdated(LocalDateTime updated) {
+  public void setUpdated(OffsetDateTime updated) {
     this.updated = updated;
   }
 
@@ -209,6 +252,8 @@ public class Record {
         Objects.equals(this.datastoreId, record.datastoreId) &&
         Objects.equals(this.id, record.id) &&
         Objects.equals(this.ownerId, record.ownerId) &&
+        Objects.equals(this.pseudoId, record.pseudoId) &&
+        Objects.equals(this.pseudoOwnerId, record.pseudoOwnerId) &&
         Objects.equals(this.type, record.type) &&
         Objects.equals(this.updated, record.updated) &&
         Objects.equals(this.version, record.version);
@@ -216,7 +261,7 @@ public class Record {
 
   @Override
   public int hashCode() {
-    return Objects.hash(body, created, datastoreId, id, ownerId, type, updated, version);
+    return Objects.hash(body, created, datastoreId, id, ownerId, pseudoId, pseudoOwnerId, type, updated, version);
   }
 
 
@@ -230,6 +275,8 @@ public class Record {
     sb.append("    datastoreId: ").append(toIndentedString(datastoreId)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
+    sb.append("    pseudoId: ").append(toIndentedString(pseudoId)).append("\n");
+    sb.append("    pseudoOwnerId: ").append(toIndentedString(pseudoOwnerId)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");

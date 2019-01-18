@@ -46,11 +46,12 @@ public class DatastoreApiTest {
     @Test
     public void getRecordsByDatastoreTest() throws ApiException {
         UUID datastoreId = null;
+        UUID pseudoId = null;
         String actor = null;
         Integer pageNumber = null;
         Integer pageSize = null;
-        List<Record> response = api.getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize);
 
+        List<Record> response = api.getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize, pseudoId);
         // TODO: test validations
     }
     
@@ -68,7 +69,8 @@ public class DatastoreApiTest {
         String actor = null;
         Integer pageNumber = null;
         Integer pageSize = null;
-        List<User> response = api.getUsersByDatastore(datastoreId, actor, pageNumber, pageSize);
+        UUID pseudoId = null;
+        List<User> response = api.getUsersByDatastore(datastoreId, actor, pageNumber, pageSize, pseudoId);
 
         // TODO: test validations
     }

@@ -45,11 +45,13 @@ public class SearchApi {
    * @param end end (optional)
    * @param pageNumber pageNumber (optional, default to 0)
    * @param pageSize pageSize (optional, default to 20)
+   * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
    * @param start start (optional, default to 0)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
    * @return List&lt;Record&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<Record> searchRecords(UUID datastoreId, Object request, String type, Long end, Integer pageNumber, Integer pageSize, Long start) throws ApiException {
+  public List<Record> searchRecords(UUID datastoreId, Object request, String type, Long end, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Long start, String visibilityLevel) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set
@@ -80,7 +82,9 @@ public class SearchApi {
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "end", end));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageNumber", pageNumber));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageSize", pageSize));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "start", start));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel));
 
     
     
@@ -107,11 +111,13 @@ public class SearchApi {
    * @param end end (optional)
    * @param pageNumber pageNumber (optional, default to 0)
    * @param pageSize pageSize (optional, default to 20)
+   * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
    * @param start start (optional, default to 0)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
    * @return List&lt;User&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<User> searchUsers(UUID datastoreId, Object request, Long end, Integer pageNumber, Integer pageSize, Long start) throws ApiException {
+  public List<User> searchUsers(UUID datastoreId, Object request, Long end, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Long start, String visibilityLevel) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set
@@ -136,7 +142,9 @@ public class SearchApi {
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "end", end));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageNumber", pageNumber));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageSize", pageSize));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "start", start));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel));
 
     
     

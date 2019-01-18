@@ -60,7 +60,7 @@ public class RecordsApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/record/{datastoreId}"
+    String localVarPath = "/api/record/datastore/{datastoreId}"
       .replaceAll("\\{" + "datastoreId" + "\\}", apiClient.escapeString(datastoreId.toString()));
 
     // query params
@@ -138,10 +138,11 @@ public class RecordsApi {
    * Retrieves the latest version of a record by ID
    * @param recordId recordId (required)
    * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
    * @return Record
    * @throws ApiException if fails to make API call
    */
-  public Record getRecord(UUID recordId, String actorId) throws ApiException {
+  public Record getRecord(UUID recordId, String actorId, UUID pseudonymizationKeyId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'recordId' is set
@@ -159,6 +160,7 @@ public class RecordsApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "actorId", actorId));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
 
     
     

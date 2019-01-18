@@ -4,7 +4,7 @@ All URIs are relative to *https://localhost:8090*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createRecord**](RecordsApi.md#createRecord) | **POST** /api/record/{datastoreId} | Creates a record
+[**createRecord**](RecordsApi.md#createRecord) | **POST** /api/record/datastore/{datastoreId} | Creates a record
 [**deleteRecord**](RecordsApi.md#deleteRecord) | **DELETE** /api/record/{recordId} | Deletes an existing record
 [**getRecord**](RecordsApi.md#getRecord) | **GET** /api/record/{recordId} | Gets record by id
 [**getRecordVersion**](RecordsApi.md#getRecordVersion) | **GET** /api/record/{recordId}/versions/{version} | Gets concrete record version
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 <a name="getRecord"></a>
 # **getRecord**
-> Record getRecord(recordId, actorId)
+> Record getRecord(recordId, actorId, pseudonymizationKeyId)
 
 Gets record by id
 
@@ -158,8 +158,9 @@ basicAuth.setPassword("YOUR PASSWORD");
 RecordsApi apiInstance = new RecordsApi();
 UUID recordId = new UUID(); // UUID | recordId
 String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
+UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 try {
-    Record result = apiInstance.getRecord(recordId, actorId);
+    Record result = apiInstance.getRecord(recordId, actorId, pseudonymizationKeyId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RecordsApi#getRecord");
@@ -173,6 +174,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **recordId** | [**UUID**](.md)| recordId |
  **actorId** | **String**| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
+ **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
 
 ### Return type
 

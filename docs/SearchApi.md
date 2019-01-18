@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="searchRecords"></a>
 # **searchRecords**
-> List&lt;Record&gt; searchRecords(datastoreId, request, type, end, pageNumber, pageSize, start)
+> List&lt;Record&gt; searchRecords(datastoreId, request, type, end, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel)
 
 Search records
 
@@ -37,9 +37,11 @@ String type = "type_example"; // String | type
 Long end = 789L; // Long | end
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
+UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 Long start = 0L; // Long | start
+String visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
-    List<Record> result = apiInstance.searchRecords(datastoreId, request, type, end, pageNumber, pageSize, start);
+    List<Record> result = apiInstance.searchRecords(datastoreId, request, type, end, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SearchApi#searchRecords");
@@ -57,7 +59,9 @@ Name | Type | Description  | Notes
  **end** | **Long**| end | [optional]
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]
+ **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
  **start** | **Long**| start | [optional] [default to 0]
+ **visibilityLevel** | **String**| visibilityLevel | [optional] [default to PUBLIC] [enum: PUBLIC, PROTECTED, PRIVATE, SYSTEM]
 
 ### Return type
 
@@ -74,7 +78,7 @@ Name | Type | Description  | Notes
 
 <a name="searchUsers"></a>
 # **searchUsers**
-> List&lt;User&gt; searchUsers(datastoreId, request, end, pageNumber, pageSize, start)
+> List&lt;User&gt; searchUsers(datastoreId, request, end, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel)
 
 Search users
 
@@ -100,9 +104,11 @@ Object request = null; // Object | request
 Long end = 789L; // Long | end
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
+UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 Long start = 0L; // Long | start
+String visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
-    List<User> result = apiInstance.searchUsers(datastoreId, request, end, pageNumber, pageSize, start);
+    List<User> result = apiInstance.searchUsers(datastoreId, request, end, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SearchApi#searchUsers");
@@ -119,7 +125,9 @@ Name | Type | Description  | Notes
  **end** | **Long**| end | [optional]
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]
+ **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
  **start** | **Long**| start | [optional] [default to 0]
+ **visibilityLevel** | **String**| visibilityLevel | [optional] [default to PUBLIC] [enum: PUBLIC, PROTECTED, PRIVATE, SYSTEM]
 
 ### Return type
 

@@ -17,10 +17,10 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.logsentinel.sentineldb.model.SearchSchemaField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -30,11 +30,8 @@ import java.util.UUID;
  */
 
 public class SearchSchema {
-  @JsonProperty("analyzedFields")
-  private List<String> analyzedFields = null;
-
   @JsonProperty("created")
-  private LocalDateTime created = null;
+  private OffsetDateTime created = null;
 
   @JsonProperty("datastoreId")
   private UUID datastoreId = null;
@@ -77,45 +74,25 @@ public class SearchSchema {
   @JsonProperty("entityType")
   private EntityTypeEnum entityType = null;
 
+  @JsonProperty("fields")
+  private List<SearchSchemaField> fields = null;
+
   @JsonProperty("id")
   private UUID id = null;
 
-  @JsonProperty("indexFields")
-  private List<String> indexFields = null;
+  @JsonProperty("name")
+  private String name = null;
+
+  @JsonProperty("pseudoId")
+  private String pseudoId = null;
 
   @JsonProperty("recordType")
   private String recordType = null;
 
   @JsonProperty("updated")
-  private LocalDateTime updated = null;
+  private OffsetDateTime updated = null;
 
-  public SearchSchema analyzedFields(List<String> analyzedFields) {
-    this.analyzedFields = analyzedFields;
-    return this;
-  }
-
-  public SearchSchema addAnalyzedFieldsItem(String analyzedFieldsItem) {
-    if (this.analyzedFields == null) {
-      this.analyzedFields = new ArrayList<>();
-    }
-    this.analyzedFields.add(analyzedFieldsItem);
-    return this;
-  }
-
-   /**
-   * Get analyzedFields
-   * @return analyzedFields
-  **/
-  @ApiModelProperty(value = "")
-  public List<String> getAnalyzedFields() {
-    return analyzedFields;
-  }
-
-  public void setAnalyzedFields(List<String> analyzedFields) {
-    this.analyzedFields = analyzedFields;
-  }
-
-  public SearchSchema created(LocalDateTime created) {
+  public SearchSchema created(OffsetDateTime created) {
     this.created = created;
     return this;
   }
@@ -125,11 +102,11 @@ public class SearchSchema {
    * @return created
   **/
   @ApiModelProperty(value = "")
-  public LocalDateTime getCreated() {
+  public OffsetDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(LocalDateTime created) {
+  public void setCreated(OffsetDateTime created) {
     this.created = created;
   }
 
@@ -169,6 +146,32 @@ public class SearchSchema {
     this.entityType = entityType;
   }
 
+  public SearchSchema fields(List<SearchSchemaField> fields) {
+    this.fields = fields;
+    return this;
+  }
+
+  public SearchSchema addFieldsItem(SearchSchemaField fieldsItem) {
+    if (this.fields == null) {
+      this.fields = new ArrayList<>();
+    }
+    this.fields.add(fieldsItem);
+    return this;
+  }
+
+   /**
+   * Get fields
+   * @return fields
+  **/
+  @ApiModelProperty(value = "")
+  public List<SearchSchemaField> getFields() {
+    return fields;
+  }
+
+  public void setFields(List<SearchSchemaField> fields) {
+    this.fields = fields;
+  }
+
   public SearchSchema id(UUID id) {
     this.id = id;
     return this;
@@ -187,30 +190,40 @@ public class SearchSchema {
     this.id = id;
   }
 
-  public SearchSchema indexFields(List<String> indexFields) {
-    this.indexFields = indexFields;
-    return this;
-  }
-
-  public SearchSchema addIndexFieldsItem(String indexFieldsItem) {
-    if (this.indexFields == null) {
-      this.indexFields = new ArrayList<>();
-    }
-    this.indexFields.add(indexFieldsItem);
+  public SearchSchema name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * Get indexFields
-   * @return indexFields
+   * Get name
+   * @return name
   **/
   @ApiModelProperty(value = "")
-  public List<String> getIndexFields() {
-    return indexFields;
+  public String getName() {
+    return name;
   }
 
-  public void setIndexFields(List<String> indexFields) {
-    this.indexFields = indexFields;
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public SearchSchema pseudoId(String pseudoId) {
+    this.pseudoId = pseudoId;
+    return this;
+  }
+
+   /**
+   * Get pseudoId
+   * @return pseudoId
+  **/
+  @ApiModelProperty(value = "")
+  public String getPseudoId() {
+    return pseudoId;
+  }
+
+  public void setPseudoId(String pseudoId) {
+    this.pseudoId = pseudoId;
   }
 
   public SearchSchema recordType(String recordType) {
@@ -231,7 +244,7 @@ public class SearchSchema {
     this.recordType = recordType;
   }
 
-  public SearchSchema updated(LocalDateTime updated) {
+  public SearchSchema updated(OffsetDateTime updated) {
     this.updated = updated;
     return this;
   }
@@ -241,11 +254,11 @@ public class SearchSchema {
    * @return updated
   **/
   @ApiModelProperty(value = "")
-  public LocalDateTime getUpdated() {
+  public OffsetDateTime getUpdated() {
     return updated;
   }
 
-  public void setUpdated(LocalDateTime updated) {
+  public void setUpdated(OffsetDateTime updated) {
     this.updated = updated;
   }
 
@@ -259,19 +272,20 @@ public class SearchSchema {
       return false;
     }
     SearchSchema searchSchema = (SearchSchema) o;
-    return Objects.equals(this.analyzedFields, searchSchema.analyzedFields) &&
-        Objects.equals(this.created, searchSchema.created) &&
+    return Objects.equals(this.created, searchSchema.created) &&
         Objects.equals(this.datastoreId, searchSchema.datastoreId) &&
         Objects.equals(this.entityType, searchSchema.entityType) &&
+        Objects.equals(this.fields, searchSchema.fields) &&
         Objects.equals(this.id, searchSchema.id) &&
-        Objects.equals(this.indexFields, searchSchema.indexFields) &&
+        Objects.equals(this.name, searchSchema.name) &&
+        Objects.equals(this.pseudoId, searchSchema.pseudoId) &&
         Objects.equals(this.recordType, searchSchema.recordType) &&
         Objects.equals(this.updated, searchSchema.updated);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(analyzedFields, created, datastoreId, entityType, id, indexFields, recordType, updated);
+    return Objects.hash(created, datastoreId, entityType, fields, id, name, pseudoId, recordType, updated);
   }
 
 
@@ -280,12 +294,13 @@ public class SearchSchema {
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchSchema {\n");
     
-    sb.append("    analyzedFields: ").append(toIndentedString(analyzedFields)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    datastoreId: ").append(toIndentedString(datastoreId)).append("\n");
     sb.append("    entityType: ").append(toIndentedString(entityType)).append("\n");
+    sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    indexFields: ").append(toIndentedString(indexFields)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    pseudoId: ").append(toIndentedString(pseudoId)).append("\n");
     sb.append("    recordType: ").append(toIndentedString(recordType)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
     sb.append("}");

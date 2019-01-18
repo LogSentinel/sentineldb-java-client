@@ -4,9 +4,11 @@ All URIs are relative to *https://localhost:8090*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**addRole**](UsersApi.md#addRole) | **POST** /api/user/{userId}/addRole/{role} | Add role to user
 [**anonymizeUser**](UsersApi.md#anonymizeUser) | **PUT** /api/user/anonymize/{userId} | Anonymizes user
+[**changePassword**](UsersApi.md#changePassword) | **POST** /api/user/{userId}/changePassword/{newPassword}/{oldPassword} | Change user password
 [**confirm2fa**](UsersApi.md#confirm2fa) | **PUT** /api/user/{userId}/2fa/confirm | Confirms 2 factor authentication
-[**createUser**](UsersApi.md#createUser) | **POST** /api/user/{datastoreId} | Creates a user
+[**createUser**](UsersApi.md#createUser) | **POST** /api/user/datastore/{datastoreId} | Creates a user
 [**deleteUser**](UsersApi.md#deleteUser) | **DELETE** /api/user/{userId} | Deletes an existing user
 [**disable2fa**](UsersApi.md#disable2fa) | **PUT** /api/user/{userId}/2fa/disable | Disables 2 factor authentication
 [**enroll2fa**](UsersApi.md#enroll2fa) | **PUT** /api/user/{userId}/2fa/enroll | Enrolls user to 2 factor authentication
@@ -14,8 +16,65 @@ Method | HTTP request | Description
 [**getUser**](UsersApi.md#getUser) | **GET** /api/user/{userId} | Gets user by id
 [**getUserVersion**](UsersApi.md#getUserVersion) | **GET** /api/user/{userId}/versions/{version} | Gets concrete user version
 [**getUserVersions**](UsersApi.md#getUserVersions) | **GET** /api/user/{userId}/versions | Gets all record versions by id
+[**initiateResetPassword**](UsersApi.md#initiateResetPassword) | **POST** /api/user/{userId}/initiatePasswordReset | Initiates reset password
+[**removeRole**](UsersApi.md#removeRole) | **POST** /api/user/{userId}/removeRole/{role} | Remove user role
 [**updateUser**](UsersApi.md#updateUser) | **PUT** /api/user/{userId} | Updates user
+[**validateResetPasswordToken**](UsersApi.md#validateResetPasswordToken) | **POST** /api/user/validatePasswordReset | Validates reset password token
 
+
+<a name="addRole"></a>
+# **addRole**
+> Boolean addRole(role, userId)
+
+Add role to user
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.UsersApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+UsersApi apiInstance = new UsersApi();
+String role = "role_example"; // String | role
+UUID userId = new UUID(); // UUID | User identifier
+try {
+    Boolean result = apiInstance.addRole(role, userId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UsersApi#addRole");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **role** | **String**| role |
+ **userId** | [**UUID**](.md)| User identifier |
+
+### Return type
+
+**Boolean**
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="anonymizeUser"></a>
 # **anonymizeUser**
@@ -23,7 +82,7 @@ Method | HTTP request | Description
 
 Anonymizes user
 
-Performs user anonymization by deleting all personal information from the user object, but keeping all the associated records. See &lt;a href&#x3D;\&quot;https://logsentinel.com/sentineldb/getting-started/#anonymization\&quot;&gt;anonymization&lt;/a&gt; 
+Performs user anonymization by deleting all personal information from the user object, but keeping all the associated records. See &lt;a href&#x3D;\&quot;https://logsentinel.com/sentineldb/documentation/getting-started/#anonymization\&quot;&gt;anonymization&lt;/a&gt; 
 
 ### Example
 ```java
@@ -63,6 +122,61 @@ Name | Type | Description  | Notes
 ### Return type
 
 **Object**
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="changePassword"></a>
+# **changePassword**
+> changePassword(newPassword, oldPassword, userId)
+
+Change user password
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.UsersApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+UsersApi apiInstance = new UsersApi();
+String newPassword = "newPassword_example"; // String | newPassword
+String oldPassword = "oldPassword_example"; // String | oldPassword
+UUID userId = new UUID(); // UUID | User identifier
+try {
+    apiInstance.changePassword(newPassword, oldPassword, userId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UsersApi#changePassword");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **newPassword** | **String**| newPassword |
+ **oldPassword** | **String**| oldPassword |
+ **userId** | [**UUID**](.md)| User identifier |
+
+### Return type
+
+null (empty response body)
 
 ### Authorization
 
@@ -403,7 +517,7 @@ Name | Type | Description  | Notes
 
 <a name="getUser"></a>
 # **getUser**
-> User getUser(userId, actorId)
+> User getUser(userId, actorId, pseudonymizationKeyId)
 
 Gets user by id
 
@@ -428,8 +542,9 @@ basicAuth.setPassword("YOUR PASSWORD");
 UsersApi apiInstance = new UsersApi();
 UUID userId = new UUID(); // UUID | User identifier
 String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
+UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 try {
-    User result = apiInstance.getUser(userId, actorId);
+    User result = apiInstance.getUser(userId, actorId, pseudonymizationKeyId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UsersApi#getUser");
@@ -443,6 +558,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | [**UUID**](.md)| User identifier |
  **actorId** | **String**| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
+ **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
 
 ### Return type
 
@@ -569,6 +685,114 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a name="initiateResetPassword"></a>
+# **initiateResetPassword**
+> String initiateResetPassword(userId, expiryHours)
+
+Initiates reset password
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.UsersApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+UsersApi apiInstance = new UsersApi();
+UUID userId = new UUID(); // UUID | User identifier
+Integer expiryHours = 24; // Integer | expiryHours
+try {
+    String result = apiInstance.initiateResetPassword(userId, expiryHours);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UsersApi#initiateResetPassword");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | [**UUID**](.md)| User identifier |
+ **expiryHours** | **Integer**| expiryHours | [optional] [default to 24]
+
+### Return type
+
+**String**
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="removeRole"></a>
+# **removeRole**
+> Boolean removeRole(role, userId)
+
+Remove user role
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.UsersApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+UsersApi apiInstance = new UsersApi();
+String role = "role_example"; // String | role
+UUID userId = new UUID(); // UUID | User identifier
+try {
+    Boolean result = apiInstance.removeRole(role, userId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UsersApi#removeRole");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **role** | **String**| role |
+ **userId** | [**UUID**](.md)| User identifier |
+
+### Return type
+
+**Boolean**
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="updateUser"></a>
 # **updateUser**
 > User updateUser(user, userId, actorId)
@@ -617,6 +841,62 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**User**](User.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="validateResetPasswordToken"></a>
+# **validateResetPasswordToken**
+> Boolean validateResetPasswordToken(expiration, resetToken, userId)
+
+Validates reset password token
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.UsersApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+UsersApi apiInstance = new UsersApi();
+Long expiration = 789L; // Long | expiration
+String resetToken = "resetToken_example"; // String | resetToken
+UUID userId = new UUID(); // UUID | User identifier
+try {
+    Boolean result = apiInstance.validateResetPasswordToken(expiration, resetToken, userId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UsersApi#validateResetPasswordToken");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **expiration** | **Long**| expiration |
+ **resetToken** | **String**| resetToken |
+ **userId** | [**UUID**](.md)| User identifier |
+
+### Return type
+
+**Boolean**
 
 ### Authorization
 

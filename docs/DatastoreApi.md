@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addOrUpdateSchema**](DatastoreApi.md#addOrUpdateSchema) | **POST** /api/datastore/{datastoreId}/schema/{type} | addOrUpdateSchema
 [**deleteSchema**](DatastoreApi.md#deleteSchema) | **DELETE** /api/datastore/{datastoreId}/schema/{type} | deleteSchema
-[**entitiesByIds**](DatastoreApi.md#entitiesByIds) | **GET** /api/datastore/{datastoreId}/entities/{type} | Gets a list of datastores
+[**entitiesByIds**](DatastoreApi.md#entitiesByIds) | **GET** /api/datastore/{datastoreId}/entities/{type} | Gets a list of users or records by list of ids
 [**getRecordsByDatastore**](DatastoreApi.md#getRecordsByDatastore) | **GET** /api/datastore/{datastoreId}/records | Gets records by datastore with pagination
 [**getUsersByDatastore**](DatastoreApi.md#getUsersByDatastore) | **GET** /api/datastore/{datastoreId}/users | Gets users by datastore with pagination
 [**listDatastores**](DatastoreApi.md#listDatastores) | **GET** /api/datastore/list | Gets a list of datastores
@@ -124,7 +124,7 @@ null (empty response body)
 # **entitiesByIds**
 > List&lt;Object&gt; entitiesByIds(datastoreId, ids, type)
 
-Gets a list of datastores
+Gets a list of users or records by list of ids
 
 ### Example
 ```java
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 
 <a name="getRecordsByDatastore"></a>
 # **getRecordsByDatastore**
-> List&lt;Record&gt; getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize)
+> List&lt;Record&gt; getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize, pseudonymizationKeyId)
 
 Gets records by datastore with pagination
 
@@ -203,8 +203,9 @@ UUID datastoreId = new UUID(); // UUID | datastoreId
 String actor = "actor_example"; // String | actor
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
+UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 try {
-    List<Record> result = apiInstance.getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize);
+    List<Record> result = apiInstance.getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize, pseudonymizationKeyId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling DatastoreApi#getRecordsByDatastore");
@@ -220,6 +221,7 @@ Name | Type | Description  | Notes
  **actor** | **String**| actor | [optional]
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]
+ **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
 
 ### Return type
 
@@ -236,7 +238,7 @@ Name | Type | Description  | Notes
 
 <a name="getUsersByDatastore"></a>
 # **getUsersByDatastore**
-> List&lt;User&gt; getUsersByDatastore(datastoreId, actor, pageNumber, pageSize)
+> List&lt;User&gt; getUsersByDatastore(datastoreId, actor, pageNumber, pageSize, pseudonymizationKeyId)
 
 Gets users by datastore with pagination
 
@@ -261,8 +263,9 @@ UUID datastoreId = new UUID(); // UUID | datastoreId
 String actor = "actor_example"; // String | actor
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
+UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 try {
-    List<User> result = apiInstance.getUsersByDatastore(datastoreId, actor, pageNumber, pageSize);
+    List<User> result = apiInstance.getUsersByDatastore(datastoreId, actor, pageNumber, pageSize, pseudonymizationKeyId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling DatastoreApi#getUsersByDatastore");
@@ -278,6 +281,7 @@ Name | Type | Description  | Notes
  **actor** | **String**| actor | [optional]
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]
+ **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
 
 ### Return type
 

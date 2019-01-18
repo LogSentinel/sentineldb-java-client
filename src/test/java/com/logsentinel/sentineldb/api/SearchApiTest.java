@@ -49,7 +49,8 @@ public class SearchApiTest {
         String type = null;
         Integer pageNumber = null;
         Integer pageSize = null;
-        List<Record> response = api.searchRecords(datastoreId, request, type, 0L, pageNumber, pageSize, 0L);
+        UUID pseudoId = null;
+        List<Record> response = api.searchRecords(datastoreId, request, type, 0L, pageNumber, pageSize, pseudoId, 0L, type);
 
         // TODO: test validations
     }
@@ -68,7 +69,8 @@ public class SearchApiTest {
         Object request = null;
         Integer pageNumber = null;
         Integer pageSize = null;
-        List<User> response = api.searchUsers(datastoreId, request, 0L, pageNumber, pageSize, 0L);
+        UUID pseudoId = null;
+        List<User> response = api.searchUsers(datastoreId, request, 0L, pageNumber, pageSize, pseudoId, 0L, null);
 
         // TODO: test validations
     }

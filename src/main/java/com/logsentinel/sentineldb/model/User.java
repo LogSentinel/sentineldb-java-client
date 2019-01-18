@@ -13,16 +13,16 @@
 
 package com.logsentinel.sentineldb.model;
 
-import java.time.LocalDateTime;
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRawValue;
-
-import io.swagger.annotations.ApiModelProperty;
 
 /**
  * User
@@ -30,11 +30,10 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class User {
   @JsonProperty("attributes")
-  @JsonRawValue
   private String attributes = null;
 
   @JsonProperty("created")
-  private LocalDateTime created = null;
+  private OffsetDateTime created = null;
 
   @JsonProperty("datastoreId")
   private UUID datastoreId = null;
@@ -48,6 +47,9 @@ public class User {
   @JsonProperty("password")
   private String password = null;
 
+  @JsonProperty("pseudoId")
+  private String pseudoId = null;
+
   @JsonProperty("roles")
   private List<String> roles = null;
 
@@ -58,7 +60,7 @@ public class User {
   private Boolean twoFactorAuthEnabled = null;
 
   @JsonProperty("updated")
-  private LocalDateTime updated = null;
+  private OffsetDateTime updated = null;
 
   @JsonProperty("username")
   private String username = null;
@@ -84,7 +86,7 @@ public class User {
     this.attributes = attributes;
   }
 
-  public User created(LocalDateTime created) {
+  public User created(OffsetDateTime created) {
     this.created = created;
     return this;
   }
@@ -94,11 +96,11 @@ public class User {
    * @return created
   **/
   @ApiModelProperty(value = "")
-  public LocalDateTime getCreated() {
+  public OffsetDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(LocalDateTime created) {
+  public void setCreated(OffsetDateTime created) {
     this.created = created;
   }
 
@@ -174,6 +176,24 @@ public class User {
     this.password = password;
   }
 
+  public User pseudoId(String pseudoId) {
+    this.pseudoId = pseudoId;
+    return this;
+  }
+
+   /**
+   * Get pseudoId
+   * @return pseudoId
+  **/
+  @ApiModelProperty(value = "")
+  public String getPseudoId() {
+    return pseudoId;
+  }
+
+  public void setPseudoId(String pseudoId) {
+    this.pseudoId = pseudoId;
+  }
+
   public User roles(List<String> roles) {
     this.roles = roles;
     return this;
@@ -236,7 +256,7 @@ public class User {
     this.twoFactorAuthEnabled = twoFactorAuthEnabled;
   }
 
-  public User updated(LocalDateTime updated) {
+  public User updated(OffsetDateTime updated) {
     this.updated = updated;
     return this;
   }
@@ -246,11 +266,11 @@ public class User {
    * @return updated
   **/
   @ApiModelProperty(value = "")
-  public LocalDateTime getUpdated() {
+  public OffsetDateTime getUpdated() {
     return updated;
   }
 
-  public void setUpdated(LocalDateTime updated) {
+  public void setUpdated(OffsetDateTime updated) {
     this.updated = updated;
   }
 
@@ -306,6 +326,7 @@ public class User {
         Objects.equals(this.email, user.email) &&
         Objects.equals(this.id, user.id) &&
         Objects.equals(this.password, user.password) &&
+        Objects.equals(this.pseudoId, user.pseudoId) &&
         Objects.equals(this.roles, user.roles) &&
         Objects.equals(this.status, user.status) &&
         Objects.equals(this.twoFactorAuthEnabled, user.twoFactorAuthEnabled) &&
@@ -316,7 +337,7 @@ public class User {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributes, created, datastoreId, email, id, password, roles, status, twoFactorAuthEnabled, updated, username, version);
+    return Objects.hash(attributes, created, datastoreId, email, id, password, pseudoId, roles, status, twoFactorAuthEnabled, updated, username, version);
   }
 
 
@@ -331,6 +352,7 @@ public class User {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    pseudoId: ").append(toIndentedString(pseudoId)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    twoFactorAuthEnabled: ").append(toIndentedString(twoFactorAuthEnabled)).append("\n");

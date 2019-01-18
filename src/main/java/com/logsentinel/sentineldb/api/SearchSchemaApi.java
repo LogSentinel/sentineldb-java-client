@@ -8,6 +8,7 @@ import com.logsentinel.sentineldb.Pair;
 import javax.ws.rs.core.GenericType;
 
 import com.logsentinel.sentineldb.model.SearchSchema;
+import com.logsentinel.sentineldb.model.SearchSchemaField;
 import java.util.UUID;
 
 import java.util.ArrayList;
@@ -40,11 +41,13 @@ public class SearchSchemaApi {
    * 
    * @param field field (required)
    * @param id id (required)
-   * @param analyzed analyzed (optional, default to true)
+   * @param analyzed analyzed (optional, default to false)
+   * @param indexed indexed (optional, default to true)
+   * @param visibility visibility (optional, default to PUBLIC)
    * @return Object
    * @throws ApiException if fails to make API call
    */
-  public Object addSearchSchemaField(String field, UUID id, Boolean analyzed) throws ApiException {
+  public Object addSearchSchemaField(String field, UUID id, Boolean analyzed, Boolean indexed, String visibility) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'field' is set
@@ -68,6 +71,8 @@ public class SearchSchemaApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "analyzed", analyzed));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "indexed", indexed));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibility", visibility));
 
     
     
@@ -87,6 +92,94 @@ public class SearchSchemaApi {
     return apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
+   * Create/Update visibility restrictions of schema
+   * 
+   * @param id id (required)
+   * @param visibility visibility (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void changeVisibility(UUID id, Object visibility) throws ApiException {
+    Object localVarPostBody = visibility;
+    
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling changeVisibility");
+    }
+    
+    // verify the required parameter 'visibility' is set
+    if (visibility == null) {
+      throw new ApiException(400, "Missing the required parameter 'visibility' when calling changeVisibility");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/search-schema/{id}/visibility/change"
+      .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+
+    apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+  }
+  /**
+   * Clears visibility restrictions of schema
+   * 
+   * @param id id (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void clearVisibilityRestrictions(UUID id) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling clearVisibilityRestrictions");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/search-schema/{id}/visibility/clear"
+      .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+
+    apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+  }
+  /**
    * Create search schema
    * Creates a search schema. A search schema is required for indexing and searching records and users. Only fields that are part of the schema are indexed and searcheable.
    * @param datastoreId datastoreId (required)
@@ -96,7 +189,7 @@ public class SearchSchemaApi {
    * @return SearchSchema
    * @throws ApiException if fails to make API call
    */
-  public SearchSchema createSearchSchema(UUID datastoreId, String entityType, Object fields, String recordType) throws ApiException {
+  public SearchSchema createSearchSchema(UUID datastoreId, String entityType, List<SearchSchemaField> fields, String recordType) throws ApiException {
     Object localVarPostBody = fields;
     
     // verify the required parameter 'datastoreId' is set
@@ -186,7 +279,49 @@ public class SearchSchemaApi {
     return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
-   * Add field to search schema
+   * Get search schema
+   * 
+   * @param id id (required)
+   * @return SearchSchema
+   * @throws ApiException if fails to make API call
+   */
+  public SearchSchema getSearchSchema(UUID id) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling getSearchSchema");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/search-schema/{id}"
+      .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+    GenericType<SearchSchema> localVarReturnType = new GenericType<SearchSchema>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Remove field from search schema
    * 
    * @param field field (required)
    * @param id id (required)

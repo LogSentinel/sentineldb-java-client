@@ -37,8 +37,57 @@ public class UsersApi {
   }
 
   /**
+   * Add role to user
+   * 
+   * @param role role (required)
+   * @param userId User identifier (required)
+   * @return Boolean
+   * @throws ApiException if fails to make API call
+   */
+  public Boolean addRole(String role, UUID userId) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'role' is set
+    if (role == null) {
+      throw new ApiException(400, "Missing the required parameter 'role' when calling addRole");
+    }
+    
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling addRole");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/user/{userId}/addRole/{role}"
+      .replaceAll("\\{" + "role" + "\\}", apiClient.escapeString(role.toString()))
+      .replaceAll("\\{" + "userId" + "\\}", apiClient.escapeString(userId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+    GenericType<Boolean> localVarReturnType = new GenericType<Boolean>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
    * Anonymizes user
-   * Performs user anonymization by deleting all personal information from the user object, but keeping all the associated records. See &lt;a href&#x3D;\&quot;https://logsentinel.com/sentineldb/getting-started/#anonymization\&quot;&gt;anonymization&lt;/a&gt; 
+   * Performs user anonymization by deleting all personal information from the user object, but keeping all the associated records. See &lt;a href&#x3D;\&quot;https://logsentinel.com/sentineldb/documentation/getting-started/#anonymization\&quot;&gt;anonymization&lt;/a&gt; 
    * @param userId User identifier (required)
    * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
    * @return Object
@@ -80,6 +129,61 @@ public class UsersApi {
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
     return apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
+  /**
+   * Change user password
+   * 
+   * @param newPassword newPassword (required)
+   * @param oldPassword oldPassword (required)
+   * @param userId User identifier (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void changePassword(String newPassword, String oldPassword, UUID userId) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'newPassword' is set
+    if (newPassword == null) {
+      throw new ApiException(400, "Missing the required parameter 'newPassword' when calling changePassword");
+    }
+    
+    // verify the required parameter 'oldPassword' is set
+    if (oldPassword == null) {
+      throw new ApiException(400, "Missing the required parameter 'oldPassword' when calling changePassword");
+    }
+    
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling changePassword");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/user/{userId}/changePassword/{newPassword}/{oldPassword}"
+      .replaceAll("\\{" + "newPassword" + "\\}", apiClient.escapeString(newPassword.toString()))
+      .replaceAll("\\{" + "oldPassword" + "\\}", apiClient.escapeString(oldPassword.toString()))
+      .replaceAll("\\{" + "userId" + "\\}", apiClient.escapeString(userId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+
+    apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+  }
   /**
    * Confirms 2 factor authentication
    * 
@@ -152,7 +256,7 @@ public class UsersApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/user/{datastoreId}"
+    String localVarPath = "/api/user/datastore/{datastoreId}"
       .replaceAll("\\{" + "datastoreId" + "\\}", apiClient.escapeString(datastoreId.toString()));
 
     // query params
@@ -356,10 +460,11 @@ public class UsersApi {
    * Retrieves a user by their ID. The ID is normally stored in a \&quot;users\&quot; table in your system. 
    * @param userId User identifier (required)
    * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
    * @return User
    * @throws ApiException if fails to make API call
    */
-  public User getUser(UUID userId, String actorId) throws ApiException {
+  public User getUser(UUID userId, String actorId, UUID pseudonymizationKeyId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'userId' is set
@@ -377,6 +482,7 @@ public class UsersApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "actorId", actorId));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
 
     
     
@@ -489,6 +595,99 @@ public class UsersApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
+   * Initiates reset password
+   * 
+   * @param userId User identifier (required)
+   * @param expiryHours expiryHours (optional, default to 24)
+   * @return String
+   * @throws ApiException if fails to make API call
+   */
+  public String initiateResetPassword(UUID userId, Integer expiryHours) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling initiateResetPassword");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/user/{userId}/initiatePasswordReset"
+      .replaceAll("\\{" + "userId" + "\\}", apiClient.escapeString(userId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "expiryHours", expiryHours));
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+    GenericType<String> localVarReturnType = new GenericType<String>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Remove user role
+   * 
+   * @param role role (required)
+   * @param userId User identifier (required)
+   * @return Boolean
+   * @throws ApiException if fails to make API call
+   */
+  public Boolean removeRole(String role, UUID userId) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'role' is set
+    if (role == null) {
+      throw new ApiException(400, "Missing the required parameter 'role' when calling removeRole");
+    }
+    
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling removeRole");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/user/{userId}/removeRole/{role}"
+      .replaceAll("\\{" + "role" + "\\}", apiClient.escapeString(role.toString()))
+      .replaceAll("\\{" + "userId" + "\\}", apiClient.escapeString(userId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+    GenericType<Boolean> localVarReturnType = new GenericType<Boolean>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
    * Updates user
    * Updates a user&#39;s details. Note that this creates a newer version of the user, keeping the old value for historical reference.
    * @param user user (required)
@@ -537,5 +736,61 @@ public class UsersApi {
 
     GenericType<User> localVarReturnType = new GenericType<User>() {};
     return apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Validates reset password token
+   * 
+   * @param expiration expiration (required)
+   * @param resetToken resetToken (required)
+   * @param userId User identifier (required)
+   * @return Boolean
+   * @throws ApiException if fails to make API call
+   */
+  public Boolean validateResetPasswordToken(Long expiration, String resetToken, UUID userId) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'expiration' is set
+    if (expiration == null) {
+      throw new ApiException(400, "Missing the required parameter 'expiration' when calling validateResetPasswordToken");
+    }
+    
+    // verify the required parameter 'resetToken' is set
+    if (resetToken == null) {
+      throw new ApiException(400, "Missing the required parameter 'resetToken' when calling validateResetPasswordToken");
+    }
+    
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling validateResetPasswordToken");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/user/validatePasswordReset";
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "expiration", expiration));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "resetToken", resetToken));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "userId", userId));
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+    GenericType<Boolean> localVarReturnType = new GenericType<Boolean>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
 }

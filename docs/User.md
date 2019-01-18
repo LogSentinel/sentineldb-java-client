@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **email** | **String** |  |  [optional]
 **id** | [**UUID**](UUID.md) |  |  [optional]
 **password** | **String** |  |  [optional]
+**pseudoId** | **String** |  |  [optional]
 **roles** | **List&lt;String&gt;** |  |  [optional]
 **status** | **String** |  |  [optional]
 **twoFactorAuthEnabled** | **Boolean** |  |  [optional]
