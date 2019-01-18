@@ -58,7 +58,7 @@ public class UserApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/user/{datastoreId}"
+    String localVarPath = "/api/user/datastore/{datastoreId}"
       .replaceAll("\\{" + "datastoreId" + "\\}", apiClient.escapeString(datastoreId.toString()));
 
     // query params
