@@ -51,11 +51,11 @@ public class SentinelDBClient {
         this.searchActions = searchActions;
     }
 
-    public SentinelDBDao getMappingActions() {
+    public SentinelDBDao getDao() {
         return dao;
     }
 
-    public void setMappingActions(SentinelDBDao mappingActions) {
-        this.dao = mappingActions;
+    public void setDao(SentinelDBDao dao) {
+        this.dao = dao;
     }
 }
