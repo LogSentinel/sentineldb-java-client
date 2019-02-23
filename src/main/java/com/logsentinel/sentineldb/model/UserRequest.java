@@ -15,6 +15,7 @@ package com.logsentinel.sentineldb.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRawValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
@@ -28,6 +29,7 @@ import java.util.List;
 
 public class UserRequest {
   @JsonProperty("attributes")
+  @JsonRawValue
   private String attributes = null;
 
   @JsonProperty("email")
