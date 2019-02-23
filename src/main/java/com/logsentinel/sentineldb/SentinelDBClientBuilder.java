@@ -3,7 +3,7 @@ package com.logsentinel.sentineldb;
 import com.logsentinel.sentineldb.api.DatastoreApi;
 import com.logsentinel.sentineldb.api.RecordsApi;
 import com.logsentinel.sentineldb.api.SearchApi;
-import com.logsentinel.sentineldb.api.UserApi;
+import com.logsentinel.sentineldb.api.UsersApi;
 
 /**
  * Builder used to create an instance of the LogSentinel client.
@@ -39,7 +39,7 @@ public class SentinelDBClientBuilder {
 
         DatastoreApi datastoreApi = new DatastoreApi(apiClient);
         RecordsApi recordApi = new RecordsApi(apiClient);
-        UserApi userApi = new UserApi(apiClient);
+        UsersApi userApi = new UsersApi(apiClient);
         SearchApi searchApi = new SearchApi(apiClient);
         
         SentinelDBClient client = new SentinelDBClient(datastoreApi, recordApi, userApi, searchApi);

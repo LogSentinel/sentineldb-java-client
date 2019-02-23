@@ -257,6 +257,7 @@
 			<artifactId>jackson-datatype-jsr310</artifactId>
 			<version>${jackson-version}</version>
 		</dependency>
+		
 		<!-- test dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
