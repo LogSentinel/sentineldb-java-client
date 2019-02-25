@@ -1,11 +1,12 @@
 package com.logsentinel.sentineldb;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logsentinel.sentineldb.model.UserRequest;
 import com.logsentinel.sentineldb.model.generic.Record;
@@ -37,8 +38,6 @@ public class SentinelDBDao {
             } else {
                 throw ex;
             }
-        } catch (IOException ex) {
-            throw new IllegalStateException(ex);
         }
     }
 
@@ -53,8 +52,6 @@ public class SentinelDBDao {
             } else {
                 throw ex;
             }
-        } catch (IOException ex) {
-            throw new IllegalStateException(ex);
         }
     }
 
@@ -93,27 +90,32 @@ public class SentinelDBDao {
     
     @SuppressWarnings("unchecked")
     public <T> Record<T> updateRecord(Record<T> record, String actorId) {
-        try {
-            com.logsentinel.sentineldb.model.Record result = 
-                    client.getRecordActions().updateRecord(toPlainRecord(record), record.getId(), actorId);
-            return toGenericRecord((Class<T>) record.getBody().getClass(), result);
-        } catch (IOException e) {
-            throw new IllegalArgumentException("Cannot serialize attributes to JSON", e);
-        }
+        com.logsentinel.sentineldb.model.Record result = 
+                client.getRecordActions().updateRecord(toPlainRecord(record), record.getId(), actorId);
+        return toGenericRecord((Class<T>) record.getBody().getClass(), result);
     }
     
     public <T> User<T> login(String username, String password, UUID datastoreId, Class<T> attributesClass) {
         String token = client.getOAuthActions().getOAuthToken(username, password, datastoreId, 0, "password", null);
-        try {
-            return toGenericUser(attributesClass, SentinelDBClientBuilder.createWithToken(token).build().getOAuthActions().getUserDetails());
-        } catch (IOException e) {
-            throw new IllegalArgumentException("Cannot serialize attributes to JSON", e);
-        }
+        return toGenericUser(attributesClass, SentinelDBClientBuilder.createWithToken(token).build().getOAuthActions().getUserDetails());
     }
     
-    private <T> User<T> toGenericUser(Class<T> attributesType, com.logsentinel.sentineldb.model.User user) throws IOException, JsonParseException, JsonMappingException {
-        T attributes = mapper.readValue(user.getAttributes(), attributesType);
+    public <T> List<User<T>> searchUsers(Map<String, String> request, UUID datastoreId, Class<T> attributesClass) {
+        List<com.logsentinel.sentineldb.model.User> users = client.getSearchActions().searchUsers(datastoreId, request, null, null, null, null, null, null);
+        return users.stream()
+                .map(u -> toGenericUser(attributesClass, u))
+                .collect(Collectors.toList());
+    }
+    
+    private <T> User<T> toGenericUser(Class<T> attributesType, com.logsentinel.sentineldb.model.User user) {
         User<T> result = new User<T>();
+        try {
+            T attributes = mapper.readValue(user.getAttributes(), attributesType);
+            result.setAttributes(attributes);
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Cannot serialize attributes from JSON", e);
+        }
+        
         result.setCreated(user.getCreated());
         result.setDatastoreId(user.getDatastoreId());
         result.setEmail(user.getEmail());
@@ -126,15 +128,18 @@ public class SentinelDBDao {
         result.setUpdated(user.getUpdated());
         result.setUsername(user.getUsername());
         result.setVersion(user.getVersion());
-        result.setAttributes(attributes);
         return result;
     }
     
-    private <T> Record<T> toGenericRecord(Class<T> bodyType, com.logsentinel.sentineldb.model.Record record)
-            throws IOException {
-        T body = mapper.readValue(record.getBody(), bodyType);
+    private <T> Record<T> toGenericRecord(Class<T> bodyType, com.logsentinel.sentineldb.model.Record record) {
         Record<T> result = new Record<T>();
-        result.setBody(body);
+        try {
+            T body = mapper.readValue(record.getBody(), bodyType);
+            result.setBody(body);
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Cannot deserialize record from JSON", e);
+        }
+        
         result.setCreated(record.getCreated());
         result.setDatastoreId(record.getDatastoreId());
         result.setId(record.getId());
@@ -148,11 +153,14 @@ public class SentinelDBDao {
     }
     
 
-    private <T> com.logsentinel.sentineldb.model.Record toPlainRecord(Record<T> record)
-            throws IOException {
-        String body = mapper.writeValueAsString(record.getBody());
+    private <T> com.logsentinel.sentineldb.model.Record toPlainRecord(Record<T> record) {
         com.logsentinel.sentineldb.model.Record result = new com.logsentinel.sentineldb.model.Record();
-        result.setBody(body);
+        try {
+            String body = mapper.writeValueAsString(record.getBody());
+            result.setBody(body);
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Cannot serialize record to JSON", e);
+        }
         result.setCreated(record.getCreated());
         result.setDatastoreId(record.getDatastoreId());
         result.setId(record.getId());

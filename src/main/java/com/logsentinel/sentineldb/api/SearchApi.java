@@ -51,7 +51,7 @@ public class SearchApi {
    * @return List&lt;Record&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<Record> searchRecords(UUID datastoreId, Object request, String type, Long end, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Long start, String visibilityLevel) throws ApiException {
+  public List<Record> searchRecords(UUID datastoreId, Map<String, String> request, String type, Long end, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Long start, String visibilityLevel) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set
@@ -117,7 +117,7 @@ public class SearchApi {
    * @return List&lt;User&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<User> searchUsers(UUID datastoreId, Object request, Long end, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Long start, String visibilityLevel) throws ApiException {
+  public List<User> searchUsers(UUID datastoreId, Map<String, String> request, Long end, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Long start, String visibilityLevel) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set
