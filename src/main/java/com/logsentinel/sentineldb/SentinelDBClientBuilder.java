@@ -1,14 +1,13 @@
 package com.logsentinel.sentineldb;
 
 import com.logsentinel.sentineldb.api.DatastoreApi;
+import com.logsentinel.sentineldb.api.OAuthApi;
 import com.logsentinel.sentineldb.api.RecordsApi;
 import com.logsentinel.sentineldb.api.SearchApi;
 import com.logsentinel.sentineldb.api.UsersApi;
 
 /**
  * Builder used to create an instance of the LogSentinel client.
- *
- * @author bozho
  */
 public class SentinelDBClientBuilder {
 
@@ -18,10 +17,15 @@ public class SentinelDBClientBuilder {
     private String basePath;
     private String contentType;
 
+    private String token;
+    
+    public static SentinelDBClientBuilder createWithToken(String token) {
+        return new SentinelDBClientBuilder().setToken(token);
+    }
+    
     public static SentinelDBClientBuilder create(String organizationId, String secret) {
         SentinelDBClientBuilder builder = new SentinelDBClientBuilder();
-        return builder.setOrganizationId(organizationId)
-                .setSecret(secret);
+        return builder.setOrganizationId(organizationId).setSecret(secret);
     }
 
     public SentinelDBClient build() {
@@ -29,8 +33,12 @@ public class SentinelDBClientBuilder {
         if (basePath != null) {
             apiClient.setBasePath(basePath);
         }
-        apiClient.setUsername(organizationId.trim());
-        apiClient.setPassword(secret.trim());
+        if (organizationId != null && secret != null) {
+            apiClient.setUsername(organizationId.trim());
+            apiClient.setPassword(secret.trim());
+        } else if (token != null){
+            apiClient.setAccessToken(token);
+        }
 
 
         if (contentType == null) {
@@ -41,8 +49,9 @@ public class SentinelDBClientBuilder {
         RecordsApi recordApi = new RecordsApi(apiClient);
         UsersApi userApi = new UsersApi(apiClient);
         SearchApi searchApi = new SearchApi(apiClient);
+        OAuthApi oAuthApi = new OAuthApi(apiClient);
         
-        SentinelDBClient client = new SentinelDBClient(datastoreApi, recordApi, userApi, searchApi);
+        SentinelDBClient client = new SentinelDBClient(datastoreApi, recordApi, userApi, searchApi, oAuthApi);
         return client;
     }
 
@@ -89,6 +98,15 @@ public class SentinelDBClientBuilder {
      */
     public SentinelDBClientBuilder setContentType(String contentType) {
         this.contentType = contentType;
+        return this;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public SentinelDBClientBuilder setToken(String token) {
+        this.token = token;
         return this;
     }
 }

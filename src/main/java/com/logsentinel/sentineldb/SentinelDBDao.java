@@ -102,6 +102,12 @@ public class SentinelDBDao {
         }
     }
     
+    public <T> User<T> login(String username, String password, UUID datastoreId) {
+        String token = client.getOAuthActions().getOAuthToken(datastoreId, "password", username, password, 0, null);
+        //SentinelDBClientBuilder.createWithToken(token).build().getOAuthActions().getMe();
+        return null;
+    }
+    
     private <T> User<T> toGenericUser(Class<T> attributesType, com.logsentinel.sentineldb.model.User user) throws IOException, JsonParseException, JsonMappingException {
         T attributes = mapper.readValue(user.getAttributes(), attributesType);
         User<T> result = new User<T>();

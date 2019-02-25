@@ -39,14 +39,14 @@ public class OAuthApi {
    * Obtains a token for a given username/password pair. This is the standard password grant flow of OAuth with additional support for 2-factor authentication. The obtaind token can then be used to access API endpoints for the particular user (i.e. User and Record endpoints) 
    * @param datastoreId datastoreId (required)
    * @param grantType An OAuth grant type. Only \&quot;password\&quot; is supported. (required)
-   * @param password password (required)
    * @param username username (required)
+   * @param password password (required)
    * @param code code (optional, default to 0)
    * @param scope An optional OAuth scope parameter. Client code can pass any scope. When making further API calls, the scope is checked against the scope with which the token was created. (optional)
    * @return String
    * @throws ApiException if fails to make API call
    */
-  public String getOAuthToken(UUID datastoreId, String grantType, String password, String username, Integer code, String scope) throws ApiException {
+  public String getOAuthToken(UUID datastoreId, String grantType, String username, String password, Integer code, String scope) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'datastoreId' is set
