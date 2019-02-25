@@ -48,7 +48,7 @@ public class OAuthApiTest {
         String username = null;
         Integer code = null;
         String scope = null;
-        String response = api.getOAuthToken(datastoreId, grantType, password, username, code, scope);
+        String response = api.getOAuthToken(username, password, datastoreId, code, grantType, scope);
 
         // TODO: test validations
     }

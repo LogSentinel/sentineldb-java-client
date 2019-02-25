@@ -102,10 +102,13 @@ public class SentinelDBDao {
         }
     }
     
-    public <T> User<T> login(String username, String password, UUID datastoreId) {
-        String token = client.getOAuthActions().getOAuthToken(datastoreId, "password", username, password, 0, null);
-        //SentinelDBClientBuilder.createWithToken(token).build().getOAuthActions().getMe();
-        return null;
+    public <T> User<T> login(String username, String password, UUID datastoreId, Class<T> attributesClass) {
+        String token = client.getOAuthActions().getOAuthToken(username, password, datastoreId, 0, "password", null);
+        try {
+            return toGenericUser(attributesClass, SentinelDBClientBuilder.createWithToken(token).build().getOAuthActions().getUserDetails());
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Cannot serialize attributes to JSON", e);
+        }
     }
     
     private <T> User<T> toGenericUser(Class<T> attributesType, com.logsentinel.sentineldb.model.User user) throws IOException, JsonParseException, JsonMappingException {
