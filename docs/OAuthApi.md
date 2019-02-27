@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="getOAuthToken"></a>
 # **getOAuthToken**
-> String getOAuthToken(datastoreId, password, username, code, grantType, scope)
+> OAuthToken getOAuthToken(username, password, datastoreId, code, grantType, scope)
 
 Obtain a token for a given username/password pair
 
@@ -40,7 +40,7 @@ Integer code = 0; // Integer | code
 String grantType = "password"; // String | An OAuth grant type. Only \"password\" is supported.
 String scope = "scope_example"; // String | An optional OAuth scope parameter. Client code can pass any scope. When making further API calls, the scope is checked against the scope with which the token was created.
 try {
-    String result = apiInstance.getOAuthToken(username, password, datastoreId, code, grantType, scope);
+    OAuthToken result = apiInstance.getOAuthToken(username, password, datastoreId, code, grantType, scope);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OAuthApi#getOAuthToken");
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**String**
+[**OAuthToken**](OAuthToken.md)
 
 ### Authorization
 

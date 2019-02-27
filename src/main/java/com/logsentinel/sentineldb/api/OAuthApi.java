@@ -7,6 +7,7 @@ import com.logsentinel.sentineldb.Pair;
 
 import javax.ws.rs.core.GenericType;
 
+import com.logsentinel.sentineldb.model.OAuthToken;
 import java.util.UUID;
 import com.logsentinel.sentineldb.model.User;
 
@@ -38,16 +39,16 @@ public class OAuthApi {
   /**
    * Obtain a token for a given username/password pair
    * Obtains a token for a given username/password pair. This is the standard password grant flow of OAuth with additional support for 2-factor authentication. The obtaind token can then be used to access API endpoints for the particular user (i.e. User and Record endpoints) 
-   * @param username username (required)
-   * @param password password (required)
    * @param datastoreId datastoreId (required)
+   * @param password password (required)
+   * @param username username (required)
    * @param code code (optional, default to 0)
    * @param grantType An OAuth grant type. Only \&quot;password\&quot; is supported. (optional, default to password)
    * @param scope An optional OAuth scope parameter. Client code can pass any scope. When making further API calls, the scope is checked against the scope with which the token was created. (optional)
-   * @return String
+   * @return OAuthToken
    * @throws ApiException if fails to make API call
    */
-  public String getOAuthToken(String username, String password, UUID datastoreId, Integer code, String grantType, String scope) throws ApiException {
+  public OAuthToken getOAuthToken(UUID datastoreId, String password, String username, Integer code, String grantType, String scope) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'datastoreId' is set
@@ -92,9 +93,9 @@ public class OAuthApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
-    GenericType<String> localVarReturnType = new GenericType<String>() {};
+    GenericType<OAuthToken> localVarReturnType = new GenericType<OAuthToken>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
@@ -127,7 +128,7 @@ public class OAuthApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
     GenericType<User> localVarReturnType = new GenericType<User>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
