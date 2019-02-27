@@ -45,7 +45,7 @@ public class SearchApiTest {
     @Test
     public void searchRecordsTest() throws ApiException {
         UUID datastoreId = null;
-        Object request = null;
+        Map<String, String> request = null;
         String type = null;
         Integer pageNumber = null;
         Integer pageSize = null;
@@ -66,7 +66,7 @@ public class SearchApiTest {
     @Test
     public void searchUsersTest() throws ApiException {
         UUID datastoreId = null;
-        Object request = null;
+        Map<String, String> request = null;
         Integer pageNumber = null;
         Integer pageSize = null;
         UUID pseudoId = null;
