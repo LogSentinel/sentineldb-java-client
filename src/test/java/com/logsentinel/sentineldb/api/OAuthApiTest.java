@@ -14,6 +14,8 @@
 package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
+import com.logsentinel.sentineldb.model.OAuthToken;
+
 import java.util.UUID;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -48,7 +50,7 @@ public class OAuthApiTest {
         String username = null;
         Integer code = null;
         String scope = null;
-        String response = api.getOAuthToken(username, password, datastoreId, code, grantType, scope);
+        OAuthToken response = api.getOAuthToken(username, password, datastoreId, code, grantType, scope);
 
         // TODO: test validations
     }

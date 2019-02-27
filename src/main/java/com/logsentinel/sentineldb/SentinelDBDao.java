@@ -8,6 +8,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.logsentinel.sentineldb.model.OAuthToken;
 import com.logsentinel.sentineldb.model.UserRequest;
 import com.logsentinel.sentineldb.model.generic.Record;
 import com.logsentinel.sentineldb.model.generic.User;
@@ -96,8 +97,11 @@ public class SentinelDBDao {
     }
     
     public <T> User<T> login(String username, String password, UUID datastoreId, Class<T> attributesClass) {
-        String token = client.getOAuthActions().getOAuthToken(username, password, datastoreId, 0, "password", null);
-        return toGenericUser(attributesClass, SentinelDBClientBuilder.createWithToken(token).build().getOAuthActions().getUserDetails());
+        OAuthToken token = client.getOAuthActions().getOAuthToken(username, password, datastoreId, 0, "password", null);
+        return toGenericUser(attributesClass, SentinelDBClientBuilder
+                .createWithToken(token.getAccessToken())
+                .setBasePath(client.getOAuthActions().getApiClient().getBasePath())
+                .build().getOAuthActions().getUserDetails());
     }
     
     public <T> List<User<T>> searchUsers(Map<String, String> request, UUID datastoreId, Class<T> attributesClass) {
