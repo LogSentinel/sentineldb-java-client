@@ -40,7 +40,6 @@ public class SentinelDBClientBuilder {
             apiClient.setAccessToken(token);
         }
 
-
         if (contentType == null) {
             contentType = "application/json;charsets=UTF-8";
         }
