@@ -8,6 +8,8 @@ import com.logsentinel.sentineldb.Pair;
 import javax.ws.rs.core.GenericType;
 
 import com.logsentinel.sentineldb.model.Record;
+import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
+
 import java.util.UUID;
 import com.logsentinel.sentineldb.model.User;
 
@@ -51,7 +53,7 @@ public class SearchApi {
    * @return List&lt;Record&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<Record> searchRecords(UUID datastoreId, Map<String, String> request, String type, Long end, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Long start, String visibilityLevel) throws ApiException {
+  public List<Record> searchRecords(UUID datastoreId, Map<String, String> request, String type, Long end, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Long start, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set
@@ -84,7 +86,7 @@ public class SearchApi {
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageSize", pageSize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "start", start));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel.toString()));
 
     
     

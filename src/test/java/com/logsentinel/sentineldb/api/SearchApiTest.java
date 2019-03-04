@@ -15,6 +15,8 @@ package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.model.Record;
+import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
+
 import java.util.UUID;
 import com.logsentinel.sentineldb.model.User;
 import org.junit.Test;
@@ -50,7 +52,7 @@ public class SearchApiTest {
         Integer pageNumber = null;
         Integer pageSize = null;
         UUID pseudoId = null;
-        List<Record> response = api.searchRecords(datastoreId, request, type, 0L, pageNumber, pageSize, pseudoId, 0L, type);
+        List<Record> response = api.searchRecords(datastoreId, request, type, 0L, pageNumber, pageSize, pseudoId, 0L, VisibilityLevelEnum.PUBLIC);
 
         // TODO: test validations
     }

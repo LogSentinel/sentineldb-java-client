@@ -1,6 +1,7 @@
 package com.logsentinel.sentineldb;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logsentinel.sentineldb.model.OAuthToken;
+import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
 import com.logsentinel.sentineldb.model.UserRequest;
 import com.logsentinel.sentineldb.model.generic.Record;
 import com.logsentinel.sentineldb.model.generic.User;
@@ -108,6 +110,18 @@ public class SentinelDBDao {
         List<com.logsentinel.sentineldb.model.User> users = client.getSearchActions().searchUsers(datastoreId, request, null, null, null, null, null, null);
         return users.stream()
                 .map(u -> toGenericUser(attributesClass, u))
+                .collect(Collectors.toList());
+    }
+    
+    public <T> List<Record<T>> searchRecords(Map<String, String> query, UUID datastoreId, Class<T> recordClass, String recordType, UUID ownerId) {
+        Map<String, String> request = new HashMap<>(query);
+        if (!request.containsKey("ownerId") && ownerId != null) {
+            request.put("ownerId", ownerId.toString());
+        }
+        
+        return client.getSearchActions().searchRecords(
+                datastoreId, request, recordType, null, null, null, null, null, VisibilityLevelEnum.PRIVATE).stream()
+                .map(r -> toGenericRecord(recordClass, r))
                 .collect(Collectors.toList());
     }
     

@@ -12,13 +12,14 @@
 
 package com.logsentinel.sentineldb.model.generic;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
  * Generic Record entity, allowing to set a custom type body
  */
-public class Record<T> {
+public class Record<T> implements Serializable {
     private T body = null;
 
     private LocalDateTime created = null;

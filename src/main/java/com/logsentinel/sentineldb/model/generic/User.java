@@ -12,6 +12,7 @@
 
 package com.logsentinel.sentineldb.model.generic;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -19,7 +20,7 @@ import java.util.UUID;
 /**
  * Generic User entity, allowing for setting a custom attributes object
  */
-public class User<T> {
+public class User<T> implements Serializable {
     private T attributes;
 
     private LocalDateTime created = null;

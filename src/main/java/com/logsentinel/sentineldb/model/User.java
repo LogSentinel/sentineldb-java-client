@@ -17,6 +17,8 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ import java.util.UUID;
  * User
  */
 
-public class User {
+public class User implements Serializable {
   @JsonProperty("attributes")
   @JsonRawValue
   private String attributes = null;

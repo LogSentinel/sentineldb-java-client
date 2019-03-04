@@ -13,19 +13,21 @@
 
 package com.logsentinel.sentineldb.model;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRawValue;
-import io.swagger.annotations.ApiModelProperty;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Record
  */
 
-public class Record {
+public class Record implements Serializable {
   @JsonProperty("body")
   @JsonRawValue
   private String body = null;
