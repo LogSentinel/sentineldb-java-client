@@ -1,20 +1,24 @@
 package com.logsentinel.sentineldb.api;
 
-import com.logsentinel.sentineldb.ApiException;
-import com.logsentinel.sentineldb.ApiClient;
-import com.logsentinel.sentineldb.Configuration;
-import com.logsentinel.sentineldb.Pair;
-
-import javax.ws.rs.core.GenericType;
-
-import com.logsentinel.sentineldb.model.SearchSchema;
-import com.logsentinel.sentineldb.model.SearchSchemaField;
-import java.util.UUID;
-
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.ws.rs.core.GenericType;
+
+import com.logsentinel.sentineldb.ApiClient;
+import com.logsentinel.sentineldb.ApiException;
+import com.logsentinel.sentineldb.Configuration;
+import com.logsentinel.sentineldb.Pair;
+import com.logsentinel.sentineldb.model.SchemaField;
+import com.logsentinel.sentineldb.model.SearchSchema;
+import com.logsentinel.sentineldb.model.SearchSchema.EntityTypeEnum;
+import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
+import com.logsentinel.sentineldb.model.SearchSchemaField;
 
 
 public class SearchSchemaApi {
@@ -179,6 +183,7 @@ public class SearchSchemaApi {
 
     apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
+  
   /**
    * Create search schema
    * Creates a search schema. A search schema is required for indexing and searching records and users. Only fields that are part of the schema are indexed and searcheable.
@@ -189,7 +194,40 @@ public class SearchSchemaApi {
    * @return SearchSchema
    * @throws ApiException if fails to make API call
    */
-  public SearchSchema createSearchSchema(UUID datastoreId, String entityType, List<SearchSchemaField> fields, String recordType) throws ApiException {
+  
+  public <T> SearchSchema createSearchSchema(UUID datastoreId, Class<T> entityClass) throws ApiException {
+      EntityTypeEnum entityType = EntityTypeEnum.RECORD;
+      String recordType = entityClass.getSimpleName();
+      List<SearchSchemaField> schemaFields = new ArrayList<>();
+      List<Field> fields = getAllFieldsList(entityClass);
+      for (Field field : fields) {
+          SchemaField annotation = field.getAnnotation(SchemaField.class);
+          SearchSchemaField schemaField = new SearchSchemaField();
+          schemaField.setName(field.getName());
+          if (annotation != null) {
+              schemaField.setIndexed(annotation.indexed());
+              schemaField.setAnalyzed(annotation.analyzed());
+              schemaField.setVisibilityLevel(annotation.visibility());
+          } else {
+              schemaField.setIndexed(false);
+              schemaField.setVisibilityLevel(VisibilityLevelEnum.PUBLIC);
+          }
+          schemaFields.add(schemaField);
+      }
+      return createSearchSchema(datastoreId, entityType, schemaFields, recordType);
+  }
+  
+  /**
+   * Create search schema
+   * Creates a search schema. A search schema is required for indexing and searching records and users. Only fields that are part of the schema are indexed and searcheable.
+   * @param datastoreId datastoreId (required)
+   * @param entityType entityType (required)
+   * @param fields fields (required)
+   * @param recordType recordType (optional)
+   * @return SearchSchema
+   * @throws ApiException if fails to make API call
+   */
+  public SearchSchema createSearchSchema(UUID datastoreId, EntityTypeEnum entityType, List<SearchSchemaField> fields, String recordType) throws ApiException {
     Object localVarPostBody = fields;
     
     // verify the required parameter 'datastoreId' is set
@@ -368,5 +406,16 @@ public class SearchSchemaApi {
 
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
     return apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+  }
+  
+  public static List<Field> getAllFieldsList(Class<?> cls) {
+      List<Field> allFields = new ArrayList<>();
+
+      for(Class<?> currentClass = cls; currentClass != null; currentClass = currentClass.getSuperclass()) {
+          Field[] declaredFields = currentClass.getDeclaredFields();
+          Collections.addAll(allFields, declaredFields);
       }
+
+      return allFields;
+  }
 }
