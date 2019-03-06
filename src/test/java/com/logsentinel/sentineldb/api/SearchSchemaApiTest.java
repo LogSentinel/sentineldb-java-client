@@ -16,6 +16,7 @@ package com.logsentinel.sentineldb.api;
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.model.SearchSchema;
 import com.logsentinel.sentineldb.model.SearchSchema.EntityTypeEnum;
+import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
 import com.logsentinel.sentineldb.model.SearchSchemaField;
 
 import java.util.UUID;
@@ -50,7 +51,7 @@ public class SearchSchemaApiTest {
         UUID id = null;
         Boolean analyzed = null;
         UUID pseudoId = null;
-        Object response = api.addSearchSchemaField(field, id, analyzed, analyzed, "PUBLIC");
+        Object response = api.addSearchSchemaField(field, id, analyzed, analyzed, VisibilityLevelEnum.PUBLIC);
 
         // TODO: test validations
     }

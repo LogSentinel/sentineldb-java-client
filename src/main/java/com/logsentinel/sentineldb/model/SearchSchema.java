@@ -18,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.logsentinel.sentineldb.model.SearchSchemaField;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -91,7 +90,10 @@ public class SearchSchema {
 
   @JsonProperty("updated")
   private LocalDateTime updated = null;
-
+  
+  @JsonProperty("version")
+  private Integer version = null;
+  
   public SearchSchema created(LocalDateTime created) {
     this.created = created;
     return this;
@@ -262,6 +264,24 @@ public class SearchSchema {
     this.updated = updated;
   }
 
+  public SearchSchema version(Integer version) {
+    this.version = version;
+    return this;
+  }
+
+   /**
+   * Get version
+   * @return version
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getVersion() {
+    return version;
+  }
+
+  public void setVersion(Integer version) {
+    this.version = version;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -280,12 +300,13 @@ public class SearchSchema {
         Objects.equals(this.name, searchSchema.name) &&
         Objects.equals(this.pseudoId, searchSchema.pseudoId) &&
         Objects.equals(this.recordType, searchSchema.recordType) &&
-        Objects.equals(this.updated, searchSchema.updated);
+        Objects.equals(this.updated, searchSchema.updated) &&
+        Objects.equals(this.version, searchSchema.version);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, datastoreId, entityType, fields, id, name, pseudoId, recordType, updated);
+    return Objects.hash(created, datastoreId, entityType, fields, id, name, pseudoId, recordType, updated, version);
   }
 
 
@@ -303,6 +324,7 @@ public class SearchSchema {
     sb.append("    pseudoId: ").append(toIndentedString(pseudoId)).append("\n");
     sb.append("    recordType: ").append(toIndentedString(recordType)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
     sb.append("}");
     return sb.toString();
   }

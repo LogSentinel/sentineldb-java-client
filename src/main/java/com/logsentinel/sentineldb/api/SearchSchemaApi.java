@@ -4,9 +4,13 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.core.GenericType;
 
@@ -17,8 +21,8 @@ import com.logsentinel.sentineldb.Pair;
 import com.logsentinel.sentineldb.model.SchemaField;
 import com.logsentinel.sentineldb.model.SearchSchema;
 import com.logsentinel.sentineldb.model.SearchSchema.EntityTypeEnum;
-import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
 import com.logsentinel.sentineldb.model.SearchSchemaField;
+import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
 
 
 public class SearchSchemaApi {
@@ -51,7 +55,7 @@ public class SearchSchemaApi {
    * @return Object
    * @throws ApiException if fails to make API call
    */
-  public Object addSearchSchemaField(String field, UUID id, Boolean analyzed, Boolean indexed, String visibility) throws ApiException {
+  public Object addSearchSchemaField(String field, UUID id, Boolean analyzed, Boolean indexed, VisibilityLevelEnum visibility) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'field' is set
@@ -195,28 +199,12 @@ public class SearchSchemaApi {
    * @throws ApiException if fails to make API call
    */
   
-  public <T> SearchSchema createSearchSchema(UUID datastoreId, Class<T> entityClass) throws ApiException {
-      EntityTypeEnum entityType = EntityTypeEnum.RECORD;
-      String recordType = entityClass.getSimpleName();
-      List<SearchSchemaField> schemaFields = new ArrayList<>();
-      List<Field> fields = getAllFieldsList(entityClass);
-      for (Field field : fields) {
-          SchemaField annotation = field.getAnnotation(SchemaField.class);
-          SearchSchemaField schemaField = new SearchSchemaField();
-          schemaField.setName(field.getName());
-          if (annotation != null) {
-              schemaField.setIndexed(annotation.indexed());
-              schemaField.setAnalyzed(annotation.analyzed());
-              schemaField.setVisibilityLevel(annotation.visibility());
-          } else {
-              schemaField.setIndexed(false);
-              schemaField.setVisibilityLevel(VisibilityLevelEnum.PUBLIC);
-          }
-          schemaFields.add(schemaField);
-      }
+  public <T> SearchSchema createSearchSchema(UUID datastoreId, Class<T> entityClass, EntityTypeEnum entityType) throws ApiException {
+      String recordType = entityType == EntityTypeEnum.RECORD ? entityClass.getSimpleName() : "";
+      List<SearchSchemaField> schemaFields = getSearchSchemaFields(entityClass);
       return createSearchSchema(datastoreId, entityType, schemaFields, recordType);
   }
-  
+
   /**
    * Create search schema
    * Creates a search schema. A search schema is required for indexing and searching records and users. Only fields that are part of the schema are indexed and searcheable.
@@ -319,6 +307,56 @@ public class SearchSchemaApi {
   /**
    * Get search schema
    * 
+   * @param entityType entityType (required)
+   * @param recordType recordType (required)
+   * @return SearchSchema
+   * @throws ApiException if fails to make API call
+   */
+  public SearchSchema findSearchSchema(EntityTypeEnum entityType, String recordType) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'entityType' is set
+    if (entityType == null) {
+      throw new ApiException(400, "Missing the required parameter 'entityType' when calling findSearchSchema");
+    }
+    
+    // verify the required parameter 'recordType' is set
+    if (recordType == null) {
+      throw new ApiException(400, "Missing the required parameter 'recordType' when calling findSearchSchema");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/search-schema/find";
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "entityType", entityType));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "recordType", recordType));
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+    GenericType<SearchSchema> localVarReturnType = new GenericType<SearchSchema>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+  }
+  
+  /**
+   * Get search schema
+   * 
    * @param id id (required)
    * @return SearchSchema
    * @throws ApiException if fails to make API call
@@ -407,8 +445,42 @@ public class SearchSchemaApi {
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
     return apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
   }
+
+  public <T> void updateSearchSchema(UUID datastoreId, Class<T> entityClass, EntityTypeEnum entityType) {
+      String recordType = entityType == EntityTypeEnum.RECORD ? entityClass.getSimpleName() : "";
+      SearchSchema existingSchema = findSearchSchema(entityType, recordType);
+      if (existingSchema == null) {
+          createSearchSchema(datastoreId, entityClass, entityType);
+      } else {
+          List<SearchSchemaField> newSchemaFields = getSearchSchemaFields(entityClass);
+          List<SearchSchemaField> existingFields = existingSchema.getFields();
+          
+          Map<String, SearchSchemaField> newFieldsByName = newSchemaFields.stream()
+                  .collect(Collectors.toMap(SearchSchemaField::getName, Function.identity()));
+          
+          Map<String, SearchSchemaField> existingFieldsByName = existingFields.stream()
+                  .collect(Collectors.toMap(SearchSchemaField::getName, Function.identity()));
+          
+          Set<String> toAdd = new HashSet<>(newFieldsByName.keySet());
+          toAdd.removeAll(existingFieldsByName.keySet());
+          
+          Set<String> toRemove = new HashSet<>(existingFieldsByName.keySet());
+          toRemove.removeAll(newFieldsByName.keySet());
+          
+          for (String fieldName : toAdd) {
+              SearchSchemaField field = newFieldsByName.get(fieldName);
+              addSearchSchemaField(fieldName, existingSchema.getId(), 
+                      field.isAnalyzed(), field.isIndexed(), field.getVisibilityLevel());
+          }
+          
+          for (String fieldName : toRemove) {
+              removeSearchSchemaField(fieldName, existingSchema.getId());
+          }
+      }
+            
+  }
   
-  public static List<Field> getAllFieldsList(Class<?> cls) {
+  private static List<Field> getAllFieldsList(Class<?> cls) {
       List<Field> allFields = new ArrayList<>();
 
       for(Class<?> currentClass = cls; currentClass != null; currentClass = currentClass.getSuperclass()) {
@@ -417,5 +489,25 @@ public class SearchSchemaApi {
       }
 
       return allFields;
+  }
+  
+  private <T> List<SearchSchemaField> getSearchSchemaFields(Class<T> entityClass) {
+      List<SearchSchemaField> schemaFields = new ArrayList<>();
+        List<Field> fields = getAllFieldsList(entityClass);
+        for (Field field : fields) {
+            SchemaField annotation = field.getAnnotation(SchemaField.class);
+            SearchSchemaField schemaField = new SearchSchemaField();
+            schemaField.setName(field.getName());
+            if (annotation != null) {
+                schemaField.setIndexed(annotation.indexed());
+                schemaField.setAnalyzed(annotation.analyzed());
+                schemaField.setVisibilityLevel(annotation.visibility());
+            } else {
+                schemaField.setIndexed(false);
+                schemaField.setVisibilityLevel(VisibilityLevelEnum.PUBLIC);
+            }
+            schemaFields.add(schemaField);
+        }
+      return schemaFields;
   }
 }
