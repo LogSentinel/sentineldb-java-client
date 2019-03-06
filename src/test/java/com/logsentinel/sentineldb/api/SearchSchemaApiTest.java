@@ -15,6 +15,7 @@ package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.model.SearchSchema;
+import com.logsentinel.sentineldb.model.SearchSchema.EntityTypeEnum;
 import com.logsentinel.sentineldb.model.SearchSchemaField;
 
 import java.util.UUID;
@@ -65,7 +66,7 @@ public class SearchSchemaApiTest {
     @Test
     public void createSearchSchemaTest() throws ApiException {
         UUID datastoreId = null;
-        String entityType = null;
+        EntityTypeEnum entityType = null;
         String recordType = null;
         List<SearchSchemaField> fields = null;
         SearchSchema response = api.createSearchSchema(datastoreId, entityType, fields, recordType);
