@@ -1,7 +1,6 @@
 package com.logsentinel.sentineldb;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -114,13 +113,9 @@ public class SentinelDBDao {
     }
     
     public <T> List<Record<T>> searchRecords(Map<String, String> query, UUID datastoreId, Class<T> recordClass, String recordType, UUID ownerId) {
-        Map<String, String> request = new HashMap<>(query);
-        if (!request.containsKey("ownerId") && ownerId != null) {
-            request.put("ownerId", ownerId.toString());
-        }
         
         return client.getSearchActions().searchRecords(
-                datastoreId, request, recordType, null, null, null, null, null, VisibilityLevelEnum.PRIVATE).stream()
+                datastoreId, query, recordType, ownerId, null, null, null, null, null, VisibilityLevelEnum.PRIVATE).stream()
                 .map(r -> toGenericRecord(recordClass, r))
                 .collect(Collectors.toList());
     }

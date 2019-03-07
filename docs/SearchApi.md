@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="searchRecords"></a>
 # **searchRecords**
-> List&lt;Record&gt; searchRecords(datastoreId, request, type, end, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel)
+> List&lt;Record&gt; searchRecords(datastoreId, request, type, end, ownerId, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel)
 
 Search records
 
@@ -32,16 +32,17 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 SearchApi apiInstance = new SearchApi();
 UUID datastoreId = new UUID(); // UUID | datastoreId
-Object request = null; // Object | request
+Map<String, String> request = null; // Map | request
 String type = "type_example"; // String | type
 Long end = 789L; // Long | end
+UUID ownerId = new UUID(); // UUID | ownerId
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
 UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 Long start = 0L; // Long | start
 String visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
-    List<Record> result = apiInstance.searchRecords(datastoreId, request, type, end, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel);
+    List<Record> result = apiInstance.searchRecords(datastoreId, request, type, end, ownerId, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SearchApi#searchRecords");
@@ -54,9 +55,10 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **datastoreId** | [**UUID**](.md)| datastoreId |
- **request** | **Object**| request |
+ **request** | **Map**| request |
  **type** | **String**| type |
  **end** | **Long**| end | [optional]
+ **ownerId** | [**UUID**](.md)| ownerId | [optional]
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]
  **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
@@ -100,7 +102,7 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 SearchApi apiInstance = new SearchApi();
 UUID datastoreId = new UUID(); // UUID | datastoreId
-Object request = null; // Object | request
+Map<String, String> request = null; // Map | request
 Long end = 789L; // Long | end
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
@@ -121,7 +123,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **datastoreId** | [**UUID**](.md)| datastoreId |
- **request** | **Object**| request |
+ **request** | **Map**| request |
  **end** | **Long**| end | [optional]
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]

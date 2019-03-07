@@ -22,8 +22,6 @@ import com.logsentinel.sentineldb.model.User;
 import org.junit.Test;
 import org.junit.Ignore;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +50,7 @@ public class SearchApiTest {
         Integer pageNumber = null;
         Integer pageSize = null;
         UUID pseudoId = null;
-        List<Record> response = api.searchRecords(datastoreId, request, type, 0L, pageNumber, pageSize, pseudoId, 0L, VisibilityLevelEnum.PUBLIC);
+        List<Record> response = api.searchRecords(datastoreId, request, type, null, 0L, pageNumber, pageSize, pseudoId, 0L, VisibilityLevelEnum.PUBLIC);
 
         // TODO: test validations
     }

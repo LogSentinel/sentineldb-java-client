@@ -45,6 +45,7 @@ public class SearchApi {
    * @param request request (required)
    * @param type type (required)
    * @param end end (optional)
+   * @param ownerId ownerId (optional)
    * @param pageNumber pageNumber (optional, default to 0)
    * @param pageSize pageSize (optional, default to 20)
    * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
@@ -53,7 +54,7 @@ public class SearchApi {
    * @return List&lt;Record&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<Record> searchRecords(UUID datastoreId, Map<String, String> request, String type, Long end, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Long start, VisibilityLevelEnum visibilityLevel) throws ApiException {
+  public List<Record> searchRecords(UUID datastoreId, Map<String, String> request, String type, UUID ownerId, Long end, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Long start, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set
@@ -82,6 +83,7 @@ public class SearchApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "end", end));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "ownerId", ownerId));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageNumber", pageNumber));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageSize", pageSize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
