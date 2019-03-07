@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **pseudoId** | **String** |  |  [optional]
 **recordType** | **String** |  |  [optional]
 **updated** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**version** | **Integer** |  |  [optional]
 
 
 <a name="EntityTypeEnum"></a>

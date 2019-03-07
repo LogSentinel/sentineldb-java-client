@@ -187,22 +187,22 @@ public class SearchSchemaApi {
 
     apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
-  
   /**
    * Create search schema
    * Creates a search schema. A search schema is required for indexing and searching records and users. Only fields that are part of the schema are indexed and searcheable.
    * @param datastoreId datastoreId (required)
    * @param entityType entityType (required)
    * @param fields fields (required)
+   * @param name name (optional)
    * @param recordType recordType (optional)
    * @return SearchSchema
    * @throws ApiException if fails to make API call
    */
   
-  public <T> SearchSchema createSearchSchema(UUID datastoreId, Class<T> entityClass, EntityTypeEnum entityType) throws ApiException {
+  public <T> SearchSchema createSearchSchema(UUID datastoreId, Class<T> entityClass, EntityTypeEnum entityType, String name) throws ApiException {
       String recordType = entityType == EntityTypeEnum.RECORD ? entityClass.getSimpleName() : "";
       List<SearchSchemaField> schemaFields = getSearchSchemaFields(entityClass);
-      return createSearchSchema(datastoreId, entityType, schemaFields, recordType);
+      return createSearchSchema(datastoreId, entityType, schemaFields, recordType, name);
   }
 
   /**
@@ -215,7 +215,7 @@ public class SearchSchemaApi {
    * @return SearchSchema
    * @throws ApiException if fails to make API call
    */
-  public SearchSchema createSearchSchema(UUID datastoreId, EntityTypeEnum entityType, List<SearchSchemaField> fields, String recordType) throws ApiException {
+  public SearchSchema createSearchSchema(UUID datastoreId, EntityTypeEnum entityType, List<SearchSchemaField> fields, String recordType, String name) throws ApiException {
     Object localVarPostBody = fields;
     
     // verify the required parameter 'datastoreId' is set
@@ -243,6 +243,7 @@ public class SearchSchemaApi {
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "name", name));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "recordType", recordType));
 
     
@@ -450,7 +451,7 @@ public class SearchSchemaApi {
       String recordType = entityType == EntityTypeEnum.RECORD ? entityClass.getSimpleName() : "";
       SearchSchema existingSchema = findSearchSchema(entityType, recordType);
       if (existingSchema == null) {
-          createSearchSchema(datastoreId, entityClass, entityType);
+          createSearchSchema(datastoreId, entityClass, entityType, null);
       } else {
           List<SearchSchemaField> newSchemaFields = getSearchSchemaFields(entityClass);
           List<SearchSchemaField> existingFields = existingSchema.getFields();

@@ -70,7 +70,7 @@ public class SearchSchemaApiTest {
         EntityTypeEnum entityType = null;
         String recordType = null;
         List<SearchSchemaField> fields = null;
-        SearchSchema response = api.createSearchSchema(datastoreId, entityType, fields, recordType);
+        SearchSchema response = api.createSearchSchema(datastoreId, entityType, fields, recordType, null);
 
         // TODO: test validations
     }

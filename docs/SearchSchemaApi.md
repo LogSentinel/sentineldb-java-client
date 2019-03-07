@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**clearVisibilityRestrictions**](SearchSchemaApi.md#clearVisibilityRestrictions) | **POST** /api/search-schema/{id}/visibility/clear | Clears visibility restrictions of schema
 [**createSearchSchema**](SearchSchemaApi.md#createSearchSchema) | **POST** /api/search-schema/{datastoreId}/{entityType} | Create search schema
 [**deleteSearchSchema**](SearchSchemaApi.md#deleteSearchSchema) | **DELETE** /api/search-schema/{id} | Delete search schema
+[**findSearchSchema**](SearchSchemaApi.md#findSearchSchema) | **GET** /api/search-schema/find | Get search schema
 [**getSearchSchema**](SearchSchemaApi.md#getSearchSchema) | **GET** /api/search-schema/{id} | Get search schema
 [**removeSearchSchemaField**](SearchSchemaApi.md#removeSearchSchemaField) | **PUT** /api/search-schema/{id}/removeField/{field} | Remove field from search schema
 
@@ -179,7 +180,7 @@ null (empty response body)
 
 <a name="createSearchSchema"></a>
 # **createSearchSchema**
-> SearchSchema createSearchSchema(datastoreId, entityType, fields, recordType)
+> SearchSchema createSearchSchema(datastoreId, entityType, fields, name, recordType)
 
 Create search schema
 
@@ -205,9 +206,10 @@ SearchSchemaApi apiInstance = new SearchSchemaApi();
 UUID datastoreId = new UUID(); // UUID | datastoreId
 String entityType = "entityType_example"; // String | entityType
 List<SearchSchemaField> fields = Arrays.asList(new SearchSchemaField()); // List<SearchSchemaField> | fields
+String name = "name_example"; // String | name
 String recordType = "recordType_example"; // String | recordType
 try {
-    SearchSchema result = apiInstance.createSearchSchema(datastoreId, entityType, fields, recordType);
+    SearchSchema result = apiInstance.createSearchSchema(datastoreId, entityType, fields, name, recordType);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SearchSchemaApi#createSearchSchema");
@@ -222,6 +224,7 @@ Name | Type | Description  | Notes
  **datastoreId** | [**UUID**](.md)| datastoreId |
  **entityType** | **String**| entityType | [enum: USER, RECORD]
  **fields** | [**List&lt;SearchSchemaField&gt;**](SearchSchemaField.md)| fields |
+ **name** | **String**| name | [optional]
  **recordType** | **String**| recordType | [optional]
 
 ### Return type
@@ -279,6 +282,60 @@ Name | Type | Description  | Notes
 ### Return type
 
 **Object**
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="findSearchSchema"></a>
+# **findSearchSchema**
+> SearchSchema findSearchSchema(entityType, recordType)
+
+Get search schema
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.SearchSchemaApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+SearchSchemaApi apiInstance = new SearchSchemaApi();
+String entityType = "entityType_example"; // String | entityType
+String recordType = "recordType_example"; // String | recordType
+try {
+    SearchSchema result = apiInstance.findSearchSchema(entityType, recordType);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling SearchSchemaApi#findSearchSchema");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entityType** | **String**| entityType | [enum: USER, RECORD]
+ **recordType** | **String**| recordType |
+
+### Return type
+
+[**SearchSchema**](SearchSchema.md)
 
 ### Authorization
 

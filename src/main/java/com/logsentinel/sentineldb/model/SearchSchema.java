@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.logsentinel.sentineldb.model.SearchSchemaField;
 import io.swagger.annotations.ApiModelProperty;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,12 +90,12 @@ public class SearchSchema {
   private String recordType = null;
 
   @JsonProperty("updated")
-  private LocalDateTime updated = null;
-  
+  private LocalDatetime updated = null;
+
   @JsonProperty("version")
   private Integer version = null;
-  
-  public SearchSchema created(LocalDateTime created) {
+
+  public SearchSchema created(LocalDatetime created) {
     this.created = created;
     return this;
   }
@@ -104,11 +105,11 @@ public class SearchSchema {
    * @return created
   **/
   @ApiModelProperty(value = "")
-  public LocalDateTime getCreated() {
+  public LocalDatetime getCreated() {
     return created;
   }
 
-  public void setCreated(LocalDateTime created) {
+  public void setCreated(LocalDatetime created) {
     this.created = created;
   }
 
@@ -246,7 +247,7 @@ public class SearchSchema {
     this.recordType = recordType;
   }
 
-  public SearchSchema updated(LocalDateTime updated) {
+  public SearchSchema updated(LocalDatetime updated) {
     this.updated = updated;
     return this;
   }
@@ -256,11 +257,11 @@ public class SearchSchema {
    * @return updated
   **/
   @ApiModelProperty(value = "")
-  public LocalDateTime getUpdated() {
+  public LocalDatetime getUpdated() {
     return updated;
   }
 
-  public void setUpdated(LocalDateTime updated) {
+  public void setUpdated(LocalDatetime updated) {
     this.updated = updated;
   }
 
