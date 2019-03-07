@@ -90,12 +90,12 @@ public class SearchSchema {
   private String recordType = null;
 
   @JsonProperty("updated")
-  private LocalDatetime updated = null;
+  private LocalDateTime updated = null;
 
   @JsonProperty("version")
   private Integer version = null;
 
-  public SearchSchema created(LocalDatetime created) {
+  public SearchSchema created(LocalDateTime created) {
     this.created = created;
     return this;
   }
@@ -105,11 +105,11 @@ public class SearchSchema {
    * @return created
   **/
   @ApiModelProperty(value = "")
-  public LocalDatetime getCreated() {
+  public LocalDateTime getCreated() {
     return created;
   }
 
-  public void setCreated(LocalDatetime created) {
+  public void setCreated(LocalDateTime created) {
     this.created = created;
   }
 
@@ -247,7 +247,7 @@ public class SearchSchema {
     this.recordType = recordType;
   }
 
-  public SearchSchema updated(LocalDatetime updated) {
+  public SearchSchema updated(LocalDateTime updated) {
     this.updated = updated;
     return this;
   }
@@ -257,11 +257,11 @@ public class SearchSchema {
    * @return updated
   **/
   @ApiModelProperty(value = "")
-  public LocalDatetime getUpdated() {
+  public LocalDateTime getUpdated() {
     return updated;
   }
 
-  public void setUpdated(LocalDatetime updated) {
+  public void setUpdated(LocalDateTime updated) {
     this.updated = updated;
   }
 
