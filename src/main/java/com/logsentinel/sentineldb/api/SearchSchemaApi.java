@@ -191,10 +191,10 @@ public class SearchSchemaApi {
    * Create search schema
    * Creates a search schema. A search schema is required for indexing and searching records and users. Only fields that are part of the schema are indexed and searcheable.
    * @param datastoreId datastoreId (required)
+   * @param entityClass entityClass (required)
    * @param entityType entityType (required)
-   * @param fields fields (required)
    * @param name name (optional)
-   * @param recordType recordType (optional)
+   * @param <T> the type of the entity
    * @return SearchSchema
    * @throws ApiException if fails to make API call
    */
@@ -212,6 +212,7 @@ public class SearchSchemaApi {
    * @param entityType entityType (required)
    * @param fields fields (required)
    * @param recordType recordType (optional)
+   * @param name name (optional)
    * @return SearchSchema
    * @throws ApiException if fails to make API call
    */
