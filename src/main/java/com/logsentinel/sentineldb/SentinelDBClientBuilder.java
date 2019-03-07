@@ -4,6 +4,7 @@ import com.logsentinel.sentineldb.api.DatastoreApi;
 import com.logsentinel.sentineldb.api.OAuthApi;
 import com.logsentinel.sentineldb.api.RecordsApi;
 import com.logsentinel.sentineldb.api.SearchApi;
+import com.logsentinel.sentineldb.api.SearchSchemaApi;
 import com.logsentinel.sentineldb.api.UsersApi;
 
 /**
@@ -48,9 +49,10 @@ public class SentinelDBClientBuilder {
         RecordsApi recordApi = new RecordsApi(apiClient);
         UsersApi userApi = new UsersApi(apiClient);
         SearchApi searchApi = new SearchApi(apiClient);
+        SearchSchemaApi schemaApi = new SearchSchemaApi(apiClient);
         OAuthApi oAuthApi = new OAuthApi(apiClient);
         
-        SentinelDBClient client = new SentinelDBClient(datastoreApi, recordApi, userApi, searchApi, oAuthApi);
+        SentinelDBClient client = new SentinelDBClient(datastoreApi, recordApi, userApi, searchApi, schemaApi, oAuthApi);
         return client;
     }
 

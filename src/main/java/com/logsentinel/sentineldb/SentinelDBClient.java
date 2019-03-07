@@ -4,6 +4,7 @@ import com.logsentinel.sentineldb.api.DatastoreApi;
 import com.logsentinel.sentineldb.api.OAuthApi;
 import com.logsentinel.sentineldb.api.RecordsApi;
 import com.logsentinel.sentineldb.api.SearchApi;
+import com.logsentinel.sentineldb.api.SearchSchemaApi;
 import com.logsentinel.sentineldb.api.UsersApi;
 
 /**
@@ -15,16 +16,18 @@ public class SentinelDBClient {
     private RecordsApi recordActions;
     private UsersApi userActions;
     private SearchApi searchActions;
+    private SearchSchemaApi schemaActions;
     private OAuthApi oAuthActions;
     private SentinelDBDao dao;
     
     public SentinelDBClient(DatastoreApi datastoreActions, RecordsApi recordActions, UsersApi userActions,
-            SearchApi searchActions, OAuthApi oAuthActions) {
+            SearchApi searchActions, SearchSchemaApi schemaActions, OAuthApi oAuthActions) {
         super();
         this.datastoreActions = datastoreActions;
         this.recordActions = recordActions;
         this.userActions = userActions;
         this.searchActions = searchActions;
+        this.schemaActions = schemaActions;
         this.oAuthActions = oAuthActions;
         this.dao = new SentinelDBDao(this);
     }
@@ -52,6 +55,14 @@ public class SentinelDBClient {
     }
     public void setSearchActions(SearchApi searchActions) {
         this.searchActions = searchActions;
+    }
+
+    public SearchSchemaApi getSchemaActions() {
+        return schemaActions;
+    }
+
+    public void setSchemaActions(SearchSchemaApi schemaActions) {
+        this.schemaActions = schemaActions;
     }
 
     public OAuthApi getOAuthActions() {
