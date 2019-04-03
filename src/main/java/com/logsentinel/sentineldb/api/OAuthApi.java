@@ -96,7 +96,7 @@ public class OAuthApi {
     String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<OAuthToken> localVarReturnType = new GenericType<OAuthToken>() {};
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
    * Obtain the user details for the currently authenticated user
