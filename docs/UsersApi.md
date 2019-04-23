@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 Anonymizes user
 
-Performs user anonymization by deleting all personal information from the user object, but keeping all the associated records. See &lt;a href&#x3D;\&quot;https://logsentinel.com/sentineldb/documentation/getting-started/#anonymization\&quot;&gt;anonymization&lt;/a&gt; 
+Performs user anonymization by deleting all personal information from the user object, but keeping all the associated records. See &lt;a href&#x3D;\&quot;https://docs.sentineldb.io/en/latest/getting-started.html#anonymization\&quot;&gt;anonymization&lt;/a&gt; 
 
 ### Example
 ```java

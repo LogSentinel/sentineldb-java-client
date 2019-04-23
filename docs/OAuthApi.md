@@ -4,7 +4,7 @@ All URIs are relative to *https://localhost:8090*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getOAuthToken**](OAuthApi.md#getOAuthToken) | **GET** /api/oauth/token | Obtain a token for a given username/password pair
+[**getOAuthToken**](OAuthApi.md#getOAuthToken) | **POST** /api/oauth/token | Obtain a token for a given username/password pair
 [**getUserDetails**](OAuthApi.md#getUserDetails) | **GET** /api/oauth/me | Obtain the user details for the currently authenticated user
 
 

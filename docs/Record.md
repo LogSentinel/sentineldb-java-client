@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**binary** | **Boolean** |  |  [optional]
 **body** | **String** |  |  [optional]
 **created** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **datastoreId** | [**UUID**](UUID.md) |  |  [optional]

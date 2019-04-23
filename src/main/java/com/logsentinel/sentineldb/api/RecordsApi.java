@@ -7,6 +7,7 @@ import com.logsentinel.sentineldb.Pair;
 
 import javax.ws.rs.core.GenericType;
 
+import java.io.File;
 import com.logsentinel.sentineldb.model.Record;
 import java.util.UUID;
 
@@ -35,6 +36,65 @@ public class RecordsApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Creates a binary record
+   * 
+   * @param body body (required)
+   * @param datastoreId datastoreId (required)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @param ownerId ownerId (optional)
+   * @param type type (optional)
+   * @return Record
+   * @throws ApiException if fails to make API call
+   */
+  public Record createBinaryRecord(File body, UUID datastoreId, String actorId, String ownerId, String type) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'body' is set
+    if (body == null) {
+      throw new ApiException(400, "Missing the required parameter 'body' when calling createBinaryRecord");
+    }
+    
+    // verify the required parameter 'datastoreId' is set
+    if (datastoreId == null) {
+      throw new ApiException(400, "Missing the required parameter 'datastoreId' when calling createBinaryRecord");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/record/binary/datastore/{datastoreId}"
+      .replaceAll("\\{" + "datastoreId" + "\\}", apiClient.escapeString(datastoreId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    if (actorId != null)
+      localVarFormParams.put("actorId", actorId);
+if (body != null)
+      localVarFormParams.put("body", body);
+if (ownerId != null)
+      localVarFormParams.put("ownerId", ownerId);
+if (type != null)
+      localVarFormParams.put("type", type);
+
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "multipart/form-data"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+    GenericType<Record> localVarReturnType = new GenericType<Record>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
   /**
    * Creates a record
    * Creates a new record by specifying the record details (arbitrary JSON) as well as the ID of the owning user. 

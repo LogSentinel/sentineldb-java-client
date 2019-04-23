@@ -4,14 +4,78 @@ All URIs are relative to *https://localhost:8090*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**createBinaryRecord**](RecordsApi.md#createBinaryRecord) | **POST** /api/record/binary/datastore/{datastoreId} | Creates a binary record
 [**createRecord**](RecordsApi.md#createRecord) | **POST** /api/record/datastore/{datastoreId} | Creates a record
 [**deleteRecord**](RecordsApi.md#deleteRecord) | **DELETE** /api/record/{recordId} | Deletes an existing record
 [**getRecord**](RecordsApi.md#getRecord) | **GET** /api/record/{recordId} | Gets record by id
+[**getRecordBinaryContent**](RecordsApi.md#getRecordBinaryContent) | **GET** /api/record/binary/{recordId} | Gets record with binary content by id
 [**getRecordVersion**](RecordsApi.md#getRecordVersion) | **GET** /api/record/{recordId}/versions/{version} | Gets concrete record version
 [**getRecordVersions**](RecordsApi.md#getRecordVersions) | **GET** /api/record/{recordId}/versions | Gets all record versions by id
+[**updateBinaryRecord**](RecordsApi.md#updateBinaryRecord) | **PUT** /api/record/binary/{recordId} | Updates binary content of a record
+[**updateBinaryRecordMetadata**](RecordsApi.md#updateBinaryRecordMetadata) | **PUT** /api/record/binary/metadata/{recordId} | Updates metadata of a record with binary content
 [**updateRecord**](RecordsApi.md#updateRecord) | **PUT** /api/record/{recordId} | Updates record
 [**updateRecordOwner**](RecordsApi.md#updateRecordOwner) | **PUT** /api/record/{recordId}/owner/{ownerId} | Updates a record&#39;s owner
 
+
+<a name="createBinaryRecord"></a>
+# **createBinaryRecord**
+> Record createBinaryRecord(body, datastoreId, actorId, ownerId, type)
+
+Creates a binary record
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.RecordsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+RecordsApi apiInstance = new RecordsApi();
+File body = new File("/path/to/file.txt"); // File | body
+UUID datastoreId = new UUID(); // UUID | datastoreId
+String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
+String ownerId = "ownerId_example"; // String | ownerId
+String type = "type_example"; // String | type
+try {
+    Record result = apiInstance.createBinaryRecord(body, datastoreId, actorId, ownerId, type);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling RecordsApi#createBinaryRecord");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **File**| body |
+ **datastoreId** | [**UUID**](.md)| datastoreId |
+ **actorId** | **String**| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
+ **ownerId** | **String**| ownerId | [optional]
+ **type** | **String**| type | [optional]
+
+### Return type
+
+[**Record**](Record.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
 
 <a name="createRecord"></a>
 # **createRecord**
@@ -189,6 +253,61 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a name="getRecordBinaryContent"></a>
+# **getRecordBinaryContent**
+> getRecordBinaryContent(recordId, actorId, pseudonymizationKeyId)
+
+Gets record with binary content by id
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.RecordsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+RecordsApi apiInstance = new RecordsApi();
+UUID recordId = new UUID(); // UUID | recordId
+String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
+UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
+try {
+    apiInstance.getRecordBinaryContent(recordId, actorId, pseudonymizationKeyId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling RecordsApi#getRecordBinaryContent");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **recordId** | [**UUID**](.md)| recordId |
+ **actorId** | **String**| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
+ **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/octet-stream
+
 <a name="getRecordVersion"></a>
 # **getRecordVersion**
 > Record getRecordVersion(recordId, version, actorId)
@@ -299,6 +418,116 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="updateBinaryRecord"></a>
+# **updateBinaryRecord**
+> updateBinaryRecord(body, recordId, actorId)
+
+Updates binary content of a record
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.RecordsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+RecordsApi apiInstance = new RecordsApi();
+File body = new File("/path/to/file.txt"); // File | body
+UUID recordId = new UUID(); // UUID | recordId
+String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
+try {
+    apiInstance.updateBinaryRecord(body, recordId, actorId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling RecordsApi#updateBinaryRecord");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **File**| body |
+ **recordId** | [**UUID**](.md)| recordId |
+ **actorId** | **String**| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+<a name="updateBinaryRecordMetadata"></a>
+# **updateBinaryRecordMetadata**
+> updateBinaryRecordMetadata(metadata, recordId, actorId)
+
+Updates metadata of a record with binary content
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.RecordsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+RecordsApi apiInstance = new RecordsApi();
+String metadata = "metadata_example"; // String | metadata
+UUID recordId = new UUID(); // UUID | recordId
+String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
+try {
+    apiInstance.updateBinaryRecordMetadata(metadata, recordId, actorId);
+} catch (ApiException e) {
+    System.err.println("Exception when calling RecordsApi#updateBinaryRecordMetadata");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **metadata** | **String**| metadata |
+ **recordId** | [**UUID**](.md)| recordId |
+ **actorId** | **String**| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="updateRecord"></a>

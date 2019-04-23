@@ -28,6 +28,9 @@ import io.swagger.annotations.ApiModelProperty;
  */
 
 public class Record implements Serializable {
+  @JsonProperty("binary")
+  private Boolean binary = null;
+
   @JsonProperty("body")
   @JsonRawValue
   private String body = null;
@@ -58,6 +61,24 @@ public class Record implements Serializable {
 
   @JsonProperty("version")
   private Integer version = null;
+
+  public Record binary(Boolean binary) {
+    this.binary = binary;
+    return this;
+  }
+
+   /**
+   * Get binary
+   * @return binary
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isBinary() {
+    return binary;
+  }
+
+  public void setBinary(Boolean binary) {
+    this.binary = binary;
+  }
 
   public Record body(String body) {
     this.body = body;
@@ -249,7 +270,8 @@ public class Record implements Serializable {
       return false;
     }
     Record record = (Record) o;
-    return Objects.equals(this.body, record.body) &&
+    return Objects.equals(this.binary, record.binary) &&
+        Objects.equals(this.body, record.body) &&
         Objects.equals(this.created, record.created) &&
         Objects.equals(this.datastoreId, record.datastoreId) &&
         Objects.equals(this.id, record.id) &&
@@ -263,7 +285,7 @@ public class Record implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(body, created, datastoreId, id, ownerId, pseudoId, pseudoOwnerId, type, updated, version);
+    return Objects.hash(binary, body, created, datastoreId, id, ownerId, pseudoId, pseudoOwnerId, type, updated, version);
   }
 
 
@@ -272,6 +294,7 @@ public class Record implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class Record {\n");
     
+    sb.append("    binary: ").append(toIndentedString(binary)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    datastoreId: ").append(toIndentedString(datastoreId)).append("\n");
