@@ -69,16 +69,14 @@ public class RecordsApi {
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-
-    
     if (actorId != null)
       localVarFormParams.put("actorId", actorId);
-if (body != null)
-      localVarFormParams.put("body", body);
-if (ownerId != null)
-      localVarFormParams.put("ownerId", ownerId);
-if (type != null)
-      localVarFormParams.put("type", type);
+    if (body != null)
+          localVarFormParams.put("body", body);
+    if (ownerId != null)
+          localVarFormParams.put("ownerId", ownerId);
+    if (type != null)
+          localVarFormParams.put("type", type);
 
     final String[] localVarAccepts = {
       "application/json"
@@ -94,7 +92,7 @@ if (type != null)
 
     GenericType<Record> localVarReturnType = new GenericType<Record>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
+  }
   /**
    * Creates a record
    * Creates a new record by specifying the record details (arbitrary JSON) as well as the ID of the owning user. 
@@ -240,6 +238,51 @@ if (type != null)
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
+   * Gets record with binary content by id
+   * 
+   * @param recordId recordId (required)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
+   * @throws ApiException if fails to make API call
+   */
+  public void getRecordBinaryContent(UUID recordId, String actorId, UUID pseudonymizationKeyId) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'recordId' is set
+    if (recordId == null) {
+      throw new ApiException(400, "Missing the required parameter 'recordId' when calling getRecordBinaryContent");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/record/binary/{recordId}"
+      .replaceAll("\\{" + "recordId" + "\\}", apiClient.escapeString(recordId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "actorId", actorId));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/octet-stream"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+
+    apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+  }
+  /**
    * Gets concrete record version
    * Retrieves a specific (older) version for a given record.
    * @param recordId recordId (required)
@@ -332,6 +375,106 @@ if (type != null)
     GenericType<List<Integer>> localVarReturnType = new GenericType<List<Integer>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
+  /**
+   * Updates binary content of a record
+   * 
+   * @param body body (required)
+   * @param recordId recordId (required)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @throws ApiException if fails to make API call
+   */
+  public void updateBinaryRecord(File body, UUID recordId, String actorId) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'body' is set
+    if (body == null) {
+      throw new ApiException(400, "Missing the required parameter 'body' when calling updateBinaryRecord");
+    }
+    
+    // verify the required parameter 'recordId' is set
+    if (recordId == null) {
+      throw new ApiException(400, "Missing the required parameter 'recordId' when calling updateBinaryRecord");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/record/binary/{recordId}"
+      .replaceAll("\\{" + "recordId" + "\\}", apiClient.escapeString(recordId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "actorId", actorId));
+
+    
+    if (body != null)
+      localVarFormParams.put("body", body);
+
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "multipart/form-data"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+
+    apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+  }
+  /**
+   * Updates metadata of a record with binary content
+   * 
+   * @param metadata metadata (required)
+   * @param recordId recordId (required)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @throws ApiException if fails to make API call
+   */
+  public void updateBinaryRecordMetadata(String metadata, UUID recordId, String actorId) throws ApiException {
+    Object localVarPostBody = metadata;
+    
+    // verify the required parameter 'metadata' is set
+    if (metadata == null) {
+      throw new ApiException(400, "Missing the required parameter 'metadata' when calling updateBinaryRecordMetadata");
+    }
+    
+    // verify the required parameter 'recordId' is set
+    if (recordId == null) {
+      throw new ApiException(400, "Missing the required parameter 'recordId' when calling updateBinaryRecordMetadata");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/record/binary/metadata/{recordId}"
+      .replaceAll("\\{" + "recordId" + "\\}", apiClient.escapeString(recordId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "actorId", actorId));
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+
+    apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+  }
   /**
    * Updates record
    * Updates a record, thus creating a newer version
