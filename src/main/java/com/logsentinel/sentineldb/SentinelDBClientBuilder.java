@@ -1,11 +1,6 @@
 package com.logsentinel.sentineldb;
 
-import com.logsentinel.sentineldb.api.DatastoreApi;
-import com.logsentinel.sentineldb.api.OAuthApi;
-import com.logsentinel.sentineldb.api.RecordsApi;
-import com.logsentinel.sentineldb.api.SearchApi;
-import com.logsentinel.sentineldb.api.SearchSchemaApi;
-import com.logsentinel.sentineldb.api.UsersApi;
+import com.logsentinel.sentineldb.api.*;
 
 /**
  * Builder used to create an instance of the LogSentinel client.
@@ -51,8 +46,9 @@ public class SentinelDBClientBuilder {
         SearchApi searchApi = new SearchApi(apiClient);
         SearchSchemaApi schemaApi = new SearchSchemaApi(apiClient);
         OAuthApi oAuthApi = new OAuthApi(apiClient);
+        BatchApi batchApi = new BatchApi(apiClient);
         
-        SentinelDBClient client = new SentinelDBClient(datastoreApi, recordApi, userApi, searchApi, schemaApi, oAuthApi);
+        SentinelDBClient client = new SentinelDBClient(datastoreApi, recordApi, userApi, searchApi, schemaApi, oAuthApi, batchApi);
         return client;
     }
 

@@ -1,11 +1,6 @@
 package com.logsentinel.sentineldb;
 
-import com.logsentinel.sentineldb.api.DatastoreApi;
-import com.logsentinel.sentineldb.api.OAuthApi;
-import com.logsentinel.sentineldb.api.RecordsApi;
-import com.logsentinel.sentineldb.api.SearchApi;
-import com.logsentinel.sentineldb.api.SearchSchemaApi;
-import com.logsentinel.sentineldb.api.UsersApi;
+import com.logsentinel.sentineldb.api.*;
 
 /**
  * Main entry point for interacting with LogSentinel APIs
@@ -19,9 +14,10 @@ public class SentinelDBClient {
     private SearchSchemaApi schemaActions;
     private OAuthApi oAuthActions;
     private SentinelDBDao dao;
+    private BatchApi batchApi;
     
     public SentinelDBClient(DatastoreApi datastoreActions, RecordsApi recordActions, UsersApi userActions,
-            SearchApi searchActions, SearchSchemaApi schemaActions, OAuthApi oAuthActions) {
+            SearchApi searchActions, SearchSchemaApi schemaActions, OAuthApi oAuthActions, BatchApi batchApi) {
         super();
         this.datastoreActions = datastoreActions;
         this.recordActions = recordActions;
@@ -30,6 +26,7 @@ public class SentinelDBClient {
         this.schemaActions = schemaActions;
         this.oAuthActions = oAuthActions;
         this.dao = new SentinelDBDao(this);
+        this.batchApi = batchApi;
     }
     
     public DatastoreApi getDatastoreActions() {
@@ -79,5 +76,13 @@ public class SentinelDBClient {
 
     public void setDao(SentinelDBDao dao) {
         this.dao = dao;
+    }
+
+    public BatchApi getBatchApi() {
+        return batchApi;
+    }
+
+    public void setBatchApi(BatchApi batchApi) {
+        this.batchApi = batchApi;
     }
 }
