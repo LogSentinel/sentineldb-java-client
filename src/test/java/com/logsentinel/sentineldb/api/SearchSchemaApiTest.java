@@ -51,7 +51,7 @@ public class SearchSchemaApiTest {
         UUID id = null;
         Boolean analyzed = null;
         UUID pseudoId = null;
-        Object response = api.addSearchSchemaField(field, id, analyzed, analyzed, VisibilityLevelEnum.PUBLIC);
+        Object response = api.addSearchSchemaField(field, id, analyzed, analyzed, true, VisibilityLevelEnum.PUBLIC);
 
         // TODO: test validations
     }
