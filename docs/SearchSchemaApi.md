@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 <a name="addSearchSchemaField"></a>
 # **addSearchSchemaField**
-> Object addSearchSchemaField(field, id, analyzed, indexed, visibility)
+> Object addSearchSchemaField(field, id, analyzed, incrementVersion, indexed, visibility)
 
 Add field to search schema
 
@@ -40,10 +40,11 @@ SearchSchemaApi apiInstance = new SearchSchemaApi();
 String field = "field_example"; // String | field
 UUID id = new UUID(); // UUID | id
 Boolean analyzed = false; // Boolean | analyzed
+Boolean incrementVersion = true; // Boolean | incrementVersion
 Boolean indexed = true; // Boolean | indexed
 String visibility = "PUBLIC"; // String | visibility
 try {
-    Object result = apiInstance.addSearchSchemaField(field, id, analyzed, indexed, visibility);
+    Object result = apiInstance.addSearchSchemaField(field, id, analyzed, incrementVersion, indexed, visibility);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SearchSchemaApi#addSearchSchemaField");
@@ -58,6 +59,7 @@ Name | Type | Description  | Notes
  **field** | **String**| field |
  **id** | [**UUID**](.md)| id |
  **analyzed** | **Boolean**| analyzed | [optional] [default to false]
+ **incrementVersion** | **Boolean**| incrementVersion | [optional] [default to true]
  **indexed** | **Boolean**| indexed | [optional] [default to true]
  **visibility** | **String**| visibility | [optional] [default to PUBLIC] [enum: PUBLIC, PROTECTED, PRIVATE, SYSTEM]
 

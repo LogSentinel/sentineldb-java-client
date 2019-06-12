@@ -28,6 +28,9 @@ public class SearchSchemaField {
   @JsonProperty("analyzed")
   private Boolean analyzed = null;
 
+  @JsonProperty("incrementVersion")
+  private Boolean incrementVersion = null;
+
   @JsonProperty("indexed")
   private Boolean indexed = null;
 
@@ -92,6 +95,24 @@ public class SearchSchemaField {
 
   public void setAnalyzed(Boolean analyzed) {
     this.analyzed = analyzed;
+  }
+
+  public SearchSchemaField incrementVersion(Boolean incrementVersion) {
+    this.incrementVersion = incrementVersion;
+    return this;
+  }
+
+   /**
+   * Get incrementVersion
+   * @return incrementVersion
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isIncrementVersion() {
+    return incrementVersion;
+  }
+
+  public void setIncrementVersion(Boolean incrementVersion) {
+    this.incrementVersion = incrementVersion;
   }
 
   public SearchSchemaField indexed(Boolean indexed) {
@@ -159,6 +180,7 @@ public class SearchSchemaField {
     }
     SearchSchemaField searchSchemaField = (SearchSchemaField) o;
     return Objects.equals(this.analyzed, searchSchemaField.analyzed) &&
+        Objects.equals(this.incrementVersion, searchSchemaField.incrementVersion) &&
         Objects.equals(this.indexed, searchSchemaField.indexed) &&
         Objects.equals(this.name, searchSchemaField.name) &&
         Objects.equals(this.visibilityLevel, searchSchemaField.visibilityLevel);
@@ -166,7 +188,7 @@ public class SearchSchemaField {
 
   @Override
   public int hashCode() {
-    return Objects.hash(analyzed, indexed, name, visibilityLevel);
+    return Objects.hash(analyzed, incrementVersion, indexed, name, visibilityLevel);
   }
 
 
@@ -176,6 +198,7 @@ public class SearchSchemaField {
     sb.append("class SearchSchemaField {\n");
     
     sb.append("    analyzed: ").append(toIndentedString(analyzed)).append("\n");
+    sb.append("    incrementVersion: ").append(toIndentedString(incrementVersion)).append("\n");
     sb.append("    indexed: ").append(toIndentedString(indexed)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    visibilityLevel: ").append(toIndentedString(visibilityLevel)).append("\n");

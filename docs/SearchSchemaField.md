@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **analyzed** | **Boolean** |  |  [optional]
+**incrementVersion** | **Boolean** |  |  [optional]
 **indexed** | **Boolean** |  |  [optional]
 **name** | **String** |  |  [optional]
 **visibilityLevel** | [**VisibilityLevelEnum**](#VisibilityLevelEnum) |  |  [optional]

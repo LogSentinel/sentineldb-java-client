@@ -50,12 +50,13 @@ public class SearchSchemaApi {
    * @param field field (required)
    * @param id id (required)
    * @param analyzed analyzed (optional, default to false)
+   * @param incrementVersion incrementVersion (optional, default to true)
    * @param indexed indexed (optional, default to true)
    * @param visibility visibility (optional, default to PUBLIC)
    * @return Object
    * @throws ApiException if fails to make API call
    */
-  public Object addSearchSchemaField(String field, UUID id, Boolean analyzed, Boolean indexed, VisibilityLevelEnum visibility) throws ApiException {
+  public Object addSearchSchemaField(String field, UUID id, Boolean analyzed, Boolean incrementVersion, Boolean indexed, VisibilityLevelEnum visibility) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'field' is set
@@ -79,6 +80,7 @@ public class SearchSchemaApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "analyzed", analyzed));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "incrementVersion", incrementVersion));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "indexed", indexed));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibility", visibility));
 
@@ -472,7 +474,7 @@ public class SearchSchemaApi {
           for (String fieldName : toAdd) {
               SearchSchemaField field = newFieldsByName.get(fieldName);
               addSearchSchemaField(fieldName, existingSchema.getId(), 
-                      field.isAnalyzed(), field.isIndexed(), field.getVisibilityLevel());
+                      field.isAnalyzed(), field.isIndexed(), field.isIncrementVersion(), field.getVisibilityLevel());
           }
           
           for (String fieldName : toRemove) {
