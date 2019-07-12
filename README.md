@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>com.logsentinel.sentineldb</groupId>
     <artifactId>sentineldb-java-client</artifactId>
-    <version>0.0.6</version>
+    <version>0.1.5</version>
     <scope>compile</scope>
 </dependency>
 ```
