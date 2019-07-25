@@ -50,7 +50,7 @@ public class SearchApiTest {
         Integer pageNumber = null;
         Integer pageSize = null;
         UUID pseudoId = null;
-        List<Record> response = api.searchRecords(datastoreId, request, type, null, 0L, pageNumber, pageSize, pseudoId, 0L, VisibilityLevelEnum.PUBLIC);
+        List<Record> response = api.searchRecords(datastoreId, request, type, null, 0L, 0L, pageNumber, pageSize, pseudoId, VisibilityLevelEnum.PUBLIC);
 
         // TODO: test validations
     }
@@ -70,7 +70,7 @@ public class SearchApiTest {
         Integer pageNumber = null;
         Integer pageSize = null;
         UUID pseudoId = null;
-        List<User> response = api.searchUsers(datastoreId, request, 0L, pageNumber, pageSize, pseudoId, 0L, null);
+        List<User> response = api.searchUsers(datastoreId, request, 0L, 0L, pageNumber, pageSize, pseudoId, null, false);
 
         // TODO: test validations
     }

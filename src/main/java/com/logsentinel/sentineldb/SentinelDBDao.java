@@ -106,7 +106,7 @@ public class SentinelDBDao {
     }
     
     public <T> List<User<T>> searchUsers(Map<String, String> request, UUID datastoreId, Class<T> attributesClass) {
-        List<com.logsentinel.sentineldb.model.User> users = client.getSearchActions().searchUsers(datastoreId, request, null, null, null, null, null, null);
+        List<com.logsentinel.sentineldb.model.User> users = client.getSearchActions().searchUsers(datastoreId, request, null, null, null, null, null, null, false);
         return users.stream()
                 .map(u -> toGenericUser(attributesClass, u))
                 .collect(Collectors.toList());
