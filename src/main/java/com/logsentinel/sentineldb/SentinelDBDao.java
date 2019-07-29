@@ -31,7 +31,7 @@ public class SentinelDBDao {
     
     public <T> Optional<User<T>> getUser(UUID id, Class<T> attributesType, String actorId) {
         try {
-            com.logsentinel.sentineldb.model.User user = client.getUserActions().getUser(id, actorId, null);
+            com.logsentinel.sentineldb.model.User user = client.getUserActions().getUser(id, actorId, null, null, VisibilityLevelEnum.PRIVATE);
             User<T> result = toGenericUser(attributesType, user);
             return Optional.of(result);
         } catch (ApiException ex) {
@@ -45,7 +45,7 @@ public class SentinelDBDao {
 
     public <T> Optional<Record<T>> getRecord(UUID id, Class<T> bodyType, String actorId) {
         try {
-            com.logsentinel.sentineldb.model.Record record = client.getRecordActions().getRecord(id, actorId, null);
+            com.logsentinel.sentineldb.model.Record record = client.getRecordActions().getRecord(id, actorId, null, null, VisibilityLevelEnum.PRIVATE);
             Record<T> result = toGenericRecord(bodyType, record);
             return Optional.of(result);
         } catch (ApiException ex) {
@@ -102,11 +102,11 @@ public class SentinelDBDao {
         return toGenericUser(attributesClass, SentinelDBClientBuilder
                 .createWithToken(token.getAccessToken())
                 .setBasePath(client.getOAuthActions().getApiClient().getBasePath())
-                .build().getOAuthActions().getUserDetails());
+                .build().getOAuthActions().getUserDetails(VisibilityLevelEnum.PRIVATE));
     }
     
     public <T> List<User<T>> searchUsers(Map<String, String> request, UUID datastoreId, Class<T> attributesClass) {
-        List<com.logsentinel.sentineldb.model.User> users = client.getSearchActions().searchUsers(datastoreId, request, null, null, null, null, null, null, false);
+        List<com.logsentinel.sentineldb.model.User> users = client.getSearchActions().searchUsers(datastoreId, request, null, null, null, null, null, null, false, VisibilityLevelEnum.PRIVATE);
         return users.stream()
                 .map(u -> toGenericUser(attributesClass, u))
                 .collect(Collectors.toList());
@@ -115,7 +115,7 @@ public class SentinelDBDao {
     public <T> List<Record<T>> searchRecords(Map<String, String> query, UUID datastoreId, Class<T> recordClass, String recordType, UUID ownerId) {
         
         return client.getSearchActions().searchRecords(
-                datastoreId, query, recordType, ownerId, null, null, null, null, null, VisibilityLevelEnum.PRIVATE).stream()
+                datastoreId, query, recordType, ownerId, null, null, null, null, null, null, VisibilityLevelEnum.PRIVATE).stream()
                 .map(r -> toGenericRecord(recordClass, r))
                 .collect(Collectors.toList());
     }

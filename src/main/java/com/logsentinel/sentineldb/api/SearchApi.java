@@ -44,10 +44,10 @@ public class SearchApi {
    * @param datastoreId datastoreId (required)
    * @param request request (required)
    * @param type type (required)
+   * @param ownerId ownerId (optional)
    * @param start start (optional, default to 0)
    * @param end end (optional)
    * @param fieldsToAnonymize fieldsToAnonymize (optional)
-   * @param ownerId ownerId (optional)
    * @param pageNumber pageNumber (optional, default to 0)
    * @param pageSize pageSize (optional, default to 20)
    * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
@@ -55,7 +55,7 @@ public class SearchApi {
    * @return List&lt;Record&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<Record> searchRecords(UUID datastoreId, Object request, String type, Long start, Long end, List<String> fieldsToAnonymize, UUID ownerId, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, String visibilityLevel) throws ApiException {
+  public List<Record> searchRecords(UUID datastoreId, Object request, String type, UUID ownerId, Long start, Long end, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set
@@ -125,7 +125,7 @@ public class SearchApi {
    * @return List&lt;User&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<User> searchUsers(UUID datastoreId, Object request, Long start, Long end, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Boolean basicDataOnly, String visibilityLevel) throws ApiException {
+  public List<User> searchUsers(UUID datastoreId, Object request, Long start, Long end, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Boolean basicDataOnly, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set

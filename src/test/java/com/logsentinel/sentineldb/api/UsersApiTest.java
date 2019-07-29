@@ -165,7 +165,7 @@ public class UsersApiTest {
         UUID userId = null;
         String actorId = null;
         UUID pseudoId = null;
-        User response = api.getUser(userId, actorId, pseudoId);
+        User response = api.getUser(userId, actorId, null, pseudoId, null);
 
         // TODO: test validations
     }

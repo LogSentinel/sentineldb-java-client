@@ -8,6 +8,8 @@ import com.logsentinel.sentineldb.Pair;
 import javax.ws.rs.core.GenericType;
 
 import com.logsentinel.sentineldb.model.OAuthToken;
+import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
+
 import java.util.UUID;
 import com.logsentinel.sentineldb.model.User;
 
@@ -105,7 +107,7 @@ public class OAuthApi {
    * @return User
    * @throws ApiException if fails to make API call
    */
-  public User getUserDetails(String visibilityLevel) throws ApiException {
+  public User getUserDetails(VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -116,7 +118,7 @@ public class OAuthApi {
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel.toString()));
 
     
     

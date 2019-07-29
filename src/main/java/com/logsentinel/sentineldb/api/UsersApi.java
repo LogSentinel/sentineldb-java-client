@@ -8,6 +8,8 @@ import com.logsentinel.sentineldb.Pair;
 import javax.ws.rs.core.GenericType;
 
 import java.util.UUID;
+
+import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
 import com.logsentinel.sentineldb.model.User;
 import com.logsentinel.sentineldb.model.UserRequest;
 
@@ -466,7 +468,7 @@ public class UsersApi {
    * @return User
    * @throws ApiException if fails to make API call
    */
-  public User getUser(UUID userId, String actorId, List<String> fieldsToAnonymize, UUID pseudonymizationKeyId, String visibilityLevel) throws ApiException {
+  public User getUser(UUID userId, String actorId, List<String> fieldsToAnonymize, UUID pseudonymizationKeyId, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'userId' is set

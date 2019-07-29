@@ -9,6 +9,8 @@ import javax.ws.rs.core.GenericType;
 
 import java.io.File;
 import com.logsentinel.sentineldb.model.Record;
+import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
+
 import java.util.UUID;
 
 import java.util.ArrayList;
@@ -202,7 +204,7 @@ public class RecordsApi {
    * @return Record
    * @throws ApiException if fails to make API call
    */
-  public Record getRecord(UUID recordId, String actorId, List<String> fieldsToAnonymize, UUID pseudonymizationKeyId, String visibilityLevel) throws ApiException {
+  public Record getRecord(UUID recordId, String actorId, List<String> fieldsToAnonymize, UUID pseudonymizationKeyId, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'recordId' is set
@@ -541,7 +543,7 @@ public class RecordsApi {
    * @return Record
    * @throws ApiException if fails to make API call
    */
-  public Record updateRecordOwner(UUID ownerId, UUID recordId, String actorId, String visibilityLevel) throws ApiException {
+  public Record updateRecordOwner(UUID ownerId, UUID recordId, String actorId, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'ownerId' is set

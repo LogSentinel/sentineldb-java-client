@@ -20,6 +20,7 @@ import org.junit.Test;
 import org.junit.Ignore;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,7 +84,7 @@ public class RecordsApiTest {
         UUID recordId = null;
         String actorId = null;
         UUID pseudoId = null;
-        Record response = api.getRecord(recordId, actorId, pseudoId);
+        Record response = api.getRecord(recordId, actorId, Collections.emptyList(), pseudoId, null);
 
         // TODO: test validations
     }
@@ -153,7 +154,7 @@ public class RecordsApiTest {
         UUID ownerId = null;
         UUID recordId = null;
         String actorId = null;
-        Record response = api.updateRecordOwner(ownerId, recordId, actorId);
+        Record response = api.updateRecordOwner(ownerId, recordId, actorId, null);
 
         // TODO: test validations
     }

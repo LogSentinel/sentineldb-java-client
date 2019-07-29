@@ -22,6 +22,7 @@ import org.junit.Test;
 import org.junit.Ignore;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class DatastoreApiTest {
         Integer pageNumber = null;
         Integer pageSize = null;
 
-        List<Record> response = api.getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize, pseudoId);
+        List<Record> response = api.getRecordsByDatastore(datastoreId, actor, Collections.emptyList(), pageNumber, pageSize, pseudoId);
         // TODO: test validations
     }
     
@@ -70,7 +71,7 @@ public class DatastoreApiTest {
         Integer pageNumber = null;
         Integer pageSize = null;
         UUID pseudoId = null;
-        List<User> response = api.getUsersByDatastore(datastoreId, actor, pageNumber, pageSize, pseudoId);
+        List<User> response = api.getUsersByDatastore(datastoreId, actor, Collections.emptyList(), pageNumber, pageSize, pseudoId);
 
         // TODO: test validations
     }
