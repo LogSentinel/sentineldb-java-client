@@ -89,7 +89,7 @@ public class OAuthApi {
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
     final String[] localVarContentTypes = {
-      
+      "application/json"
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
@@ -101,10 +101,11 @@ public class OAuthApi {
   /**
    * Obtain the user details for the currently authenticated user
    * 
+   * @param visibilityLevel visibilityLevel (optional, default to PRIVATE)
    * @return User
    * @throws ApiException if fails to make API call
    */
-  public User getUserDetails() throws ApiException {
+  public User getUserDetails(String visibilityLevel) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -115,6 +116,7 @@ public class OAuthApi {
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel));
 
     
     
@@ -132,5 +134,47 @@ public class OAuthApi {
 
     GenericType<User> localVarReturnType = new GenericType<User>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Obtain a token for a given username/password pair
+   * 
+   * @param token token (required)
+   * @return String
+   * @throws ApiException if fails to make API call
+   */
+  public String invalidateOAuthToken(String token) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'token' is set
+    if (token == null) {
+      throw new ApiException(400, "Missing the required parameter 'token' when calling invalidateOAuthToken");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/oauth/token/revoke";
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "token", token));
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+    GenericType<String> localVarReturnType = new GenericType<String>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
 }

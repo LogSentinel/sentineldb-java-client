@@ -200,13 +200,14 @@ public class DatastoreApi {
    * 
    * @param datastoreId datastoreId (required)
    * @param actor actor (optional)
+   * @param fieldsToAnonymize fieldsToAnonymize (optional)
    * @param pageNumber pageNumber (optional, default to 0)
    * @param pageSize pageSize (optional, default to 20)
    * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
    * @return List&lt;Record&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<Record> getRecordsByDatastore(UUID datastoreId, String actor, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId) throws ApiException {
+  public List<Record> getRecordsByDatastore(UUID datastoreId, String actor, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'datastoreId' is set
@@ -224,6 +225,7 @@ public class DatastoreApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "actor", actor));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("multi", "fieldsToAnonymize", fieldsToAnonymize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageNumber", pageNumber));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageSize", pageSize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
@@ -250,13 +252,14 @@ public class DatastoreApi {
    * 
    * @param datastoreId datastoreId (required)
    * @param actor actor (optional)
+   * @param fieldsToAnonymize fieldsToAnonymize (optional)
    * @param pageNumber pageNumber (optional, default to 0)
    * @param pageSize pageSize (optional, default to 20)
    * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
    * @return List&lt;User&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<User> getUsersByDatastore(UUID datastoreId, String actor, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId) throws ApiException {
+  public List<User> getUsersByDatastore(UUID datastoreId, String actor, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'datastoreId' is set
@@ -274,6 +277,7 @@ public class DatastoreApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "actor", actor));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("multi", "fieldsToAnonymize", fieldsToAnonymize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageNumber", pageNumber));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageSize", pageSize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));

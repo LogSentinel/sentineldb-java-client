@@ -1,6 +1,6 @@
 /*
  * SentinelDB RESTful API
- * Read more at https://logsentinel.com/sentineldb/documentation/
+ * Read more at https://docs.sentineldb.io
  *
  * OpenAPI spec version: 1
  * 
@@ -56,6 +56,48 @@ public class User implements Serializable {
 
   @JsonProperty("status")
   private String status = null;
+
+  /**
+   * Gets or Sets systemRoles
+   */
+  public enum SystemRolesEnum {
+    ADMIN("DATASTORE_ADMIN"),
+    
+    USER_ADMIN("DATASTORE_USER_ADMIN"),
+    
+    VIEWER("DATASTORE_VIEWER"),
+    
+    USER_VIEWER("DATASTORE_USER_VIEWER");
+
+    private String value;
+
+    SystemRolesEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SystemRolesEnum fromValue(String text) {
+      for (SystemRolesEnum b : SystemRolesEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  @JsonProperty("systemRoles")
+  private List<SystemRolesEnum> systemRoles = null;
 
   @JsonProperty("twoFactorAuthEnabled")
   private Boolean twoFactorAuthEnabled = null;
@@ -239,6 +281,32 @@ public class User implements Serializable {
     this.status = status;
   }
 
+  public User systemRoles(List<SystemRolesEnum> systemRoles) {
+    this.systemRoles = systemRoles;
+    return this;
+  }
+
+  public User addSystemRolesItem(SystemRolesEnum systemRolesItem) {
+    if (this.systemRoles == null) {
+      this.systemRoles = new ArrayList<>();
+    }
+    this.systemRoles.add(systemRolesItem);
+    return this;
+  }
+
+   /**
+   * Get systemRoles
+   * @return systemRoles
+  **/
+  @ApiModelProperty(value = "")
+  public List<SystemRolesEnum> getSystemRoles() {
+    return systemRoles;
+  }
+
+  public void setSystemRoles(List<SystemRolesEnum> systemRoles) {
+    this.systemRoles = systemRoles;
+  }
+
   public User twoFactorAuthEnabled(Boolean twoFactorAuthEnabled) {
     this.twoFactorAuthEnabled = twoFactorAuthEnabled;
     return this;
@@ -330,6 +398,7 @@ public class User implements Serializable {
         Objects.equals(this.pseudoId, user.pseudoId) &&
         Objects.equals(this.roles, user.roles) &&
         Objects.equals(this.status, user.status) &&
+        Objects.equals(this.systemRoles, user.systemRoles) &&
         Objects.equals(this.twoFactorAuthEnabled, user.twoFactorAuthEnabled) &&
         Objects.equals(this.updated, user.updated) &&
         Objects.equals(this.username, user.username) &&
@@ -338,7 +407,7 @@ public class User implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributes, created, datastoreId, email, id, password, pseudoId, roles, status, twoFactorAuthEnabled, updated, username, version);
+    return Objects.hash(attributes, created, datastoreId, email, id, password, pseudoId, roles, status, systemRoles, twoFactorAuthEnabled, updated, username, version);
   }
 
 
@@ -356,6 +425,7 @@ public class User implements Serializable {
     sb.append("    pseudoId: ").append(toIndentedString(pseudoId)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    systemRoles: ").append(toIndentedString(systemRoles)).append("\n");
     sb.append("    twoFactorAuthEnabled: ").append(toIndentedString(twoFactorAuthEnabled)).append("\n");
     sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");

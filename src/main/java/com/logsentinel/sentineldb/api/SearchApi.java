@@ -46,6 +46,7 @@ public class SearchApi {
    * @param type type (required)
    * @param start start (optional, default to 0)
    * @param end end (optional)
+   * @param fieldsToAnonymize fieldsToAnonymize (optional)
    * @param ownerId ownerId (optional)
    * @param pageNumber pageNumber (optional, default to 0)
    * @param pageSize pageSize (optional, default to 20)
@@ -54,7 +55,7 @@ public class SearchApi {
    * @return List&lt;Record&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<Record> searchRecords(UUID datastoreId, Map<String, String> request, String type, UUID ownerId, Long start, Long end, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, VisibilityLevelEnum visibilityLevel) throws ApiException {
+  public List<Record> searchRecords(UUID datastoreId, Object request, String type, Long start, Long end, List<String> fieldsToAnonymize, UUID ownerId, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, String visibilityLevel) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set
@@ -83,12 +84,13 @@ public class SearchApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "end", end));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("multi", "fieldsToAnonymize", fieldsToAnonymize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "ownerId", ownerId));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageNumber", pageNumber));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageSize", pageSize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "start", start));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel.toString()));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel));
 
     
     
@@ -114,14 +116,16 @@ public class SearchApi {
    * @param request request (required)
    * @param start start (optional, default to 0)
    * @param end end (optional)
+   * @param fieldsToAnonymize fieldsToAnonymize (optional)
    * @param pageNumber pageNumber (optional, default to 0)
    * @param pageSize pageSize (optional, default to 20)
    * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
+   * @param basicDataOnly Indicates whether only the basic data (ID, username and last update date) should be included in the response. (optional, default to false)
    * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
    * @return List&lt;User&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<User> searchUsers(UUID datastoreId, Map<String, String> request, Long start, Long end, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, String visibilityLevel, Boolean basicDataOnly) throws ApiException {
+  public List<User> searchUsers(UUID datastoreId, Object request, Long start, Long end, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Boolean basicDataOnly, String visibilityLevel) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set
@@ -143,14 +147,17 @@ public class SearchApi {
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "start", start));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "basicDataOnly", basicDataOnly));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "end", end));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("multi", "fieldsToAnonymize", fieldsToAnonymize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageNumber", pageNumber));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pageSize", pageSize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "start", start));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "basicDataOnly", basicDataOnly));
 
+    
+    
     final String[] localVarAccepts = {
       "application/json"
     };

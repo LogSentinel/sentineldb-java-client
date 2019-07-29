@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
 
 <a name="getRecord"></a>
 # **getRecord**
-> Record getRecord(recordId, actorId, pseudonymizationKeyId)
+> Record getRecord(recordId, actorId, fieldsToAnonymize, pseudonymizationKeyId, visibilityLevel)
 
 Gets record by id
 
@@ -222,9 +222,11 @@ basicAuth.setPassword("YOUR PASSWORD");
 RecordsApi apiInstance = new RecordsApi();
 UUID recordId = new UUID(); // UUID | recordId
 String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
+List<String> fieldsToAnonymize = Arrays.asList("fieldsToAnonymize_example"); // List<String> | fieldsToAnonymize
 UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
+String visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
-    Record result = apiInstance.getRecord(recordId, actorId, pseudonymizationKeyId);
+    Record result = apiInstance.getRecord(recordId, actorId, fieldsToAnonymize, pseudonymizationKeyId, visibilityLevel);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RecordsApi#getRecord");
@@ -238,7 +240,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **recordId** | [**UUID**](.md)| recordId |
  **actorId** | **String**| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
+ **fieldsToAnonymize** | [**List&lt;String&gt;**](String.md)| fieldsToAnonymize | [optional]
  **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
+ **visibilityLevel** | **String**| visibilityLevel | [optional] [default to PUBLIC] [enum: PUBLIC, PROTECTED, PRIVATE, SYSTEM]
 
 ### Return type
 
@@ -255,7 +259,7 @@ Name | Type | Description  | Notes
 
 <a name="getRecordBinaryContent"></a>
 # **getRecordBinaryContent**
-> getRecordBinaryContent(recordId, actorId, pseudonymizationKeyId)
+> getRecordBinaryContent(recordId, actorId, fieldsToAnonymize, pseudonymizationKeyId)
 
 Gets record with binary content by id
 
@@ -278,9 +282,10 @@ basicAuth.setPassword("YOUR PASSWORD");
 RecordsApi apiInstance = new RecordsApi();
 UUID recordId = new UUID(); // UUID | recordId
 String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
+List<String> fieldsToAnonymize = Arrays.asList("fieldsToAnonymize_example"); // List<String> | fieldsToAnonymize
 UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 try {
-    apiInstance.getRecordBinaryContent(recordId, actorId, pseudonymizationKeyId);
+    apiInstance.getRecordBinaryContent(recordId, actorId, fieldsToAnonymize, pseudonymizationKeyId);
 } catch (ApiException e) {
     System.err.println("Exception when calling RecordsApi#getRecordBinaryContent");
     e.printStackTrace();
@@ -293,6 +298,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **recordId** | [**UUID**](.md)| recordId |
  **actorId** | **String**| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
+ **fieldsToAnonymize** | [**List&lt;String&gt;**](String.md)| fieldsToAnonymize | [optional]
  **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
 
 ### Return type
@@ -590,7 +596,7 @@ Name | Type | Description  | Notes
 
 <a name="updateRecordOwner"></a>
 # **updateRecordOwner**
-> Record updateRecordOwner(ownerId, recordId, actorId)
+> Record updateRecordOwner(ownerId, recordId, actorId, visibilityLevel)
 
 Updates a record&#39;s owner
 
@@ -616,8 +622,9 @@ RecordsApi apiInstance = new RecordsApi();
 UUID ownerId = new UUID(); // UUID | ownerId
 UUID recordId = new UUID(); // UUID | recordId
 String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
+String visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
-    Record result = apiInstance.updateRecordOwner(ownerId, recordId, actorId);
+    Record result = apiInstance.updateRecordOwner(ownerId, recordId, actorId, visibilityLevel);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RecordsApi#updateRecordOwner");
@@ -632,6 +639,7 @@ Name | Type | Description  | Notes
  **ownerId** | [**UUID**](.md)| ownerId |
  **recordId** | [**UUID**](.md)| recordId |
  **actorId** | **String**| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
+ **visibilityLevel** | **String**| visibilityLevel | [optional] [default to PUBLIC] [enum: PUBLIC, PROTECTED, PRIVATE, SYSTEM]
 
 ### Return type
 

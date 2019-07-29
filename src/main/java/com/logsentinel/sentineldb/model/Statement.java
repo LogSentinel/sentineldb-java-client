@@ -1,6 +1,6 @@
 /*
  * SentinelDB RESTful API
- * Read more at https://logsentinel.com/sentineldb/documentation/
+ * Read more at https://docs.sentineldb.io
  *
  * OpenAPI spec version: 1
  * 

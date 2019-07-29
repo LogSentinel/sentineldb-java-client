@@ -1,6 +1,6 @@
 /*
  * SentinelDB RESTful API
- * Read more at https://logsentinel.com/sentineldb/documentation/
+ * Read more at https://docs.sentineldb.io
  *
  * OpenAPI spec version: 1
  * 
@@ -40,6 +40,48 @@ public class UserRequest {
 
   @JsonProperty("status")
   private String status = null;
+
+  /**
+   * Gets or Sets systemRoles
+   */
+  public enum SystemRolesEnum {
+    ADMIN("DATASTORE_ADMIN"),
+    
+    USER_ADMIN("DATASTORE_USER_ADMIN"),
+    
+    VIEWER("DATASTORE_VIEWER"),
+    
+    USER_VIEWER("DATASTORE_USER_VIEWER");
+
+    private String value;
+
+    SystemRolesEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SystemRolesEnum fromValue(String text) {
+      for (SystemRolesEnum b : SystemRolesEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  @JsonProperty("systemRoles")
+  private List<SystemRolesEnum> systemRoles = null;
 
   @JsonProperty("username")
   private String username = null;
@@ -142,6 +184,32 @@ public class UserRequest {
     this.status = status;
   }
 
+  public UserRequest systemRoles(List<SystemRolesEnum> systemRoles) {
+    this.systemRoles = systemRoles;
+    return this;
+  }
+
+  public UserRequest addSystemRolesItem(SystemRolesEnum systemRolesItem) {
+    if (this.systemRoles == null) {
+      this.systemRoles = new ArrayList<>();
+    }
+    this.systemRoles.add(systemRolesItem);
+    return this;
+  }
+
+   /**
+   * Get systemRoles
+   * @return systemRoles
+  **/
+  @ApiModelProperty(value = "")
+  public List<SystemRolesEnum> getSystemRoles() {
+    return systemRoles;
+  }
+
+  public void setSystemRoles(List<SystemRolesEnum> systemRoles) {
+    this.systemRoles = systemRoles;
+  }
+
   public UserRequest username(String username) {
     this.username = username;
     return this;
@@ -175,12 +243,13 @@ public class UserRequest {
         Objects.equals(this.password, userRequest.password) &&
         Objects.equals(this.roles, userRequest.roles) &&
         Objects.equals(this.status, userRequest.status) &&
+        Objects.equals(this.systemRoles, userRequest.systemRoles) &&
         Objects.equals(this.username, userRequest.username);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributes, email, password, roles, status, username);
+    return Objects.hash(attributes, email, password, roles, status, systemRoles, username);
   }
 
 
@@ -194,6 +263,7 @@ public class UserRequest {
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    systemRoles: ").append(toIndentedString(systemRoles)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -517,7 +517,7 @@ Name | Type | Description  | Notes
 
 <a name="getUser"></a>
 # **getUser**
-> User getUser(userId, actorId, pseudonymizationKeyId)
+> User getUser(userId, actorId, fieldsToAnonymize, pseudonymizationKeyId, visibilityLevel)
 
 Gets user by id
 
@@ -542,9 +542,11 @@ basicAuth.setPassword("YOUR PASSWORD");
 UsersApi apiInstance = new UsersApi();
 UUID userId = new UUID(); // UUID | User identifier
 String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
+List<String> fieldsToAnonymize = Arrays.asList("fieldsToAnonymize_example"); // List<String> | fieldsToAnonymize
 UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
+String visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
-    User result = apiInstance.getUser(userId, actorId, pseudonymizationKeyId);
+    User result = apiInstance.getUser(userId, actorId, fieldsToAnonymize, pseudonymizationKeyId, visibilityLevel);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UsersApi#getUser");
@@ -558,7 +560,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | [**UUID**](.md)| User identifier |
  **actorId** | **String**| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
+ **fieldsToAnonymize** | [**List&lt;String&gt;**](String.md)| fieldsToAnonymize | [optional]
  **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
+ **visibilityLevel** | **String**| visibilityLevel | [optional] [default to PUBLIC] [enum: PUBLIC, PROTECTED, PRIVATE, SYSTEM]
 
 ### Return type
 

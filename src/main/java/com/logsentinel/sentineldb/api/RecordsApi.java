@@ -196,11 +196,13 @@ public class RecordsApi {
    * Retrieves the latest version of a record by ID
    * @param recordId recordId (required)
    * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @param fieldsToAnonymize fieldsToAnonymize (optional)
    * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
    * @return Record
    * @throws ApiException if fails to make API call
    */
-  public Record getRecord(UUID recordId, String actorId, UUID pseudonymizationKeyId) throws ApiException {
+  public Record getRecord(UUID recordId, String actorId, List<String> fieldsToAnonymize, UUID pseudonymizationKeyId, String visibilityLevel) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'recordId' is set
@@ -218,7 +220,9 @@ public class RecordsApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "actorId", actorId));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("multi", "fieldsToAnonymize", fieldsToAnonymize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel));
 
     
     
@@ -232,7 +236,7 @@ public class RecordsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
     GenericType<Record> localVarReturnType = new GenericType<Record>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -242,10 +246,11 @@ public class RecordsApi {
    * 
    * @param recordId recordId (required)
    * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @param fieldsToAnonymize fieldsToAnonymize (optional)
    * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
    * @throws ApiException if fails to make API call
    */
-  public void getRecordBinaryContent(UUID recordId, String actorId, UUID pseudonymizationKeyId) throws ApiException {
+  public void getRecordBinaryContent(UUID recordId, String actorId, List<String> fieldsToAnonymize, UUID pseudonymizationKeyId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'recordId' is set
@@ -263,6 +268,7 @@ public class RecordsApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "actorId", actorId));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("multi", "fieldsToAnonymize", fieldsToAnonymize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
 
     
@@ -531,10 +537,11 @@ public class RecordsApi {
    * @param ownerId ownerId (required)
    * @param recordId recordId (required)
    * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
    * @return Record
    * @throws ApiException if fails to make API call
    */
-  public Record updateRecordOwner(UUID ownerId, UUID recordId, String actorId) throws ApiException {
+  public Record updateRecordOwner(UUID ownerId, UUID recordId, String actorId, String visibilityLevel) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'ownerId' is set
@@ -558,6 +565,7 @@ public class RecordsApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "actorId", actorId));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel));
 
     
     

@@ -87,7 +87,7 @@ public class UsersApi {
       }
   /**
    * Anonymizes user
-   * Performs user anonymization by deleting all personal information from the user object, but keeping all the associated records. See &lt;a href&#x3D;\&quot;https://logsentinel.com/sentineldb/documentation/getting-started/#anonymization\&quot;&gt;anonymization&lt;/a&gt; 
+   * Performs user anonymization by deleting all personal information from the user object, but keeping all the associated records. See &lt;a href&#x3D;\&quot;https://docs.sentineldb.io/en/latest/getting-started.html#anonymization\&quot;&gt;anonymization&lt;/a&gt; 
    * @param userId User identifier (required)
    * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
    * @return Object
@@ -460,11 +460,13 @@ public class UsersApi {
    * Retrieves a user by their ID. The ID is normally stored in a \&quot;users\&quot; table in your system. 
    * @param userId User identifier (required)
    * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @param fieldsToAnonymize fieldsToAnonymize (optional)
    * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
    * @return User
    * @throws ApiException if fails to make API call
    */
-  public User getUser(UUID userId, String actorId, UUID pseudonymizationKeyId) throws ApiException {
+  public User getUser(UUID userId, String actorId, List<String> fieldsToAnonymize, UUID pseudonymizationKeyId, String visibilityLevel) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'userId' is set
@@ -482,7 +484,9 @@ public class UsersApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "actorId", actorId));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("multi", "fieldsToAnonymize", fieldsToAnonymize));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel));
 
     
     

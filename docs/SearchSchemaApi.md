@@ -4,14 +4,14 @@ All URIs are relative to *https://localhost:8090*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addSearchSchemaField**](SearchSchemaApi.md#addSearchSchemaField) | **PUT** /api/search-schema/{id}/addField/{field} | Add field to search schema
+[**addSearchSchemaField**](SearchSchemaApi.md#addSearchSchemaField) | **POST** /api/search-schema/{id}/addField/{field} | Add field to search schema
 [**changeVisibility**](SearchSchemaApi.md#changeVisibility) | **POST** /api/search-schema/{id}/visibility/change | Create/Update visibility restrictions of schema
 [**clearVisibilityRestrictions**](SearchSchemaApi.md#clearVisibilityRestrictions) | **POST** /api/search-schema/{id}/visibility/clear | Clears visibility restrictions of schema
 [**createSearchSchema**](SearchSchemaApi.md#createSearchSchema) | **POST** /api/search-schema/{datastoreId}/{entityType} | Create search schema
 [**deleteSearchSchema**](SearchSchemaApi.md#deleteSearchSchema) | **DELETE** /api/search-schema/{id} | Delete search schema
 [**findSearchSchema**](SearchSchemaApi.md#findSearchSchema) | **GET** /api/search-schema/find | Get search schema
 [**getSearchSchema**](SearchSchemaApi.md#getSearchSchema) | **GET** /api/search-schema/{id} | Get search schema
-[**removeSearchSchemaField**](SearchSchemaApi.md#removeSearchSchemaField) | **PUT** /api/search-schema/{id}/removeField/{field} | Remove field from search schema
+[**removeSearchSchemaField**](SearchSchemaApi.md#removeSearchSchemaField) | **POST** /api/search-schema/{id}/removeField/{field} | Remove field from search schema
 
 
 <a name="addSearchSchemaField"></a>

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getOAuthToken**](OAuthApi.md#getOAuthToken) | **POST** /api/oauth/token | Obtain a token for a given username/password pair
 [**getUserDetails**](OAuthApi.md#getUserDetails) | **GET** /api/oauth/me | Obtain the user details for the currently authenticated user
+[**invalidateOAuthToken**](OAuthApi.md#invalidateOAuthToken) | **POST** /api/oauth/token/revoke | Obtain a token for a given username/password pair
 
 
 <a name="getOAuthToken"></a>
@@ -69,12 +70,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 <a name="getUserDetails"></a>
 # **getUserDetails**
-> User getUserDetails()
+> User getUserDetails(visibilityLevel)
 
 Obtain the user details for the currently authenticated user
 
@@ -95,8 +96,9 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 OAuthApi apiInstance = new OAuthApi();
+String visibilityLevel = "PRIVATE"; // String | visibilityLevel
 try {
-    User result = apiInstance.getUserDetails();
+    User result = apiInstance.getUserDetails(visibilityLevel);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OAuthApi#getUserDetails");
@@ -105,7 +107,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **visibilityLevel** | **String**| visibilityLevel | [optional] [default to PRIVATE] [enum: PUBLIC, PROTECTED, PRIVATE, SYSTEM]
 
 ### Return type
 
@@ -118,5 +123,57 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="invalidateOAuthToken"></a>
+# **invalidateOAuthToken**
+> String invalidateOAuthToken(token)
+
+Obtain a token for a given username/password pair
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.OAuthApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+OAuthApi apiInstance = new OAuthApi();
+String token = "token_example"; // String | token
+try {
+    String result = apiInstance.invalidateOAuthToken(token);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling OAuthApi#invalidateOAuthToken");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **token** | **String**| token |
+
+### Return type
+
+**String**
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 

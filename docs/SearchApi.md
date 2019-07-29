@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="searchRecords"></a>
 # **searchRecords**
-> List&lt;Record&gt; searchRecords(datastoreId, request, type, end, ownerId, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel)
+> List&lt;Record&gt; searchRecords(datastoreId, request, type, start, end, fieldsToAnonymize, ownerId, pageNumber, pageSize, pseudonymizationKeyId, visibilityLevel)
 
 Search records
 
@@ -32,9 +32,10 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 SearchApi apiInstance = new SearchApi();
 UUID datastoreId = new UUID(); // UUID | datastoreId
-Map<String, String> request = null; // Map | request
+Object request = null; // Object | request
 String type = "type_example"; // String | type
 Long end = 789L; // Long | end
+List<String> fieldsToAnonymize = Arrays.asList("fieldsToAnonymize_example"); // List<String> | fieldsToAnonymize
 UUID ownerId = new UUID(); // UUID | ownerId
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
@@ -42,7 +43,7 @@ UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 Long start = 0L; // Long | start
 String visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
-    List<Record> result = apiInstance.searchRecords(datastoreId, request, type, end, ownerId, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel);
+    List<Record> result = apiInstance.searchRecords(datastoreId, request, type, end, fieldsToAnonymize, ownerId, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SearchApi#searchRecords");
@@ -58,6 +59,7 @@ Name | Type | Description  | Notes
  **request** | **Map**| request |
  **type** | **String**| type |
  **end** | **Long**| end | [optional]
+ **fieldsToAnonymize** | [**List&lt;String&gt;**](String.md)| fieldsToAnonymize | [optional]
  **ownerId** | [**UUID**](.md)| ownerId | [optional]
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]
@@ -80,7 +82,7 @@ Name | Type | Description  | Notes
 
 <a name="searchUsers"></a>
 # **searchUsers**
-> List&lt;User&gt; searchUsers(datastoreId, request, end, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel)
+> List&lt;User&gt; searchUsers(datastoreId, request, start, end, fieldsToAnonymize, pageNumber, pageSize, pseudonymizationKeyId, basicDataOnly, visibilityLevel)
 
 Search users
 
@@ -102,15 +104,17 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 SearchApi apiInstance = new SearchApi();
 UUID datastoreId = new UUID(); // UUID | datastoreId
-Map<String, String> request = null; // Map | request
+Object request = null; // Object | request
+Boolean basicDataOnly = false; // Boolean | Indicates whether only the basic data (ID, username and last update date) should be included in the response.
 Long end = 789L; // Long | end
+List<String> fieldsToAnonymize = Arrays.asList("fieldsToAnonymize_example"); // List<String> | fieldsToAnonymize
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
 UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 Long start = 0L; // Long | start
 String visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
-    List<User> result = apiInstance.searchUsers(datastoreId, request, end, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel);
+    List<User> result = apiInstance.searchUsers(datastoreId, request, start, end, fieldsToAnonymize, pageNumber, pageSize, pseudonymizationKeyId, basicDataOnly, visibilityLevel);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling SearchApi#searchUsers");
@@ -124,11 +128,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **datastoreId** | [**UUID**](.md)| datastoreId |
  **request** | **Map**| request |
- **end** | **Long**| end | [optional]
+ **start** | **Long**| start | [optional] [default to 0]
+  **end** | **Long**| end | [optional]
+ **fieldsToAnonymize** | [**List&lt;String&gt;**](String.md)| fieldsToAnonymize | [optional]
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]
+ **basicDataOnly** | **Boolean**| Indicates whether only the basic data (ID, username and last update date) should be included in the response. | [optional] [default to false]
  **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
- **start** | **Long**| start | [optional] [default to 0]
  **visibilityLevel** | **String**| visibilityLevel | [optional] [default to PUBLIC] [enum: PUBLIC, PROTECTED, PRIVATE, SYSTEM]
 
 ### Return type

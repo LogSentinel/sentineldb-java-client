@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 
 <a name="getRecordsByDatastore"></a>
 # **getRecordsByDatastore**
-> List&lt;Record&gt; getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize, pseudonymizationKeyId)
+> List&lt;Record&gt; getRecordsByDatastore(datastoreId, actor, fieldsToAnonymize, pageNumber, pageSize, pseudonymizationKeyId)
 
 Gets records by datastore with pagination
 
@@ -201,11 +201,12 @@ basicAuth.setPassword("YOUR PASSWORD");
 DatastoreApi apiInstance = new DatastoreApi();
 UUID datastoreId = new UUID(); // UUID | datastoreId
 String actor = "actor_example"; // String | actor
+List<String> fieldsToAnonymize = Arrays.asList("fieldsToAnonymize_example"); // List<String> | fieldsToAnonymize
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
 UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 try {
-    List<Record> result = apiInstance.getRecordsByDatastore(datastoreId, actor, pageNumber, pageSize, pseudonymizationKeyId);
+    List<Record> result = apiInstance.getRecordsByDatastore(datastoreId, actor, fieldsToAnonymize, pageNumber, pageSize, pseudonymizationKeyId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling DatastoreApi#getRecordsByDatastore");
@@ -219,6 +220,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **datastoreId** | [**UUID**](.md)| datastoreId |
  **actor** | **String**| actor | [optional]
+ **fieldsToAnonymize** | [**List&lt;String&gt;**](String.md)| fieldsToAnonymize | [optional]
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]
  **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
@@ -238,7 +240,7 @@ Name | Type | Description  | Notes
 
 <a name="getUsersByDatastore"></a>
 # **getUsersByDatastore**
-> List&lt;User&gt; getUsersByDatastore(datastoreId, actor, pageNumber, pageSize, pseudonymizationKeyId)
+> List&lt;User&gt; getUsersByDatastore(datastoreId, actor, fieldsToAnonymize, pageNumber, pageSize, pseudonymizationKeyId)
 
 Gets users by datastore with pagination
 
@@ -261,11 +263,12 @@ basicAuth.setPassword("YOUR PASSWORD");
 DatastoreApi apiInstance = new DatastoreApi();
 UUID datastoreId = new UUID(); // UUID | datastoreId
 String actor = "actor_example"; // String | actor
+List<String> fieldsToAnonymize = Arrays.asList("fieldsToAnonymize_example"); // List<String> | fieldsToAnonymize
 Integer pageNumber = 0; // Integer | pageNumber
 Integer pageSize = 20; // Integer | pageSize
 UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 try {
-    List<User> result = apiInstance.getUsersByDatastore(datastoreId, actor, pageNumber, pageSize, pseudonymizationKeyId);
+    List<User> result = apiInstance.getUsersByDatastore(datastoreId, actor, fieldsToAnonymize, pageNumber, pageSize, pseudonymizationKeyId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling DatastoreApi#getUsersByDatastore");
@@ -279,6 +282,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **datastoreId** | [**UUID**](.md)| datastoreId |
  **actor** | **String**| actor | [optional]
+ **fieldsToAnonymize** | [**List&lt;String&gt;**](String.md)| fieldsToAnonymize | [optional]
  **pageNumber** | **Integer**| pageNumber | [optional] [default to 0]
  **pageSize** | **Integer**| pageSize | [optional] [default to 20]
  **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
