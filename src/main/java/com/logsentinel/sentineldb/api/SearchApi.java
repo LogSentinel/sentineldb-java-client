@@ -39,18 +39,131 @@ public class SearchApi {
   }
 
   /**
+   * Count records
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param request request (required)
+   * @param type type (required)
+   * @param end end (optional)
+   * @param ownerId ownerId (optional)
+   * @param start start (optional, default to 0)
+   * @return Long
+   * @throws ApiException if fails to make API call
+   */
+  public Long countRecords(UUID datastoreId, Object request, String type, Long end, UUID ownerId, Long start) throws ApiException {
+    Object localVarPostBody = request;
+    
+    // verify the required parameter 'datastoreId' is set
+    if (datastoreId == null) {
+      throw new ApiException(400, "Missing the required parameter 'datastoreId' when calling countRecords");
+    }
+    
+    // verify the required parameter 'request' is set
+    if (request == null) {
+      throw new ApiException(400, "Missing the required parameter 'request' when calling countRecords");
+    }
+    
+    // verify the required parameter 'type' is set
+    if (type == null) {
+      throw new ApiException(400, "Missing the required parameter 'type' when calling countRecords");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/search/records/{type}/datastore/{datastoreId}/count"
+      .replaceAll("\\{" + "datastoreId" + "\\}", apiClient.escapeString(datastoreId.toString()))
+      .replaceAll("\\{" + "type" + "\\}", apiClient.escapeString(type.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "end", end));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "ownerId", ownerId));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "start", start));
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+    GenericType<Long> localVarReturnType = new GenericType<Long>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Count users
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param request request (required)
+   * @param end end (optional)
+   * @param start start (optional, default to 0)
+   * @return Long
+   * @throws ApiException if fails to make API call
+   */
+  public Long countUsers(UUID datastoreId, Object request, Long end, Long start) throws ApiException {
+    Object localVarPostBody = request;
+    
+    // verify the required parameter 'datastoreId' is set
+    if (datastoreId == null) {
+      throw new ApiException(400, "Missing the required parameter 'datastoreId' when calling countUsers");
+    }
+    
+    // verify the required parameter 'request' is set
+    if (request == null) {
+      throw new ApiException(400, "Missing the required parameter 'request' when calling countUsers");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/search/users/datastore/{datastoreId}/count"
+      .replaceAll("\\{" + "datastoreId" + "\\}", apiClient.escapeString(datastoreId.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "end", end));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "start", start));
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth" };
+
+    GenericType<Long> localVarReturnType = new GenericType<Long>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
    * Search records
    * 
    * @param datastoreId datastoreId (required)
    * @param request request (required)
    * @param type type (required)
-   * @param ownerId ownerId (optional)
-   * @param start start (optional, default to 0)
    * @param end end (optional)
    * @param fieldsToAnonymize fieldsToAnonymize (optional)
+   * @param ownerId ownerId (optional)
    * @param pageNumber pageNumber (optional, default to 0)
    * @param pageSize pageSize (optional, default to 20)
    * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
+   * @param start start (optional, default to 0)
    * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
    * @return List&lt;Record&gt;
    * @throws ApiException if fails to make API call

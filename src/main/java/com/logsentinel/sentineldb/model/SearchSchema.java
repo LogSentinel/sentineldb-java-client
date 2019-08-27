@@ -1,6 +1,6 @@
 /*
  * SentinelDB RESTful API
- * Read more at https://logsentinel.com/sentineldb/documentation/
+ * Read more at https://docs.sentineldb.io
  *
  * OpenAPI spec version: 1
  * 
@@ -35,6 +35,9 @@ public class SearchSchema {
 
   @JsonProperty("datastoreId")
   private UUID datastoreId = null;
+
+  @JsonProperty("deleted")
+  private Boolean deleted = null;
 
   /**
    * Gets or Sets entityType
@@ -129,6 +132,24 @@ public class SearchSchema {
 
   public void setDatastoreId(UUID datastoreId) {
     this.datastoreId = datastoreId;
+  }
+
+  public SearchSchema deleted(Boolean deleted) {
+    this.deleted = deleted;
+    return this;
+  }
+
+   /**
+   * Get deleted
+   * @return deleted
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isDeleted() {
+    return deleted;
+  }
+
+  public void setDeleted(Boolean deleted) {
+    this.deleted = deleted;
   }
 
   public SearchSchema entityType(EntityTypeEnum entityType) {
@@ -295,6 +316,7 @@ public class SearchSchema {
     SearchSchema searchSchema = (SearchSchema) o;
     return Objects.equals(this.created, searchSchema.created) &&
         Objects.equals(this.datastoreId, searchSchema.datastoreId) &&
+        Objects.equals(this.deleted, searchSchema.deleted) &&
         Objects.equals(this.entityType, searchSchema.entityType) &&
         Objects.equals(this.fields, searchSchema.fields) &&
         Objects.equals(this.id, searchSchema.id) &&
@@ -307,7 +329,7 @@ public class SearchSchema {
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, datastoreId, entityType, fields, id, name, pseudoId, recordType, updated, version);
+    return Objects.hash(created, datastoreId, deleted, entityType, fields, id, name, pseudoId, recordType, updated, version);
   }
 
 
@@ -318,6 +340,7 @@ public class SearchSchema {
     
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    datastoreId: ").append(toIndentedString(datastoreId)).append("\n");
+    sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
     sb.append("    entityType: ").append(toIndentedString(entityType)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");

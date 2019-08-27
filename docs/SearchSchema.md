@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **datastoreId** | [**UUID**](UUID.md) |  |  [optional]
+**deleted** | **Boolean** |  |  [optional]
 **entityType** | [**EntityTypeEnum**](#EntityTypeEnum) |  |  [optional]
 **fields** | [**List&lt;SearchSchemaField&gt;**](SearchSchemaField.md) |  |  [optional]
 **id** | [**UUID**](UUID.md) |  |  [optional]

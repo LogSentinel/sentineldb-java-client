@@ -1,6 +1,6 @@
 /*
  * SentinelDB RESTful API
- * Read more at https://logsentinel.com/sentineldb/documentation/
+ * Read more at https://docs.sentineldb.io
  *
  * OpenAPI spec version: 1
  * 
@@ -32,6 +32,9 @@ public class PseudonymizationKey {
 
   @JsonProperty("datastoreId")
   private UUID datastoreId = null;
+
+  @JsonProperty("deleted")
+  private Boolean deleted = null;
 
   @JsonProperty("description")
   private String description = null;
@@ -76,6 +79,24 @@ public class PseudonymizationKey {
 
   public void setDatastoreId(UUID datastoreId) {
     this.datastoreId = datastoreId;
+  }
+
+  public PseudonymizationKey deleted(Boolean deleted) {
+    this.deleted = deleted;
+    return this;
+  }
+
+   /**
+   * Get deleted
+   * @return deleted
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isDeleted() {
+    return deleted;
+  }
+
+  public void setDeleted(Boolean deleted) {
+    this.deleted = deleted;
   }
 
   public PseudonymizationKey description(String description) {
@@ -144,6 +165,7 @@ public class PseudonymizationKey {
     PseudonymizationKey pseudonymizationKey = (PseudonymizationKey) o;
     return Objects.equals(this.created, pseudonymizationKey.created) &&
         Objects.equals(this.datastoreId, pseudonymizationKey.datastoreId) &&
+        Objects.equals(this.deleted, pseudonymizationKey.deleted) &&
         Objects.equals(this.description, pseudonymizationKey.description) &&
         Objects.equals(this.id, pseudonymizationKey.id) &&
         Objects.equals(this.pseudoId, pseudonymizationKey.pseudoId);
@@ -151,7 +173,7 @@ public class PseudonymizationKey {
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, datastoreId, description, id, pseudoId);
+    return Objects.hash(created, datastoreId, deleted, description, id, pseudoId);
   }
 
 
@@ -162,6 +184,7 @@ public class PseudonymizationKey {
     
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    datastoreId: ").append(toIndentedString(datastoreId)).append("\n");
+    sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    pseudoId: ").append(toIndentedString(pseudoId)).append("\n");
