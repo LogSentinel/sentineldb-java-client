@@ -238,7 +238,7 @@ public class RecordsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Record> localVarReturnType = new GenericType<Record>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -248,11 +248,9 @@ public class RecordsApi {
    * 
    * @param recordId recordId (required)
    * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
-   * @param fieldsToAnonymize fieldsToAnonymize (optional)
-   * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
    * @throws ApiException if fails to make API call
    */
-  public void getRecordBinaryContent(UUID recordId, String actorId, List<String> fieldsToAnonymize, UUID pseudonymizationKeyId) throws ApiException {
+  public byte[] getRecordBinaryContent(UUID recordId, String actorId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'recordId' is set
@@ -270,10 +268,6 @@ public class RecordsApi {
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "actorId", actorId));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("multi", "fieldsToAnonymize", fieldsToAnonymize));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "pseudonymizationKeyId", pseudonymizationKeyId));
-
-    
     
     final String[] localVarAccepts = {
       "application/octet-stream"
@@ -285,11 +279,12 @@ public class RecordsApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
-
-    apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    GenericType<byte[]> localVarReturnType = new GenericType<byte[]>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
   }
+  
   /**
    * Gets concrete record version
    * Retrieves a specific (older) version for a given record.
@@ -382,7 +377,7 @@ public class RecordsApi {
 
     GenericType<List<Integer>> localVarReturnType = new GenericType<List<Integer>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-      }
+  }
   /**
    * Updates binary content of a record
    * 
