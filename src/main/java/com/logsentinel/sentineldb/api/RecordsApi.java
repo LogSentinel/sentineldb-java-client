@@ -579,6 +579,6 @@ public class RecordsApi {
     String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Record> localVarReturnType = new GenericType<Record>() {};
-    return apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
 }
