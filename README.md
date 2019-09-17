@@ -28,7 +28,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>com.logsentinel.sentineldb</groupId>
     <artifactId>sentineldb-java-client</artifactId>
-    <version>0.1.5</version>
+    <version>0.2.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.logsentinel.sentineldb:sentineldb-java-client:0.0.6"
+compile "com.logsentinel.sentineldb:sentineldb-java-client:0.2.0"
 ```
 
 ### Others
