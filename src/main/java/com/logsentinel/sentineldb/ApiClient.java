@@ -542,14 +542,8 @@ public class ApiClient {
           multiPart.bodyPart(new FormDataBodyPart(contentDisp, file, MediaType.APPLICATION_OCTET_STREAM_TYPE));
         } else if (param.getValue() instanceof InputStream) {
           InputStream file = (InputStream) param.getValue();
-          int streamSize = 0;
-          try {
-            streamSize = file.available();
-          } catch (IOException e){
-            e.printStackTrace();
-          }
           FormDataContentDisposition contentDisp = FormDataContentDisposition.name(param.getKey())
-                  .fileName("Upload").size(streamSize).build();
+                  .fileName("Upload").size(0).build();
           multiPart.bodyPart(new FormDataBodyPart(contentDisp, file, MediaType.APPLICATION_OCTET_STREAM_TYPE));
         } else {
           FormDataContentDisposition contentDisp = FormDataContentDisposition.name(param.getKey()).build();
