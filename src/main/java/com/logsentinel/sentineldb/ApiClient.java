@@ -20,8 +20,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.MultiPart;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -38,9 +37,6 @@ import java.util.TimeZone;
 
 import java.net.URLEncoder;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-
 import java.text.DateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,6 +45,7 @@ import com.logsentinel.sentineldb.auth.Authentication;
 import com.logsentinel.sentineldb.auth.HttpBasicAuth;
 import com.logsentinel.sentineldb.auth.ApiKeyAuth;
 import com.logsentinel.sentineldb.auth.OAuth;
+import org.glassfish.jersey.media.multipart.file.StreamDataBodyPart;
 
 
 public class ApiClient {
@@ -308,7 +305,7 @@ public class ApiClient {
   public int getReadTimeout() {
     return readTimeout;
   }
-  
+
   /**
    * Set the read timeout (in milliseconds).
    * A value of 0 means no timeout, otherwise values must be between 1 and
@@ -537,6 +534,16 @@ public class ApiClient {
           File file = (File) param.getValue();
           FormDataContentDisposition contentDisp = FormDataContentDisposition.name(param.getKey())
               .fileName(file.getName()).size(file.length()).build();
+          multiPart.bodyPart(new FormDataBodyPart(contentDisp, file, MediaType.APPLICATION_OCTET_STREAM_TYPE));
+        } else if (param.getValue() instanceof byte[]) {
+          byte[] file = (byte[]) param.getValue();
+          FormDataContentDisposition contentDisp = FormDataContentDisposition.name(param.getKey())
+                  .fileName("Upload").size(file.length).build();
+          multiPart.bodyPart(new FormDataBodyPart(contentDisp, file, MediaType.APPLICATION_OCTET_STREAM_TYPE));
+        } else if (param.getValue() instanceof InputStream) {
+          InputStream file = (InputStream) param.getValue();
+          FormDataContentDisposition contentDisp = FormDataContentDisposition.name(param.getKey())
+                  .fileName("Upload").size(0).build();
           multiPart.bodyPart(new FormDataBodyPart(contentDisp, file, MediaType.APPLICATION_OCTET_STREAM_TYPE));
         } else {
           FormDataContentDisposition contentDisp = FormDataContentDisposition.name(param.getKey()).build();
