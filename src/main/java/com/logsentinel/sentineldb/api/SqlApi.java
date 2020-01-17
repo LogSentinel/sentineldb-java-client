@@ -2,11 +2,13 @@ package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.ApiClient;
+import com.logsentinel.sentineldb.ApiResponse;
 import com.logsentinel.sentineldb.Configuration;
 import com.logsentinel.sentineldb.Pair;
 
 import javax.ws.rs.core.GenericType;
 
+import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
 import com.logsentinel.sentineldb.model.Statement;
 import java.util.UUID;
 
@@ -43,7 +45,19 @@ public class SqlApi {
    * @return Integer
    * @throws ApiException if fails to make API call
    */
-  public Integer executeDelete(String query, String visibilityLevel) throws ApiException {
+  public Integer executeDelete(String query, VisibilityLevelEnum visibilityLevel) throws ApiException {
+    return executeDeleteWithHttpInfo(query, visibilityLevel).getData();
+      }
+
+  /**
+   * Executes delete query against sentinelDB
+   * 
+   * @param query query (required)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
+   * @return ApiResponse&lt;Integer&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Integer> executeDeleteWithHttpInfo(String query, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = query;
     
     // verify the required parameter 'query' is set
@@ -73,7 +87,7 @@ public class SqlApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
     GenericType<Integer> localVarReturnType = new GenericType<Integer>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -86,6 +100,17 @@ public class SqlApi {
    * @throws ApiException if fails to make API call
    */
   public UUID executeInsert(String query) throws ApiException {
+    return executeInsertWithHttpInfo(query).getData();
+      }
+
+  /**
+   * Executes insert query against sentinelDB
+   * 
+   * @param query query (required)
+   * @return ApiResponse&lt;UUID&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UUID> executeInsertWithHttpInfo(String query) throws ApiException {
     Object localVarPostBody = query;
     
     // verify the required parameter 'query' is set
@@ -127,7 +152,19 @@ public class SqlApi {
    * @return List&lt;List&lt;String&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<List<String>> executeSelect(String query, String visibilityLevel) throws ApiException {
+  public List<List<String>> executeSelect(String query, VisibilityLevelEnum visibilityLevel) throws ApiException {
+    return executeSelectWithHttpInfo(query, visibilityLevel).getData();
+      }
+
+  /**
+   * Executes select query against sentinelDB
+   * 
+   * @param query query (required)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
+   * @return ApiResponse&lt;List&lt;List&lt;String&gt;&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<List<String>>> executeSelectWithHttpInfo(String query, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = query;
     
     // verify the required parameter 'query' is set
@@ -170,7 +207,19 @@ public class SqlApi {
    * @return Integer
    * @throws ApiException if fails to make API call
    */
-  public Integer executeUpdate(String query, String visibilityLevel) throws ApiException {
+  public Integer executeUpdate(String query, VisibilityLevelEnum visibilityLevel) throws ApiException {
+    return executeUpdateWithHttpInfo(query, visibilityLevel).getData();
+      }
+
+  /**
+   * Executes update query against sentinelDB
+   * 
+   * @param query query (required)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
+   * @return ApiResponse&lt;Integer&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Integer> executeUpdateWithHttpInfo(String query, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = query;
     
     // verify the required parameter 'query' is set
@@ -213,7 +262,19 @@ public class SqlApi {
    * @return Integer
    * @throws ApiException if fails to make API call
    */
-  public Integer prepareDeleteStatement(Statement statement, String visibilityLevel) throws ApiException {
+  public Integer prepareDeleteStatement(Statement statement, VisibilityLevelEnum visibilityLevel) throws ApiException {
+    return prepareDeleteStatementWithHttpInfo(statement, visibilityLevel).getData();
+      }
+
+  /**
+   * Prepared delete statement against sentinelDB
+   * 
+   * @param statement statement (required)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
+   * @return ApiResponse&lt;Integer&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Integer> prepareDeleteStatementWithHttpInfo(Statement statement, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = statement;
     
     // verify the required parameter 'statement' is set
@@ -256,6 +317,17 @@ public class SqlApi {
    * @throws ApiException if fails to make API call
    */
   public UUID prepareInsertStatement(Statement statement) throws ApiException {
+    return prepareInsertStatementWithHttpInfo(statement).getData();
+      }
+
+  /**
+   * Prepared insert statement against sentinelDB
+   * 
+   * @param statement statement (required)
+   * @return ApiResponse&lt;UUID&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UUID> prepareInsertStatementWithHttpInfo(Statement statement) throws ApiException {
     Object localVarPostBody = statement;
     
     // verify the required parameter 'statement' is set
@@ -297,7 +369,19 @@ public class SqlApi {
    * @return List&lt;List&lt;String&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<List<String>> prepareSelectStatement(Statement statement, String visibilityLevel) throws ApiException {
+  public List<List<String>> prepareSelectStatement(Statement statement, VisibilityLevelEnum visibilityLevel) throws ApiException {
+    return prepareSelectStatementWithHttpInfo(statement, visibilityLevel).getData();
+      }
+
+  /**
+   * Prepared select statement against sentinelDB
+   * 
+   * @param statement statement (required)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
+   * @return ApiResponse&lt;List&lt;List&lt;String&gt;&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<List<String>>> prepareSelectStatementWithHttpInfo(Statement statement, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = statement;
     
     // verify the required parameter 'statement' is set
@@ -340,7 +424,19 @@ public class SqlApi {
    * @return Integer
    * @throws ApiException if fails to make API call
    */
-  public Integer prepareUpdateStatement(Statement statement, String visibilityLevel) throws ApiException {
+  public Integer prepareUpdateStatement(Statement statement, VisibilityLevelEnum visibilityLevel) throws ApiException {
+    return prepareUpdateStatementWithHttpInfo(statement, visibilityLevel).getData();
+      }
+
+  /**
+   * Prepared update statement against sentinelDB
+   * 
+   * @param statement statement (required)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
+   * @return ApiResponse&lt;Integer&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Integer> prepareUpdateStatementWithHttpInfo(Statement statement, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = statement;
     
     // verify the required parameter 'statement' is set

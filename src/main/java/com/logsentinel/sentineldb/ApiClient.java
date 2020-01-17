@@ -5,6 +5,7 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import java.security.cert.X509Certificate;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -25,12 +26,11 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.MultiPart;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.security.cert.X509Certificate;
-
 import org.glassfish.jersey.logging.LoggingFeature;
 import java.util.Collection;
 import java.util.Collections;
@@ -44,6 +44,9 @@ import java.util.TimeZone;
 
 import java.net.URLEncoder;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+
 import java.text.DateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,7 +55,6 @@ import com.logsentinel.sentineldb.auth.Authentication;
 import com.logsentinel.sentineldb.auth.HttpBasicAuth;
 import com.logsentinel.sentineldb.auth.ApiKeyAuth;
 import com.logsentinel.sentineldb.auth.OAuth;
-import org.glassfish.jersey.media.multipart.file.StreamDataBodyPart;
 
 
 public class ApiClient {
@@ -673,7 +675,7 @@ public class ApiClient {
    * @return The response body in type of string
    * @throws ApiException API exception
    */
-  public <T> T invokeAPI(String path, String method, List<Pair> queryParams, Object body, Map<String, String> headerParams, Map<String, Object> formParams, String accept, String contentType, String[] authNames, GenericType<T> returnType) throws ApiException {
+  public <T> ApiResponse<T> invokeAPI(String path, String method, List<Pair> queryParams, Object body, Map<String, String> headerParams, Map<String, Object> formParams, String accept, String contentType, String[] authNames, GenericType<T> returnType) throws ApiException {
     updateParamsForAuth(authNames, queryParams, headerParams);
 
     // Not using `.target(this.basePath).path(path)` below,
@@ -732,12 +734,12 @@ public class ApiClient {
       responseHeaders = buildResponseHeaders(response);
 
       if (response.getStatus() == Status.NO_CONTENT.getStatusCode()) {
-        return null;
+        return new ApiResponse<>(statusCode, responseHeaders);
       } else if (response.getStatusInfo().getFamily() == Status.Family.SUCCESSFUL) {
         if (returnType == null)
-          return null;
+          return new ApiResponse<>(statusCode, responseHeaders);
         else
-          return deserialize(response, returnType);
+          return new ApiResponse<>(statusCode, responseHeaders, deserialize(response, returnType));
       } else {
         String message = "error";
         String respBody = null;

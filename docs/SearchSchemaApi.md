@@ -42,7 +42,7 @@ UUID id = new UUID(); // UUID | id
 Boolean analyzed = false; // Boolean | analyzed
 Boolean incrementVersion = true; // Boolean | incrementVersion
 Boolean indexed = true; // Boolean | indexed
-String visibility = "PUBLIC"; // String | visibility
+VisibilityLevelEnum visibility = "PUBLIC"; // String | visibility
 try {
     Object result = apiInstance.addSearchSchemaField(field, id, analyzed, incrementVersion, indexed, visibility);
     System.out.println(result);
@@ -206,7 +206,7 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 SearchSchemaApi apiInstance = new SearchSchemaApi();
 UUID datastoreId = new UUID(); // UUID | datastoreId
-String entityType = "entityType_example"; // String | entityType
+EntityTypeEnum entityType = "entityType_example"; // String | entityType
 List<SearchSchemaField> fields = Arrays.asList(new SearchSchemaField()); // List<SearchSchemaField> | fields
 String name = "name_example"; // String | name
 String recordType = "recordType_example"; // String | recordType
@@ -317,7 +317,7 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 SearchSchemaApi apiInstance = new SearchSchemaApi();
-String entityType = "entityType_example"; // String | entityType
+EntityTypeEnum entityType = "entityType_example"; // String | entityType
 String recordType = "recordType_example"; // String | recordType
 try {
     SearchSchema result = apiInstance.findSearchSchema(entityType, recordType);

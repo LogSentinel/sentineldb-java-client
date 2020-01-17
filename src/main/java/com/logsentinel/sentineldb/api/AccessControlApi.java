@@ -2,6 +2,7 @@ package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.ApiClient;
+import com.logsentinel.sentineldb.ApiResponse;
 import com.logsentinel.sentineldb.Configuration;
 import com.logsentinel.sentineldb.Pair;
 
@@ -48,6 +49,22 @@ public class AccessControlApi {
    * @throws ApiException if fails to make API call
    */
   public UUID create(String action, UUID datastoreId, String type, List<UUID> recordIds, String recordType, List<String> roles) throws ApiException {
+    return createWithHttpInfo(action, datastoreId, type, recordIds, recordType, roles).getData();
+      }
+
+  /**
+   * Creates access control rule
+   * 
+   * @param action action (required)
+   * @param datastoreId datastoreId (required)
+   * @param type type (required)
+   * @param recordIds recordIds (optional)
+   * @param recordType recordType (optional)
+   * @param roles roles (optional)
+   * @return ApiResponse&lt;UUID&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UUID> createWithHttpInfo(String action, UUID datastoreId, String type, List<UUID> recordIds, String recordType, List<String> roles) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'action' is set
@@ -104,6 +121,17 @@ public class AccessControlApi {
    * @throws ApiException if fails to make API call
    */
   public void delete(UUID id) throws ApiException {
+
+    deleteWithHttpInfo(id);
+  }
+
+  /**
+   * Deletes access control rule
+   * 
+   * @param id id (required)
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteWithHttpInfo(UUID id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -136,7 +164,7 @@ public class AccessControlApi {
     String[] localVarAuthNames = new String[] { "basicAuth" };
 
 
-    apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
   /**
    * Lists access control rules of organization or filtered by datastore
@@ -146,6 +174,17 @@ public class AccessControlApi {
    * @throws ApiException if fails to make API call
    */
   public List<AccessControl> list(UUID datastoreId) throws ApiException {
+    return listWithHttpInfo(datastoreId).getData();
+      }
+
+  /**
+   * Lists access control rules of organization or filtered by datastore
+   * 
+   * @param datastoreId datastoreId (optional)
+   * @return ApiResponse&lt;List&lt;AccessControl&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<AccessControl>> listWithHttpInfo(UUID datastoreId) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables

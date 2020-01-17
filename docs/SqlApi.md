@@ -38,7 +38,7 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 SqlApi apiInstance = new SqlApi();
 String query = "query_example"; // String | query
-String visibilityLevel = "PUBLIC"; // String | visibilityLevel
+VisibilityLevelEnum visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
     Integer result = apiInstance.executeDelete(query, visibilityLevel);
     System.out.println(result);
@@ -144,7 +144,7 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 SqlApi apiInstance = new SqlApi();
 String query = "query_example"; // String | query
-String visibilityLevel = "PUBLIC"; // String | visibilityLevel
+VisibilityLevelEnum visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
     List<List<String>> result = apiInstance.executeSelect(query, visibilityLevel);
     System.out.println(result);
@@ -198,7 +198,7 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 SqlApi apiInstance = new SqlApi();
 String query = "query_example"; // String | query
-String visibilityLevel = "PUBLIC"; // String | visibilityLevel
+VisibilityLevelEnum visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
     Integer result = apiInstance.executeUpdate(query, visibilityLevel);
     System.out.println(result);
@@ -252,7 +252,7 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 SqlApi apiInstance = new SqlApi();
 Statement statement = new Statement(); // Statement | statement
-String visibilityLevel = "PUBLIC"; // String | visibilityLevel
+VisibilityLevelEnum visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
     Integer result = apiInstance.prepareDeleteStatement(statement, visibilityLevel);
     System.out.println(result);
@@ -358,7 +358,7 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 SqlApi apiInstance = new SqlApi();
 Statement statement = new Statement(); // Statement | statement
-String visibilityLevel = "PUBLIC"; // String | visibilityLevel
+VisibilityLevelEnum visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
     List<List<String>> result = apiInstance.prepareSelectStatement(statement, visibilityLevel);
     System.out.println(result);
@@ -412,7 +412,7 @@ basicAuth.setPassword("YOUR PASSWORD");
 
 SqlApi apiInstance = new SqlApi();
 Statement statement = new Statement(); // Statement | statement
-String visibilityLevel = "PUBLIC"; // String | visibilityLevel
+VisibilityLevelEnum visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
     Integer result = apiInstance.prepareUpdateStatement(statement, visibilityLevel);
     System.out.println(result);

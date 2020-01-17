@@ -2,6 +2,7 @@ package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.ApiClient;
+import com.logsentinel.sentineldb.ApiResponse;
 import com.logsentinel.sentineldb.Configuration;
 import com.logsentinel.sentineldb.Pair;
 
@@ -46,6 +47,19 @@ public class DatastoreApi {
    * @throws ApiException if fails to make API call
    */
   public void addOrUpdateSchema(UUID datastoreId, String schema, String type) throws ApiException {
+
+    addOrUpdateSchemaWithHttpInfo(datastoreId, schema, type);
+  }
+
+  /**
+   * addOrUpdateSchema
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param schema schema (required)
+   * @param type type (required)
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> addOrUpdateSchemaWithHttpInfo(UUID datastoreId, String schema, String type) throws ApiException {
     Object localVarPostBody = schema;
     
     // verify the required parameter 'datastoreId' is set
@@ -89,7 +103,7 @@ public class DatastoreApi {
     String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
 
-    apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
   /**
    * deleteSchema
@@ -99,6 +113,18 @@ public class DatastoreApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteSchema(UUID datastoreId, String type) throws ApiException {
+
+    deleteSchemaWithHttpInfo(datastoreId, type);
+  }
+
+  /**
+   * deleteSchema
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param type type (required)
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteSchemaWithHttpInfo(UUID datastoreId, String type) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'datastoreId' is set
@@ -137,7 +163,7 @@ public class DatastoreApi {
     String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
 
-    apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
   /**
    * Gets a list of users or records by list of ids
@@ -149,6 +175,19 @@ public class DatastoreApi {
    * @throws ApiException if fails to make API call
    */
   public List<Object> entitiesByIds(UUID datastoreId, List<UUID> ids, String type) throws ApiException {
+    return entitiesByIdsWithHttpInfo(datastoreId, ids, type).getData();
+      }
+
+  /**
+   * Gets a list of users or records by list of ids
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param ids ids (required)
+   * @param type type (required)
+   * @return ApiResponse&lt;List&lt;Object&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<Object>> entitiesByIdsWithHttpInfo(UUID datastoreId, List<UUID> ids, String type) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'datastoreId' is set
@@ -208,6 +247,22 @@ public class DatastoreApi {
    * @throws ApiException if fails to make API call
    */
   public List<Record> getRecordsByDatastore(UUID datastoreId, String actor, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId) throws ApiException {
+    return getRecordsByDatastoreWithHttpInfo(datastoreId, actor, fieldsToAnonymize, pageNumber, pageSize, pseudonymizationKeyId).getData();
+      }
+
+  /**
+   * Gets records by datastore with pagination
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param actor actor (optional)
+   * @param fieldsToAnonymize fieldsToAnonymize (optional)
+   * @param pageNumber pageNumber (optional, default to 0)
+   * @param pageSize pageSize (optional, default to 20)
+   * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
+   * @return ApiResponse&lt;List&lt;Record&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<Record>> getRecordsByDatastoreWithHttpInfo(UUID datastoreId, String actor, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'datastoreId' is set
@@ -260,6 +315,22 @@ public class DatastoreApi {
    * @throws ApiException if fails to make API call
    */
   public List<User> getUsersByDatastore(UUID datastoreId, String actor, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId) throws ApiException {
+    return getUsersByDatastoreWithHttpInfo(datastoreId, actor, fieldsToAnonymize, pageNumber, pageSize, pseudonymizationKeyId).getData();
+      }
+
+  /**
+   * Gets users by datastore with pagination
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param actor actor (optional)
+   * @param fieldsToAnonymize fieldsToAnonymize (optional)
+   * @param pageNumber pageNumber (optional, default to 0)
+   * @param pageSize pageSize (optional, default to 20)
+   * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
+   * @return ApiResponse&lt;List&lt;User&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<User>> getUsersByDatastoreWithHttpInfo(UUID datastoreId, String actor, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'datastoreId' is set
@@ -306,6 +377,16 @@ public class DatastoreApi {
    * @throws ApiException if fails to make API call
    */
   public List<Datastore> listDatastores() throws ApiException {
+    return listDatastoresWithHttpInfo().getData();
+      }
+
+  /**
+   * Gets a list of datastores
+   * 
+   * @return ApiResponse&lt;List&lt;Datastore&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<Datastore>> listDatastoresWithHttpInfo() throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables

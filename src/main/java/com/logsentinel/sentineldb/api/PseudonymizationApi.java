@@ -2,6 +2,7 @@ package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.ApiClient;
+import com.logsentinel.sentineldb.ApiResponse;
 import com.logsentinel.sentineldb.Configuration;
 import com.logsentinel.sentineldb.Pair;
 
@@ -44,6 +45,18 @@ public class PseudonymizationApi {
    * @throws ApiException if fails to make API call
    */
   public PseudonymizationKey create(UUID datastoreId, String description) throws ApiException {
+    return createWithHttpInfo(datastoreId, description).getData();
+      }
+
+  /**
+   * Creates a pseudonymization key
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param description description (required)
+   * @return ApiResponse&lt;PseudonymizationKey&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PseudonymizationKey> createWithHttpInfo(UUID datastoreId, String description) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'datastoreId' is set
@@ -79,7 +92,7 @@ public class PseudonymizationApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
     GenericType<PseudonymizationKey> localVarReturnType = new GenericType<PseudonymizationKey>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -91,11 +104,22 @@ public class PseudonymizationApi {
    * @throws ApiException if fails to make API call
    */
   public void delete(UUID id) throws ApiException {
+
+    deleteWithHttpInfo(id);
+  }
+
+  /**
+   * Deletes a pseudonymization key
+   * 
+   * @param id id (required)
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteWithHttpInfo(UUID id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
     if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling delete");
+      throw new ApiException(400, "Missing the required parameter 'id' when calling delete1");
     }
     
     // create path and map variables
@@ -123,7 +147,7 @@ public class PseudonymizationApi {
     String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
 
-    apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
   /**
    * Gets a pseudonymization key by id
@@ -133,6 +157,17 @@ public class PseudonymizationApi {
    * @throws ApiException if fails to make API call
    */
   public PseudonymizationKey get(UUID id) throws ApiException {
+    return getWithHttpInfo(id).getData();
+      }
+
+  /**
+   * Gets a pseudonymization key by id
+   * 
+   * @param id id (required)
+   * @return ApiResponse&lt;PseudonymizationKey&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PseudonymizationKey> getWithHttpInfo(UUID id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -175,6 +210,17 @@ public class PseudonymizationApi {
    * @throws ApiException if fails to make API call
    */
   public List<PseudonymizationKey> listist(UUID datastoreId) throws ApiException {
+    return lististWithHttpInfo(datastoreId).getData();
+      }
+
+  /**
+   * Gets a pseudonymization keys by datastoreId
+   * 
+   * @param datastoreId datastoreId (required)
+   * @return ApiResponse&lt;List&lt;PseudonymizationKey&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<PseudonymizationKey>> lististWithHttpInfo(UUID datastoreId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'datastoreId' is set

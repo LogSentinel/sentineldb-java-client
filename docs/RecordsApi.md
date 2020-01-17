@@ -14,7 +14,7 @@ Method | HTTP request | Description
 [**updateBinaryRecord**](RecordsApi.md#updateBinaryRecord) | **PUT** /api/record/binary/{recordId} | Updates binary content of a record
 [**updateBinaryRecordMetadata**](RecordsApi.md#updateBinaryRecordMetadata) | **PUT** /api/record/binary/metadata/{recordId} | Updates metadata of a record with binary content
 [**updateRecord**](RecordsApi.md#updateRecord) | **PUT** /api/record/{recordId} | Updates record
-[**updateRecordOwner**](RecordsApi.md#updateRecordOwner) | **PUT** /api/record/{recordId}/owner/{ownerId} | Updates a record&#39;s owner
+[**updateRecordOwner**](RecordsApi.md#updateRecordOwner) | **POST** /api/record/{recordId}/owner/{ownerId} | Updates a record&#39;s owner
 
 
 <a name="createBinaryRecord"></a>
@@ -42,9 +42,9 @@ basicAuth.setPassword("YOUR PASSWORD");
 RecordsApi apiInstance = new RecordsApi();
 File body = new File("/path/to/file.txt"); // File | body
 UUID datastoreId = new UUID(); // UUID | datastoreId
-String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
-String ownerId = "ownerId_example"; // String | ownerId
-String type = "type_example"; // String | type
+Object actorId = null; // Object | Optional ID of the actor that performed the action. If not supplied, it can be inferred
+Object ownerId = null; // Object | ownerId
+Object type = null; // Object | type
 try {
     Record result = apiInstance.createBinaryRecord(body, datastoreId, actorId, ownerId, type);
     System.out.println(result);
@@ -60,9 +60,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **File**| body |
  **datastoreId** | [**UUID**](.md)| datastoreId |
- **actorId** | **String**| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
- **ownerId** | **String**| ownerId | [optional]
- **type** | **String**| type | [optional]
+ **actorId** | [**Object**](.md)| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
+ **ownerId** | [**Object**](.md)| ownerId | [optional]
+ **type** | [**Object**](.md)| type | [optional]
 
 ### Return type
 
@@ -224,7 +224,7 @@ UUID recordId = new UUID(); // UUID | recordId
 String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
 List<String> fieldsToAnonymize = Arrays.asList("fieldsToAnonymize_example"); // List<String> | fieldsToAnonymize
 UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
-String visibilityLevel = "PUBLIC"; // String | visibilityLevel
+VisibilityLevelEnum visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
     Record result = apiInstance.getRecord(recordId, actorId, fieldsToAnonymize, pseudonymizationKeyId, visibilityLevel);
     System.out.println(result);
@@ -259,7 +259,7 @@ Name | Type | Description  | Notes
 
 <a name="getRecordBinaryContent"></a>
 # **getRecordBinaryContent**
-> getRecordBinaryContent(recordId, actorId, fieldsToAnonymize, pseudonymizationKeyId)
+> getRecordBinaryContent(recordId, actorId)
 
 Gets record with binary content by id
 
@@ -282,10 +282,8 @@ basicAuth.setPassword("YOUR PASSWORD");
 RecordsApi apiInstance = new RecordsApi();
 UUID recordId = new UUID(); // UUID | recordId
 String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
-List<String> fieldsToAnonymize = Arrays.asList("fieldsToAnonymize_example"); // List<String> | fieldsToAnonymize
-UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
 try {
-    apiInstance.getRecordBinaryContent(recordId, actorId, fieldsToAnonymize, pseudonymizationKeyId);
+    apiInstance.getRecordBinaryContent(recordId, actorId);
 } catch (ApiException e) {
     System.err.println("Exception when calling RecordsApi#getRecordBinaryContent");
     e.printStackTrace();
@@ -298,8 +296,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **recordId** | [**UUID**](.md)| recordId |
  **actorId** | **String**| Optional ID of the actor that performed the action. If not supplied, it can be inferred | [optional]
- **fieldsToAnonymize** | [**List&lt;String&gt;**](String.md)| fieldsToAnonymize | [optional]
- **pseudonymizationKeyId** | [**UUID**](.md)| pseudonymizationKeyId | [optional]
 
 ### Return type
 
@@ -622,7 +618,7 @@ RecordsApi apiInstance = new RecordsApi();
 UUID ownerId = new UUID(); // UUID | ownerId
 UUID recordId = new UUID(); // UUID | recordId
 String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
-String visibilityLevel = "PUBLIC"; // String | visibilityLevel
+VisibilityLevelEnum visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
     Record result = apiInstance.updateRecordOwner(ownerId, recordId, actorId, visibilityLevel);
     System.out.println(result);

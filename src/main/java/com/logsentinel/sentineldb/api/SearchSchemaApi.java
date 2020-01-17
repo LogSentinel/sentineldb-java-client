@@ -1,28 +1,24 @@
 package com.logsentinel.sentineldb.api;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import com.logsentinel.sentineldb.ApiException;
+import com.logsentinel.sentineldb.ApiClient;
+import com.logsentinel.sentineldb.ApiResponse;
+import com.logsentinel.sentineldb.Configuration;
+import com.logsentinel.sentineldb.Pair;
 
 import javax.ws.rs.core.GenericType;
 
-import com.logsentinel.sentineldb.ApiClient;
-import com.logsentinel.sentineldb.ApiException;
-import com.logsentinel.sentineldb.Configuration;
-import com.logsentinel.sentineldb.Pair;
-import com.logsentinel.sentineldb.model.SchemaField;
 import com.logsentinel.sentineldb.model.SearchSchema;
 import com.logsentinel.sentineldb.model.SearchSchema.EntityTypeEnum;
 import com.logsentinel.sentineldb.model.SearchSchemaField;
 import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
+
+import java.util.UUID;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class SearchSchemaApi {
@@ -57,6 +53,22 @@ public class SearchSchemaApi {
    * @throws ApiException if fails to make API call
    */
   public Object addSearchSchemaField(String field, UUID id, Boolean analyzed, Boolean incrementVersion, Boolean indexed, VisibilityLevelEnum visibility) throws ApiException {
+    return addSearchSchemaFieldWithHttpInfo(field, id, analyzed, incrementVersion, indexed, visibility).getData();
+      }
+
+  /**
+   * Add field to search schema
+   * 
+   * @param field field (required)
+   * @param id id (required)
+   * @param analyzed analyzed (optional, default to false)
+   * @param incrementVersion incrementVersion (optional, default to true)
+   * @param indexed indexed (optional, default to true)
+   * @param visibility visibility (optional, default to PUBLIC)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> addSearchSchemaFieldWithHttpInfo(String field, UUID id, Boolean analyzed, Boolean incrementVersion, Boolean indexed, VisibilityLevelEnum visibility) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'field' is set
@@ -109,6 +121,18 @@ public class SearchSchemaApi {
    * @throws ApiException if fails to make API call
    */
   public void changeVisibility(UUID id, Object visibility) throws ApiException {
+
+    changeVisibilityWithHttpInfo(id, visibility);
+  }
+
+  /**
+   * Create/Update visibility restrictions of schema
+   * 
+   * @param id id (required)
+   * @param visibility visibility (required)
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> changeVisibilityWithHttpInfo(UUID id, Object visibility) throws ApiException {
     Object localVarPostBody = visibility;
     
     // verify the required parameter 'id' is set
@@ -146,7 +170,7 @@ public class SearchSchemaApi {
     String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
 
-    apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
   /**
    * Clears visibility restrictions of schema
@@ -155,6 +179,17 @@ public class SearchSchemaApi {
    * @throws ApiException if fails to make API call
    */
   public void clearVisibilityRestrictions(UUID id) throws ApiException {
+
+    clearVisibilityRestrictionsWithHttpInfo(id);
+  }
+
+  /**
+   * Clears visibility restrictions of schema
+   * 
+   * @param id id (required)
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> clearVisibilityRestrictionsWithHttpInfo(UUID id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -184,28 +219,25 @@ public class SearchSchemaApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
 
-    apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
   /**
    * Create search schema
    * Creates a search schema. A search schema is required for indexing and searching records and users. Only fields that are part of the schema are indexed and searcheable.
    * @param datastoreId datastoreId (required)
-   * @param entityClass entityClass (required)
    * @param entityType entityType (required)
+   * @param fields fields (required)
    * @param name name (optional)
-   * @param <T> the type of the entity
+   * @param recordType recordType (optional)
    * @return SearchSchema
    * @throws ApiException if fails to make API call
    */
-  
-  public <T> SearchSchema createSearchSchema(UUID datastoreId, Class<T> entityClass, EntityTypeEnum entityType, String name) throws ApiException {
-      String recordType = entityType == EntityTypeEnum.RECORD ? entityClass.getSimpleName() : "";
-      List<SearchSchemaField> schemaFields = getSearchSchemaFields(entityClass);
-      return createSearchSchema(datastoreId, entityType, schemaFields, recordType, name);
-  }
+  public SearchSchema createSearchSchema(UUID datastoreId, EntityTypeEnum entityType, List<SearchSchemaField> fields, String name, String recordType) throws ApiException {
+    return createSearchSchemaWithHttpInfo(datastoreId, entityType, fields, name, recordType).getData();
+      }
 
   /**
    * Create search schema
@@ -213,12 +245,12 @@ public class SearchSchemaApi {
    * @param datastoreId datastoreId (required)
    * @param entityType entityType (required)
    * @param fields fields (required)
-   * @param recordType recordType (optional)
    * @param name name (optional)
-   * @return SearchSchema
+   * @param recordType recordType (optional)
+   * @return ApiResponse&lt;SearchSchema&gt;
    * @throws ApiException if fails to make API call
    */
-  public SearchSchema createSearchSchema(UUID datastoreId, EntityTypeEnum entityType, List<SearchSchemaField> fields, String recordType, String name) throws ApiException {
+  public ApiResponse<SearchSchema> createSearchSchemaWithHttpInfo(UUID datastoreId, EntityTypeEnum entityType, List<SearchSchemaField> fields, String name, String recordType) throws ApiException {
     Object localVarPostBody = fields;
     
     // verify the required parameter 'datastoreId' is set
@@ -261,7 +293,7 @@ public class SearchSchemaApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
     GenericType<SearchSchema> localVarReturnType = new GenericType<SearchSchema>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -274,6 +306,17 @@ public class SearchSchemaApi {
    * @throws ApiException if fails to make API call
    */
   public Object deleteSearchSchema(UUID id) throws ApiException {
+    return deleteSearchSchemaWithHttpInfo(id).getData();
+      }
+
+  /**
+   * Delete search schema
+   * 
+   * @param id id (required)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> deleteSearchSchemaWithHttpInfo(UUID id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -303,7 +346,7 @@ public class SearchSchemaApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
     return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -317,6 +360,18 @@ public class SearchSchemaApi {
    * @throws ApiException if fails to make API call
    */
   public SearchSchema findSearchSchema(EntityTypeEnum entityType, String recordType) throws ApiException {
+    return findSearchSchemaWithHttpInfo(entityType, recordType).getData();
+      }
+
+  /**
+   * Get search schema
+   * 
+   * @param entityType entityType (required)
+   * @param recordType recordType (required)
+   * @return ApiResponse&lt;SearchSchema&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchSchema> findSearchSchemaWithHttpInfo(EntityTypeEnum entityType, String recordType) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'entityType' is set
@@ -356,8 +411,7 @@ public class SearchSchemaApi {
 
     GenericType<SearchSchema> localVarReturnType = new GenericType<SearchSchema>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-  }
-  
+      }
   /**
    * Get search schema
    * 
@@ -366,6 +420,17 @@ public class SearchSchemaApi {
    * @throws ApiException if fails to make API call
    */
   public SearchSchema getSearchSchema(UUID id) throws ApiException {
+    return getSearchSchemaWithHttpInfo(id).getData();
+      }
+
+  /**
+   * Get search schema
+   * 
+   * @param id id (required)
+   * @return ApiResponse&lt;SearchSchema&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchSchema> getSearchSchemaWithHttpInfo(UUID id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
@@ -395,7 +460,7 @@ public class SearchSchemaApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
     GenericType<SearchSchema> localVarReturnType = new GenericType<SearchSchema>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -409,6 +474,18 @@ public class SearchSchemaApi {
    * @throws ApiException if fails to make API call
    */
   public Object removeSearchSchemaField(String field, UUID id) throws ApiException {
+    return removeSearchSchemaFieldWithHttpInfo(field, id).getData();
+      }
+
+  /**
+   * Remove field from search schema
+   * 
+   * @param field field (required)
+   * @param id id (required)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> removeSearchSchemaFieldWithHttpInfo(String field, UUID id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'field' is set
@@ -444,74 +521,9 @@ public class SearchSchemaApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
-  }
-
-  public <T> void updateSearchSchema(UUID datastoreId, Class<T> entityClass, EntityTypeEnum entityType) {
-      String recordType = entityType == EntityTypeEnum.RECORD ? entityClass.getSimpleName() : "";
-      SearchSchema existingSchema = findSearchSchema(entityType, recordType);
-      if (existingSchema == null) {
-          createSearchSchema(datastoreId, entityClass, entityType, null);
-      } else {
-          List<SearchSchemaField> newSchemaFields = getSearchSchemaFields(entityClass);
-          List<SearchSchemaField> existingFields = existingSchema.getFields();
-          
-          Map<String, SearchSchemaField> newFieldsByName = newSchemaFields.stream()
-                  .collect(Collectors.toMap(SearchSchemaField::getName, Function.identity()));
-          
-          Map<String, SearchSchemaField> existingFieldsByName = existingFields.stream()
-                  .collect(Collectors.toMap(SearchSchemaField::getName, Function.identity()));
-          
-          Set<String> toAdd = new HashSet<>(newFieldsByName.keySet());
-          toAdd.removeAll(existingFieldsByName.keySet());
-          
-          Set<String> toRemove = new HashSet<>(existingFieldsByName.keySet());
-          toRemove.removeAll(newFieldsByName.keySet());
-          
-          for (String fieldName : toAdd) {
-              SearchSchemaField field = newFieldsByName.get(fieldName);
-              addSearchSchemaField(fieldName, existingSchema.getId(), 
-                      field.isAnalyzed(), field.isIndexed(), field.isIncrementVersion(), field.getVisibilityLevel());
-          }
-          
-          for (String fieldName : toRemove) {
-              removeSearchSchemaField(fieldName, existingSchema.getId());
-          }
       }
-            
-  }
-  
-  private static List<Field> getAllFieldsList(Class<?> cls) {
-      List<Field> allFields = new ArrayList<>();
-
-      for(Class<?> currentClass = cls; currentClass != null; currentClass = currentClass.getSuperclass()) {
-          Field[] declaredFields = currentClass.getDeclaredFields();
-          Collections.addAll(allFields, declaredFields);
-      }
-
-      return allFields;
-  }
-  
-  private <T> List<SearchSchemaField> getSearchSchemaFields(Class<T> entityClass) {
-      List<SearchSchemaField> schemaFields = new ArrayList<>();
-        List<Field> fields = getAllFieldsList(entityClass);
-        for (Field field : fields) {
-            SchemaField annotation = field.getAnnotation(SchemaField.class);
-            SearchSchemaField schemaField = new SearchSchemaField();
-            schemaField.setName(field.getName());
-            if (annotation != null) {
-                schemaField.setIndexed(annotation.indexed());
-                schemaField.setAnalyzed(annotation.analyzed());
-                schemaField.setVisibilityLevel(annotation.visibility());
-            } else {
-                schemaField.setIndexed(false);
-                schemaField.setVisibilityLevel(VisibilityLevelEnum.PUBLIC);
-            }
-            schemaFields.add(schemaField);
-        }
-      return schemaFields;
-  }
 }

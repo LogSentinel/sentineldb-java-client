@@ -52,6 +52,9 @@ public class User implements Serializable {
   @JsonProperty("password")
   private String password = null;
 
+  @JsonProperty("phoneNumber")
+  private String phoneNumber = null;
+
   @JsonProperty("pseudoId")
   private String pseudoId = null;
 
@@ -221,6 +224,24 @@ public class User implements Serializable {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public User phoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+    return this;
+  }
+
+   /**
+   * Get phoneNumber
+   * @return phoneNumber
+  **/
+  @ApiModelProperty(value = "")
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
   public User pseudoId(String pseudoId) {
@@ -399,6 +420,7 @@ public class User implements Serializable {
         Objects.equals(this.email, user.email) &&
         Objects.equals(this.id, user.id) &&
         Objects.equals(this.password, user.password) &&
+        Objects.equals(this.phoneNumber, user.phoneNumber) &&
         Objects.equals(this.pseudoId, user.pseudoId) &&
         Objects.equals(this.roles, user.roles) &&
         Objects.equals(this.status, user.status) &&
@@ -411,7 +433,7 @@ public class User implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributes, created, datastoreId, email, id, password, pseudoId, roles, status, systemRoles, twoFactorAuthEnabled, updated, username, version);
+    return Objects.hash(attributes, created, datastoreId, email, id, password, phoneNumber, pseudoId, roles, status, systemRoles, twoFactorAuthEnabled, updated, username, version);
   }
 
 
@@ -426,6 +448,7 @@ public class User implements Serializable {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    pseudoId: ").append(toIndentedString(pseudoId)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");

@@ -13,16 +13,15 @@
 
 package com.logsentinel.sentineldb.api;
 
-import com.logsentinel.sentineldb.ApiException;
-import com.logsentinel.sentineldb.model.Statement;
-import java.util.UUID;
-import org.junit.Test;
-import org.junit.Ignore;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
+import com.logsentinel.sentineldb.ApiException;
+import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
+import com.logsentinel.sentineldb.model.Statement;
 
 /**
  * API tests for SqlApi
@@ -44,7 +43,7 @@ public class SqlApiTest {
     @Test
     public void executeDeleteTest() throws ApiException {
         String query = null;
-        String visibilityLevel = null;
+        VisibilityLevelEnum visibilityLevel = null;
         Integer response = api.executeDelete(query, visibilityLevel);
 
         // TODO: test validations
@@ -77,7 +76,7 @@ public class SqlApiTest {
     @Test
     public void executeSelectTest() throws ApiException {
         String query = null;
-        String visibilityLevel = null;
+        VisibilityLevelEnum visibilityLevel = null;
         List<List<String>> response = api.executeSelect(query, visibilityLevel);
 
         // TODO: test validations
@@ -94,7 +93,7 @@ public class SqlApiTest {
     @Test
     public void executeUpdateTest() throws ApiException {
         String query = null;
-        String visibilityLevel = null;
+        VisibilityLevelEnum visibilityLevel = null;
         Integer response = api.executeUpdate(query, visibilityLevel);
 
         // TODO: test validations
@@ -111,7 +110,7 @@ public class SqlApiTest {
     @Test
     public void prepareDeleteStatementTest() throws ApiException {
         Statement statement = null;
-        String visibilityLevel = null;
+        VisibilityLevelEnum visibilityLevel = null;
         Integer response = api.prepareDeleteStatement(statement, visibilityLevel);
 
         // TODO: test validations
@@ -144,7 +143,7 @@ public class SqlApiTest {
     @Test
     public void prepareSelectStatementTest() throws ApiException {
         Statement statement = null;
-        String visibilityLevel = null;
+        VisibilityLevelEnum visibilityLevel = null;
         List<List<String>> response = api.prepareSelectStatement(statement, visibilityLevel);
 
         // TODO: test validations
@@ -161,7 +160,7 @@ public class SqlApiTest {
     @Test
     public void prepareUpdateStatementTest() throws ApiException {
         Statement statement = null;
-        String visibilityLevel = null;
+        VisibilityLevelEnum visibilityLevel = null;
         Integer response = api.prepareUpdateStatement(statement, visibilityLevel);
 
         // TODO: test validations

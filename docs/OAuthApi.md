@@ -96,7 +96,7 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 OAuthApi apiInstance = new OAuthApi();
-String visibilityLevel = "PRIVATE"; // String | visibilityLevel
+VisibilityLevelEnum visibilityLevel = "PRIVATE"; // String | visibilityLevel
 try {
     User result = apiInstance.getUserDetails(visibilityLevel);
     System.out.println(result);

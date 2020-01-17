@@ -2,8 +2,11 @@ package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.ApiClient;
+import com.logsentinel.sentineldb.ApiResponse;
 import com.logsentinel.sentineldb.Configuration;
 import com.logsentinel.sentineldb.Pair;
+
+import javax.ws.rs.core.GenericType;
 
 import com.logsentinel.sentineldb.model.BatchRequestItem;
 import java.util.UUID;
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public class BatchApi {
   private ApiClient apiClient;
@@ -40,6 +44,18 @@ public class BatchApi {
    * @throws ApiException if fails to make API call
    */
   public void batchDelete(List<BatchRequestItem> batchRequestItems, UUID datastoreId) throws ApiException {
+
+    batchDeleteWithHttpInfo(batchRequestItems, datastoreId);
+  }
+
+  /**
+   * Deletes a batch of entities. If an error occurs, all operations are rolled back
+   * 
+   * @param batchRequestItems batchRequestItems (required)
+   * @param datastoreId datastoreId (required)
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> batchDeleteWithHttpInfo(List<BatchRequestItem> batchRequestItems, UUID datastoreId) throws ApiException {
     Object localVarPostBody = batchRequestItems;
     
     // verify the required parameter 'batchRequestItems' is set
@@ -74,10 +90,10 @@ public class BatchApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
 
-    apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
   /**
    * Inserts a batch of entities. If an error occurs, all operations are rolled back
@@ -87,6 +103,18 @@ public class BatchApi {
    * @throws ApiException if fails to make API call
    */
   public void batchInsert(List<BatchRequestItem> batchRequestItems, UUID datastoreId) throws ApiException {
+
+    batchInsertWithHttpInfo(batchRequestItems, datastoreId);
+  }
+
+  /**
+   * Inserts a batch of entities. If an error occurs, all operations are rolled back
+   * 
+   * @param batchRequestItems batchRequestItems (required)
+   * @param datastoreId datastoreId (required)
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> batchInsertWithHttpInfo(List<BatchRequestItem> batchRequestItems, UUID datastoreId) throws ApiException {
     Object localVarPostBody = batchRequestItems;
     
     // verify the required parameter 'batchRequestItems' is set
@@ -124,6 +152,6 @@ public class BatchApi {
     String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
 
-    apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
 }

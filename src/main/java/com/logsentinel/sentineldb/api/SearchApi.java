@@ -2,6 +2,7 @@ package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.ApiClient;
+import com.logsentinel.sentineldb.ApiResponse;
 import com.logsentinel.sentineldb.Configuration;
 import com.logsentinel.sentineldb.Pair;
 
@@ -51,6 +52,22 @@ public class SearchApi {
    * @throws ApiException if fails to make API call
    */
   public Long countRecords(UUID datastoreId, Object request, String type, Long end, UUID ownerId, Long start) throws ApiException {
+    return countRecordsWithHttpInfo(datastoreId, request, type, end, ownerId, start).getData();
+      }
+
+  /**
+   * Count records
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param request request (required)
+   * @param type type (required)
+   * @param end end (optional)
+   * @param ownerId ownerId (optional)
+   * @param start start (optional, default to 0)
+   * @return ApiResponse&lt;Long&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Long> countRecordsWithHttpInfo(UUID datastoreId, Object request, String type, Long end, UUID ownerId, Long start) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set
@@ -110,6 +127,20 @@ public class SearchApi {
    * @throws ApiException if fails to make API call
    */
   public Long countUsers(UUID datastoreId, Object request, Long end, Long start) throws ApiException {
+    return countUsersWithHttpInfo(datastoreId, request, end, start).getData();
+      }
+
+  /**
+   * Count users
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param request request (required)
+   * @param end end (optional)
+   * @param start start (optional, default to 0)
+   * @return ApiResponse&lt;Long&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Long> countUsersWithHttpInfo(UUID datastoreId, Object request, Long end, Long start) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set
@@ -168,7 +199,28 @@ public class SearchApi {
    * @return List&lt;Record&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<Record> searchRecords(UUID datastoreId, Object request, String type, UUID ownerId, Long start, Long end, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, VisibilityLevelEnum visibilityLevel) throws ApiException {
+  public List<Record> searchRecords(UUID datastoreId, Map<String, String> request, String type, UUID ownerId, Long start, Long end, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, VisibilityLevelEnum visibilityLevel) throws ApiException {
+    return searchRecordsWithHttpInfo(datastoreId, request, type, end, fieldsToAnonymize, ownerId, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel).getData();
+      }
+
+  /**
+   * Search records
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param request request (required)
+   * @param type type (required)
+   * @param end end (optional)
+   * @param fieldsToAnonymize fieldsToAnonymize (optional)
+   * @param ownerId ownerId (optional)
+   * @param pageNumber pageNumber (optional, default to 0)
+   * @param pageSize pageSize (optional, default to 20)
+   * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
+   * @param start start (optional, default to 0)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
+   * @return ApiResponse&lt;List&lt;Record&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<Record>> searchRecordsWithHttpInfo(UUID datastoreId, Map<String, String> request, String type, Long end, List<String> fieldsToAnonymize, UUID ownerId, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Long start, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set
@@ -238,7 +290,27 @@ public class SearchApi {
    * @return List&lt;User&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<User> searchUsers(UUID datastoreId, Object request, Long start, Long end, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Boolean basicDataOnly, VisibilityLevelEnum visibilityLevel) throws ApiException {
+  public List<User> searchUsers(UUID datastoreId, Map<String, String> request, Long start, Long end, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Boolean basicDataOnly, VisibilityLevelEnum visibilityLevel) throws ApiException {
+    return searchUsersWithHttpInfo(datastoreId, request, basicDataOnly, end, fieldsToAnonymize, pageNumber, pageSize, pseudonymizationKeyId, start, visibilityLevel).getData();
+      }
+
+  /**
+   * Search users
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param request request (required)
+   * @param basicDataOnly Indicates whether only the basic data (ID, username and last update date) should be included in the response. (optional, default to false)
+   * @param end end (optional)
+   * @param fieldsToAnonymize fieldsToAnonymize (optional)
+   * @param pageNumber pageNumber (optional, default to 0)
+   * @param pageSize pageSize (optional, default to 20)
+   * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
+   * @param start start (optional, default to 0)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
+   * @return ApiResponse&lt;List&lt;User&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<User>> searchUsersWithHttpInfo(UUID datastoreId, Map<String, String> request, Boolean basicDataOnly, Long end, List<String> fieldsToAnonymize, Integer pageNumber, Integer pageSize, UUID pseudonymizationKeyId, Long start, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = request;
     
     // verify the required parameter 'datastoreId' is set

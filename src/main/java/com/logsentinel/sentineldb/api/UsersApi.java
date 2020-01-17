@@ -2,14 +2,16 @@ package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.ApiClient;
+import com.logsentinel.sentineldb.ApiResponse;
 import com.logsentinel.sentineldb.Configuration;
 import com.logsentinel.sentineldb.Pair;
 
 import javax.ws.rs.core.GenericType;
 
-import java.util.UUID;
-
+import com.logsentinel.sentineldb.model.ChangePasswordRequest;
 import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
+
+import java.util.UUID;
 import com.logsentinel.sentineldb.model.User;
 import com.logsentinel.sentineldb.model.UserRequest;
 
@@ -47,6 +49,18 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public Boolean addRole(String role, UUID userId) throws ApiException {
+    return addRoleWithHttpInfo(role, userId).getData();
+      }
+
+  /**
+   * Add role to user
+   * 
+   * @param role role (required)
+   * @param userId User identifier (required)
+   * @return ApiResponse&lt;Boolean&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Boolean> addRoleWithHttpInfo(String role, UUID userId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'role' is set
@@ -82,7 +96,7 @@ public class UsersApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
     GenericType<Boolean> localVarReturnType = new GenericType<Boolean>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -96,6 +110,18 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public Object anonymizeUser(UUID userId, String actorId) throws ApiException {
+    return anonymizeUserWithHttpInfo(userId, actorId).getData();
+      }
+
+  /**
+   * Anonymizes user
+   * Performs user anonymization by deleting all personal information from the user object, but keeping all the associated records. See &lt;a href&#x3D;\&quot;https://docs.sentineldb.io/en/latest/getting-started.html#anonymization\&quot;&gt;anonymization&lt;/a&gt; 
+   * @param userId User identifier (required)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> anonymizeUserWithHttpInfo(UUID userId, String actorId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'userId' is set
@@ -126,30 +152,36 @@ public class UsersApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
    * Change user password
-   * 
-   * @param newPassword newPassword (required)
-   * @param oldPassword oldPassword (required)
+   * Changes the user password after confirming the existing password
+   * @param request request (required)
    * @param userId User identifier (required)
    * @throws ApiException if fails to make API call
    */
-  public void changePassword(String newPassword, String oldPassword, UUID userId) throws ApiException {
-    Object localVarPostBody = null;
+  public void changePassword(ChangePasswordRequest request, UUID userId) throws ApiException {
+
+    changePasswordWithHttpInfo(request, userId);
+  }
+
+  /**
+   * Change user password
+   * Changes the user password after confirming the existing password
+   * @param request request (required)
+   * @param userId User identifier (required)
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> changePasswordWithHttpInfo(ChangePasswordRequest request, UUID userId) throws ApiException {
+    Object localVarPostBody = request;
     
-    // verify the required parameter 'newPassword' is set
-    if (newPassword == null) {
-      throw new ApiException(400, "Missing the required parameter 'newPassword' when calling changePassword");
-    }
-    
-    // verify the required parameter 'oldPassword' is set
-    if (oldPassword == null) {
-      throw new ApiException(400, "Missing the required parameter 'oldPassword' when calling changePassword");
+    // verify the required parameter 'request' is set
+    if (request == null) {
+      throw new ApiException(400, "Missing the required parameter 'request' when calling changePassword");
     }
     
     // verify the required parameter 'userId' is set
@@ -158,9 +190,7 @@ public class UsersApi {
     }
     
     // create path and map variables
-    String localVarPath = "/api/user/{userId}/changePassword/{newPassword}/{oldPassword}"
-      .replaceAll("\\{" + "newPassword" + "\\}", apiClient.escapeString(newPassword.toString()))
-      .replaceAll("\\{" + "oldPassword" + "\\}", apiClient.escapeString(oldPassword.toString()))
+    String localVarPath = "/api/user/{userId}/changePassword"
       .replaceAll("\\{" + "userId" + "\\}", apiClient.escapeString(userId.toString()));
 
     // query params
@@ -181,10 +211,10 @@ public class UsersApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth" };
 
 
-    apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
   /**
    * Confirms 2 factor authentication
@@ -195,6 +225,18 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public Object confirm2fa(Integer code, UUID userId) throws ApiException {
+    return confirm2faWithHttpInfo(code, userId).getData();
+      }
+
+  /**
+   * Confirms 2 factor authentication
+   * 
+   * @param code code (required)
+   * @param userId User identifier (required)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> confirm2faWithHttpInfo(Integer code, UUID userId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'code' is set
@@ -245,6 +287,19 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public User createUser(UUID datastoreId, UserRequest user, String actorId) throws ApiException {
+    return createUserWithHttpInfo(datastoreId, user, actorId).getData();
+      }
+
+  /**
+   * Creates a user
+   * Creates a new user by specifying basic email and/or username and a custom set of attributes (these attributes are normally equivallent to the other fields in a \&quot;users\&quot; table). Returns the ID of the new user which should be stored inside your database.
+   * @param datastoreId datastoreId (required)
+   * @param user user (required)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @return ApiResponse&lt;User&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<User> createUserWithHttpInfo(UUID datastoreId, UserRequest user, String actorId) throws ApiException {
     Object localVarPostBody = user;
     
     // verify the required parameter 'datastoreId' is set
@@ -294,6 +349,18 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public Object deleteUser(UUID userId, String actorId) throws ApiException {
+    return deleteUserWithHttpInfo(userId, actorId).getData();
+      }
+
+  /**
+   * Deletes an existing user
+   * Deletes a user. Note that this does not forget the user but simply marks the latest version of the user as deleted.
+   * @param userId User identifier (required)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> deleteUserWithHttpInfo(UUID userId, String actorId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'userId' is set
@@ -337,6 +404,17 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public Object disable2fa(UUID userId) throws ApiException {
+    return disable2faWithHttpInfo(userId).getData();
+      }
+
+  /**
+   * Disables 2 factor authentication
+   * 
+   * @param userId User identifier (required)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> disable2faWithHttpInfo(UUID userId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'userId' is set
@@ -379,6 +457,17 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public Object enroll2fa(UUID userId) throws ApiException {
+    return enroll2faWithHttpInfo(userId).getData();
+      }
+
+  /**
+   * Enrolls user to 2 factor authentication
+   * 
+   * @param userId User identifier (required)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> enroll2faWithHttpInfo(UUID userId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'userId' is set
@@ -422,6 +511,18 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public Object forgetUser(UUID userId, String actorId) throws ApiException {
+    return forgetUserWithHttpInfo(userId, actorId).getData();
+      }
+
+  /**
+   * Forgets user
+   * Executes \&quot;the right to be forgotten\&quot; on a specified user. Deletes all user data and associated records and keeps an audit trail of the \&quot;forget me\&quot; event.
+   * @param userId User identifier (required)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> forgetUserWithHttpInfo(UUID userId, String actorId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'userId' is set
@@ -469,6 +570,21 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public User getUser(UUID userId, String actorId, List<String> fieldsToAnonymize, UUID pseudonymizationKeyId, VisibilityLevelEnum visibilityLevel) throws ApiException {
+    return getUserWithHttpInfo(userId, actorId, fieldsToAnonymize, pseudonymizationKeyId, visibilityLevel).getData();
+      }
+
+  /**
+   * Gets user by id
+   * Retrieves a user by their ID. The ID is normally stored in a \&quot;users\&quot; table in your system. 
+   * @param userId User identifier (required)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @param fieldsToAnonymize fieldsToAnonymize (optional)
+   * @param pseudonymizationKeyId pseudonymizationKeyId (optional)
+   * @param visibilityLevel visibilityLevel (optional, default to PUBLIC)
+   * @return ApiResponse&lt;User&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<User> getUserWithHttpInfo(UUID userId, String actorId, List<String> fieldsToAnonymize, UUID pseudonymizationKeyId, VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'userId' is set
@@ -517,6 +633,19 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public User getUserVersion(UUID userId, Integer version, String actorId) throws ApiException {
+    return getUserVersionWithHttpInfo(userId, version, actorId).getData();
+      }
+
+  /**
+   * Gets concrete user version
+   * Retrieves a specific (older) version for a given user.
+   * @param userId User identifier (required)
+   * @param version version (required)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @return ApiResponse&lt;User&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<User> getUserVersionWithHttpInfo(UUID userId, Integer version, String actorId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'userId' is set
@@ -566,6 +695,17 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public List<Integer> getUserVersions(UUID userId) throws ApiException {
+    return getUserVersionsWithHttpInfo(userId).getData();
+      }
+
+  /**
+   * Gets all record versions by id
+   * Retrieves all the versions for a given user. Each version is a historical snapshot of the user object prior to each update.
+   * @param userId User identifier (required)
+   * @return ApiResponse&lt;List&lt;Integer&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<Integer>> getUserVersionsWithHttpInfo(UUID userId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'userId' is set
@@ -609,6 +749,18 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public String initiateResetPassword(UUID userId, Integer expiryHours) throws ApiException {
+    return initiateResetPasswordWithHttpInfo(userId, expiryHours).getData();
+      }
+
+  /**
+   * Initiates reset password
+   * 
+   * @param userId User identifier (required)
+   * @param expiryHours expiryHours (optional, default to 24)
+   * @return ApiResponse&lt;String&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<String> initiateResetPasswordWithHttpInfo(UUID userId, Integer expiryHours) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'userId' is set
@@ -653,6 +805,18 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public Boolean removeRole(String role, UUID userId) throws ApiException {
+    return removeRoleWithHttpInfo(role, userId).getData();
+      }
+
+  /**
+   * Remove user role
+   * 
+   * @param role role (required)
+   * @param userId User identifier (required)
+   * @return ApiResponse&lt;Boolean&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Boolean> removeRoleWithHttpInfo(String role, UUID userId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'role' is set
@@ -703,6 +867,19 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public User updateUser(UserRequest user, UUID userId, String actorId) throws ApiException {
+    return updateUserWithHttpInfo(user, userId, actorId).getData();
+      }
+
+  /**
+   * Updates user
+   * Updates a user&#39;s details. Note that this creates a newer version of the user, keeping the old value for historical reference.
+   * @param user user (required)
+   * @param userId User identifier (required)
+   * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
+   * @return ApiResponse&lt;User&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<User> updateUserWithHttpInfo(UserRequest user, UUID userId, String actorId) throws ApiException {
     Object localVarPostBody = user;
     
     // verify the required parameter 'user' is set
@@ -753,6 +930,19 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public Boolean validateResetPasswordToken(Long expiration, String resetToken, UUID userId) throws ApiException {
+    return validateResetPasswordTokenWithHttpInfo(expiration, resetToken, userId).getData();
+      }
+
+  /**
+   * Validates reset password token
+   * 
+   * @param expiration expiration (required)
+   * @param resetToken resetToken (required)
+   * @param userId User identifier (required)
+   * @return ApiResponse&lt;Boolean&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Boolean> validateResetPasswordTokenWithHttpInfo(Long expiration, String resetToken, UUID userId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'expiration' is set

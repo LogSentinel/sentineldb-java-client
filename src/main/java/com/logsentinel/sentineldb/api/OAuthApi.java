@@ -2,6 +2,7 @@ package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
 import com.logsentinel.sentineldb.ApiClient;
+import com.logsentinel.sentineldb.ApiResponse;
 import com.logsentinel.sentineldb.Configuration;
 import com.logsentinel.sentineldb.Pair;
 
@@ -51,6 +52,22 @@ public class OAuthApi {
    * @throws ApiException if fails to make API call
    */
   public OAuthToken getOAuthToken(String username, String password, UUID datastoreId, Integer code, String grantType, String scope) throws ApiException {
+    return getOAuthTokenWithHttpInfo(datastoreId, password, username, code, grantType, scope).getData();
+      }
+
+  /**
+   * Obtain a token for a given username/password pair
+   * Obtains a token for a given username/password pair. This is the standard password grant flow of OAuth with additional support for 2-factor authentication. The obtaind token can then be used to access API endpoints for the particular user (i.e. User and Record endpoints) 
+   * @param datastoreId datastoreId (required)
+   * @param password password (required)
+   * @param username username (required)
+   * @param code code (optional, default to 0)
+   * @param grantType An OAuth grant type. Only \&quot;password\&quot; is supported. (optional, default to password)
+   * @param scope An optional OAuth scope parameter. Client code can pass any scope. When making further API calls, the scope is checked against the scope with which the token was created. (optional)
+   * @return ApiResponse&lt;OAuthToken&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<OAuthToken> getOAuthTokenWithHttpInfo(UUID datastoreId, String password, String username, Integer code, String grantType, String scope) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'datastoreId' is set
@@ -108,6 +125,17 @@ public class OAuthApi {
    * @throws ApiException if fails to make API call
    */
   public User getUserDetails(VisibilityLevelEnum visibilityLevel) throws ApiException {
+    return getUserDetailsWithHttpInfo(visibilityLevel).getData();
+      }
+
+  /**
+   * Obtain the user details for the currently authenticated user
+   * 
+   * @param visibilityLevel visibilityLevel (optional, default to PRIVATE)
+   * @return ApiResponse&lt;User&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<User> getUserDetailsWithHttpInfo(VisibilityLevelEnum visibilityLevel) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
@@ -118,7 +146,7 @@ public class OAuthApi {
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel.toString()));
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "visibilityLevel", visibilityLevel));
 
     
     
@@ -145,6 +173,17 @@ public class OAuthApi {
    * @throws ApiException if fails to make API call
    */
   public String invalidateOAuthToken(String token) throws ApiException {
+    return invalidateOAuthTokenWithHttpInfo(token).getData();
+      }
+
+  /**
+   * Obtain a token for a given username/password pair
+   * 
+   * @param token token (required)
+   * @return ApiResponse&lt;String&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<String> invalidateOAuthTokenWithHttpInfo(String token) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'token' is set

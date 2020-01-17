@@ -5,14 +5,14 @@ All URIs are relative to *https://localhost:8090*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addRole**](UsersApi.md#addRole) | **POST** /api/user/{userId}/addRole/{role} | Add role to user
-[**anonymizeUser**](UsersApi.md#anonymizeUser) | **PUT** /api/user/anonymize/{userId} | Anonymizes user
-[**changePassword**](UsersApi.md#changePassword) | **POST** /api/user/{userId}/changePassword/{newPassword}/{oldPassword} | Change user password
-[**confirm2fa**](UsersApi.md#confirm2fa) | **PUT** /api/user/{userId}/2fa/confirm | Confirms 2 factor authentication
+[**anonymizeUser**](UsersApi.md#anonymizeUser) | **POST** /api/user/anonymize/{userId} | Anonymizes user
+[**changePassword**](UsersApi.md#changePassword) | **POST** /api/user/{userId}/changePassword | Change user password
+[**confirm2fa**](UsersApi.md#confirm2fa) | **POST** /api/user/{userId}/2fa/confirm | Confirms 2 factor authentication
 [**createUser**](UsersApi.md#createUser) | **POST** /api/user/datastore/{datastoreId} | Creates a user
 [**deleteUser**](UsersApi.md#deleteUser) | **DELETE** /api/user/{userId} | Deletes an existing user
-[**disable2fa**](UsersApi.md#disable2fa) | **PUT** /api/user/{userId}/2fa/disable | Disables 2 factor authentication
-[**enroll2fa**](UsersApi.md#enroll2fa) | **PUT** /api/user/{userId}/2fa/enroll | Enrolls user to 2 factor authentication
-[**forgetUser**](UsersApi.md#forgetUser) | **PUT** /api/user/forget/{userId} | Forgets user
+[**disable2fa**](UsersApi.md#disable2fa) | **POST** /api/user/{userId}/2fa/disable | Disables 2 factor authentication
+[**enroll2fa**](UsersApi.md#enroll2fa) | **POST** /api/user/{userId}/2fa/enroll | Enrolls user to 2 factor authentication
+[**forgetUser**](UsersApi.md#forgetUser) | **POST** /api/user/forget/{userId} | Forgets user
 [**getUser**](UsersApi.md#getUser) | **GET** /api/user/{userId} | Gets user by id
 [**getUserVersion**](UsersApi.md#getUserVersion) | **GET** /api/user/{userId}/versions/{version} | Gets concrete user version
 [**getUserVersions**](UsersApi.md#getUserVersions) | **GET** /api/user/{userId}/versions | Gets all record versions by id
@@ -134,9 +134,11 @@ Name | Type | Description  | Notes
 
 <a name="changePassword"></a>
 # **changePassword**
-> changePassword(newPassword, oldPassword, userId)
+> changePassword(request, userId)
 
 Change user password
+
+Changes the user password after confirming the existing password
 
 ### Example
 ```java
@@ -155,11 +157,10 @@ basicAuth.setUsername("YOUR USERNAME");
 basicAuth.setPassword("YOUR PASSWORD");
 
 UsersApi apiInstance = new UsersApi();
-String newPassword = "newPassword_example"; // String | newPassword
-String oldPassword = "oldPassword_example"; // String | oldPassword
+ChangePasswordRequest request = new ChangePasswordRequest(); // ChangePasswordRequest | request
 UUID userId = new UUID(); // UUID | User identifier
 try {
-    apiInstance.changePassword(newPassword, oldPassword, userId);
+    apiInstance.changePassword(request, userId);
 } catch (ApiException e) {
     System.err.println("Exception when calling UsersApi#changePassword");
     e.printStackTrace();
@@ -170,8 +171,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **newPassword** | **String**| newPassword |
- **oldPassword** | **String**| oldPassword |
+ **request** | [**ChangePasswordRequest**](ChangePasswordRequest.md)| request |
  **userId** | [**UUID**](.md)| User identifier |
 
 ### Return type
@@ -544,7 +544,7 @@ UUID userId = new UUID(); // UUID | User identifier
 String actorId = "actorId_example"; // String | Optional ID of the actor that performed the action. If not supplied, it can be inferred
 List<String> fieldsToAnonymize = Arrays.asList("fieldsToAnonymize_example"); // List<String> | fieldsToAnonymize
 UUID pseudonymizationKeyId = new UUID(); // UUID | pseudonymizationKeyId
-String visibilityLevel = "PUBLIC"; // String | visibilityLevel
+VisibilityLevelEnum visibilityLevel = "PUBLIC"; // String | visibilityLevel
 try {
     User result = apiInstance.getUser(userId, actorId, fieldsToAnonymize, pseudonymizationKeyId, visibilityLevel);
     System.out.println(result);

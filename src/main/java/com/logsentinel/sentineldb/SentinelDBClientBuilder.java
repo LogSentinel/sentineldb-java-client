@@ -25,7 +25,7 @@ public class SentinelDBClientBuilder {
     }
 
     public SentinelDBClient build() {
-        ApiClient apiClient = new ApiClient();
+        ApiClient apiClient = new ApiClient(false);
         if (basePath != null) {
             apiClient.setBasePath(basePath);
         }
