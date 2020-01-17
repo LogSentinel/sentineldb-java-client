@@ -1,5 +1,10 @@
 package com.logsentinel.sentineldb;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -25,6 +30,8 @@ import java.io.InputStream;
 
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.security.cert.X509Certificate;
+
 import org.glassfish.jersey.logging.LoggingFeature;
 import java.util.Collection;
 import java.util.Collections;
@@ -68,10 +75,12 @@ public class ApiClient {
   protected Map<String, List<String>> responseHeaders;
 
   protected DateFormat dateFormat;
+  
+  private boolean trustAll;
 
-  public ApiClient() {
+  public ApiClient(boolean trustAll) {
     json = new JSON();
-    httpClient = buildHttpClient(debugging);
+    httpClient = buildHttpClient(debugging, trustAll);
 
     this.dateFormat = new RFC3339DateFormat();
 
@@ -84,6 +93,7 @@ public class ApiClient {
     authentications.put("oAuth", new OAuth());
     // Prevent the authentications from being modified.
     authentications = Collections.unmodifiableMap(authentications);
+    this.trustAll = trustAll;
   }
 
   /**
@@ -255,7 +265,7 @@ public class ApiClient {
   public ApiClient setDebugging(boolean debugging) {
     this.debugging = debugging;
     // Rebuild HTTP Client according to the new "debugging" value.
-    this.httpClient = buildHttpClient(debugging);
+    this.httpClient = buildHttpClient(debugging, trustAll);
     return this;
   }
 
@@ -750,9 +760,10 @@ public class ApiClient {
   /**
    * Build the Client used to make HTTP requests.
    * @param debugging Debug setting
+ * @param trustAll 
    * @return Client
    */
-  protected Client buildHttpClient(boolean debugging) {
+  protected Client buildHttpClient(boolean debugging, boolean trustAll) {
     final ClientConfig clientConfig = new ClientConfig();
     clientConfig.register(MultiPartFeature.class);
     clientConfig.register(json);
@@ -765,7 +776,45 @@ public class ApiClient {
       java.util.logging.Logger.getLogger(LoggingFeature.DEFAULT_LOGGER_NAME).setLevel(java.util.logging.Level.ALL);
     }
     performAdditionalClientConfiguration(clientConfig);
-    return ClientBuilder.newClient(clientConfig);
+    ClientBuilder builder = ClientBuilder.newBuilder().withConfig(clientConfig);
+    if (trustAll) {
+        builder.sslContext(trustAllSslContext());
+        builder.hostnameVerifier(trustAllHostnameVerifier());
+    }
+    return builder.build();
+  }
+
+  private HostnameVerifier trustAllHostnameVerifier() {
+      // Create all-trusting host name verifier
+      HostnameVerifier allHostsValid = new HostnameVerifier() {
+          public boolean verify(String hostname, SSLSession session) {
+              return true;
+          }
+      };
+      return allHostsValid;
+  }
+
+  private SSLContext trustAllSslContext() {
+      try {
+          TrustManager[] trustAllCerts = new TrustManager[] {
+                  new X509TrustManager() {
+                      public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                          return null;
+                      }
+                      public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                      }
+                      public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                      }
+                  }
+              };
+       
+              // Install the all-trusting trust manager
+          SSLContext sc = SSLContext.getInstance("TLS");
+          sc.init(null, trustAllCerts, new java.security.SecureRandom());
+          return sc;
+      } catch (Exception ex) {
+          throw new RuntimeException(ex);
+      }
   }
 
   protected void performAdditionalClientConfiguration(ClientConfig clientConfig) {
