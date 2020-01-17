@@ -6,7 +6,7 @@
 	<artifactId>sentineldb-java-client</artifactId>
 	<packaging>jar</packaging>
 	<name>SentinelDB Java client</name>
-	<version>0.2.1-SNAPSHOT</version>
+	<version>0.2.2-SNAPSHOT</version>
 	<url>https://db.logsentinel.com/</url>
 	<description>Java Client for SentinelDB</description>
 	<prerequisites>
