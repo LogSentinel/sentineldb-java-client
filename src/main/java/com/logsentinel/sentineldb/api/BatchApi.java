@@ -6,8 +6,6 @@ import com.logsentinel.sentineldb.ApiResponse;
 import com.logsentinel.sentineldb.Configuration;
 import com.logsentinel.sentineldb.Pair;
 
-import javax.ws.rs.core.GenericType;
-
 import com.logsentinel.sentineldb.model.BatchRequestItem;
 import java.util.UUID;
 
@@ -90,7 +88,7 @@ public class BatchApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
 
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);

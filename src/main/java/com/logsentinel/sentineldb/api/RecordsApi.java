@@ -1,7 +1,6 @@
 package com.logsentinel.sentineldb.api;
 
 import com.logsentinel.sentineldb.ApiException;
-import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.logsentinel.sentineldb.ApiClient;
 import com.logsentinel.sentineldb.ApiResponse;
 import com.logsentinel.sentineldb.Configuration;
@@ -10,6 +9,8 @@ import com.logsentinel.sentineldb.Pair;
 import javax.ws.rs.core.GenericType;
 
 import java.io.File;
+import java.io.InputStream;
+
 import com.logsentinel.sentineldb.model.Record;
 import com.logsentinel.sentineldb.model.SearchSchemaField.VisibilityLevelEnum;
 
@@ -53,12 +54,20 @@ public class RecordsApi {
    */
   public Record createBinaryRecord(File body, UUID datastoreId, Object actorId, Object ownerId, Object type) throws ApiException {
     return createBinaryRecordWithHttpInfo(body, datastoreId, actorId, ownerId, type).getData();
-      }
+  }
+  
+  public Record createBinaryRecord(byte[] body, UUID datastoreId, Object actorId, Object ownerId, Object type) throws ApiException {
+      return createBinaryRecordWithHttpInfo(body, datastoreId, actorId, ownerId, type).getData();
+    }
+  
+  public Record createBinaryRecord(InputStream body, UUID datastoreId, Object actorId, Object ownerId, Object type) throws ApiException {
+      return createBinaryRecordWithHttpInfo(body, datastoreId, actorId, ownerId, type).getData();
+    }
 
   /**
    * Creates a binary record
    * 
-   * @param body body (required)
+   * @param body body (required) File, byte[] or InputStream
    * @param datastoreId datastoreId (required)
    * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
    * @param ownerId ownerId (optional)
@@ -66,7 +75,7 @@ public class RecordsApi {
    * @return ApiResponse&lt;Record&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Record> createBinaryRecordWithHttpInfo(File body, UUID datastoreId, Object actorId, Object ownerId, Object type) throws ApiException {
+  public ApiResponse<Record> createBinaryRecordWithHttpInfo(Object body, UUID datastoreId, Object actorId, Object ownerId, Object type) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'body' is set
@@ -109,7 +118,7 @@ if (type != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Record> localVarReturnType = new GenericType<Record>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -178,7 +187,7 @@ if (type != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Record> localVarReturnType = new GenericType<Record>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -234,7 +243,7 @@ if (type != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
     return apiClient.invokeAPI(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -299,7 +308,7 @@ if (type != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Record> localVarReturnType = new GenericType<Record>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -354,7 +363,7 @@ if (type != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
 
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
@@ -418,7 +427,7 @@ if (type != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Record> localVarReturnType = new GenericType<Record>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -471,7 +480,7 @@ if (type != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<List<Integer>> localVarReturnType = new GenericType<List<Integer>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -535,7 +544,7 @@ if (type != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
 
     return apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
@@ -597,7 +606,7 @@ if (type != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
 
     return apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
@@ -660,7 +669,7 @@ if (type != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Record> localVarReturnType = new GenericType<Record>() {};
     return apiClient.invokeAPI(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -727,7 +736,7 @@ if (type != null)
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Record> localVarReturnType = new GenericType<Record>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);

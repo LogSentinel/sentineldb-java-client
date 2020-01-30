@@ -96,7 +96,7 @@ public class UsersApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Boolean> localVarReturnType = new GenericType<Boolean>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -152,7 +152,7 @@ public class UsersApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Object> localVarReturnType = new GenericType<Object>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -211,7 +211,7 @@ public class UsersApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
 
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);

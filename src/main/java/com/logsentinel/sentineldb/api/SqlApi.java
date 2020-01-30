@@ -87,7 +87,7 @@ public class SqlApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Integer> localVarReturnType = new GenericType<Integer>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);

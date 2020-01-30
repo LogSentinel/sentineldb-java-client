@@ -111,7 +111,7 @@ public class SearchApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Long> localVarReturnType = new GenericType<Long>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
@@ -177,7 +177,7 @@ public class SearchApi {
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-    String[] localVarAuthNames = new String[] { "basicAuth" };
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<Long> localVarReturnType = new GenericType<Long>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
