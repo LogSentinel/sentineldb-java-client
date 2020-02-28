@@ -93,22 +93,28 @@ public class OAuthApi {
     Map<String, String> localVarHeaderParams = new HashMap<String, String>();
     Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "code", code));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "datastoreId", datastoreId));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "grant_type", grantType));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "password", password));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "scope", scope));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "username", username));
 
     
-    
+    if (code != null)
+      localVarFormParams.put("code", code);
+if (datastoreId != null)
+      localVarFormParams.put("datastoreId", datastoreId);
+if (grantType != null)
+      localVarFormParams.put("grant_type", grantType);
+if (password != null)
+      localVarFormParams.put("password", password);
+if (scope != null)
+      localVarFormParams.put("scope", scope);
+if (username != null)
+      localVarFormParams.put("username", username);
+
     final String[] localVarAccepts = {
       "application/json"
     };
     final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
 
     final String[] localVarContentTypes = {
-      "application/json"
+      "application/x-www-form-urlencoded"
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
