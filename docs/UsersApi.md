@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**deleteUser**](UsersApi.md#deleteUser) | **DELETE** /api/user/{userId} | Deletes an existing user
 [**disable2fa**](UsersApi.md#disable2fa) | **POST** /api/user/{userId}/2fa/disable | Disables 2 factor authentication
 [**enroll2fa**](UsersApi.md#enroll2fa) | **POST** /api/user/{userId}/2fa/enroll | Enrolls user to 2 factor authentication
+[**exportUserData**](UsersApi.md#exportUserData) | **GET** /api/user/{userId}/exportUserData | Gets all user records and user data
 [**forgetUser**](UsersApi.md#forgetUser) | **POST** /api/user/forget/{userId} | Forgets user
 [**getUser**](UsersApi.md#getUser) | **GET** /api/user/{userId} | Gets user by id
 [**getUserVersion**](UsersApi.md#getUserVersion) | **GET** /api/user/{userId}/versions/{version} | Gets concrete user version
@@ -457,6 +458,58 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="exportUserData"></a>
+# **exportUserData**
+> Object exportUserData(userId)
+
+Gets all user records and user data
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.UsersApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+UsersApi apiInstance = new UsersApi();
+UUID userId = new UUID(); // UUID | User identifier
+try {
+    Object result = apiInstance.exportUserData(userId);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UsersApi#exportUserData");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | [**UUID**](.md)| User identifier |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 <a name="forgetUser"></a>
