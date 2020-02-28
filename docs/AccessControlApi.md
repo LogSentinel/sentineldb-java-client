@@ -4,14 +4,14 @@ All URIs are relative to *https://localhost:8090*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](AccessControlApi.md#create) | **POST** /api/accessControl | Creates access control rule
-[**delete**](AccessControlApi.md#delete) | **DELETE** /api/accessControl/{id} | Deletes access control rule
-[**list**](AccessControlApi.md#list) | **GET** /api/accessControl | Lists access control rules of organization or filtered by datastore
+[**createACLRules**](AccessControlApi.md#createACLRules) | **POST** /api/accessControl | Creates access control rule
+[**deleteACLRule**](AccessControlApi.md#deleteACLRule) | **DELETE** /api/accessControl/{id} | Deletes access control rule
+[**listACLRules**](AccessControlApi.md#listACLRules) | **GET** /api/accessControl | Lists access control rules of organization or filtered by datastore
 
 
-<a name="create"></a>
-# **create**
-> UUID create(action, datastoreId, type, recordIds, recordType, roles)
+<a name="createACLRules"></a>
+# **createACLRules**
+> UUID createACLRules(action, datastoreId, type, recordIds, recordType, roles)
 
 Creates access control rule
 
@@ -39,10 +39,10 @@ List<UUID> recordIds = Arrays.asList(new UUID()); // List<UUID> | recordIds
 String recordType = "recordType_example"; // String | recordType
 List<String> roles = Arrays.asList("roles_example"); // List<String> | roles
 try {
-    UUID result = apiInstance.create(action, datastoreId, type, recordIds, recordType, roles);
+    UUID result = apiInstance.createACLRules(action, datastoreId, type, recordIds, recordType, roles);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling AccessControlApi#create");
+    System.err.println("Exception when calling AccessControlApi#createACLRules");
     e.printStackTrace();
 }
 ```
@@ -71,9 +71,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="delete"></a>
-# **delete**
-> delete(id)
+<a name="deleteACLRule"></a>
+# **deleteACLRule**
+> deleteACLRule(id)
 
 Deletes access control rule
 
@@ -96,9 +96,9 @@ basicAuth.setPassword("YOUR PASSWORD");
 AccessControlApi apiInstance = new AccessControlApi();
 UUID id = new UUID(); // UUID | id
 try {
-    apiInstance.delete(id);
+    apiInstance.deleteACLRule(id);
 } catch (ApiException e) {
-    System.err.println("Exception when calling AccessControlApi#delete");
+    System.err.println("Exception when calling AccessControlApi#deleteACLRule");
     e.printStackTrace();
 }
 ```
@@ -122,9 +122,9 @@ null (empty response body)
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="list"></a>
-# **list**
-> List&lt;AccessControl&gt; list(datastoreId)
+<a name="listACLRules"></a>
+# **listACLRules**
+> List&lt;AccessControl&gt; listACLRules(datastoreId)
 
 Lists access control rules of organization or filtered by datastore
 
@@ -147,10 +147,10 @@ basicAuth.setPassword("YOUR PASSWORD");
 AccessControlApi apiInstance = new AccessControlApi();
 UUID datastoreId = new UUID(); // UUID | datastoreId
 try {
-    List<AccessControl> result = apiInstance.list(datastoreId);
+    List<AccessControl> result = apiInstance.listACLRules(datastoreId);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling AccessControlApi#list");
+    System.err.println("Exception when calling AccessControlApi#listACLRules");
     e.printStackTrace();
 }
 ```

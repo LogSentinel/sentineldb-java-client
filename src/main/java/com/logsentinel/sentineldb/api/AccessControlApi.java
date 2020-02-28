@@ -48,8 +48,8 @@ public class AccessControlApi {
    * @return UUID
    * @throws ApiException if fails to make API call
    */
-  public UUID create(String action, UUID datastoreId, String type, List<UUID> recordIds, String recordType, List<String> roles) throws ApiException {
-    return createWithHttpInfo(action, datastoreId, type, recordIds, recordType, roles).getData();
+  public UUID createACLRules(String action, UUID datastoreId, String type, List<UUID> recordIds, String recordType, List<String> roles) throws ApiException {
+    return createACLRulesWithHttpInfo(action, datastoreId, type, recordIds, recordType, roles).getData();
       }
 
   /**
@@ -64,22 +64,22 @@ public class AccessControlApi {
    * @return ApiResponse&lt;UUID&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UUID> createWithHttpInfo(String action, UUID datastoreId, String type, List<UUID> recordIds, String recordType, List<String> roles) throws ApiException {
+  public ApiResponse<UUID> createACLRulesWithHttpInfo(String action, UUID datastoreId, String type, List<UUID> recordIds, String recordType, List<String> roles) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'action' is set
     if (action == null) {
-      throw new ApiException(400, "Missing the required parameter 'action' when calling create");
+      throw new ApiException(400, "Missing the required parameter 'action' when calling createACLRules");
     }
     
     // verify the required parameter 'datastoreId' is set
     if (datastoreId == null) {
-      throw new ApiException(400, "Missing the required parameter 'datastoreId' when calling create");
+      throw new ApiException(400, "Missing the required parameter 'datastoreId' when calling createACLRules");
     }
     
     // verify the required parameter 'type' is set
     if (type == null) {
-      throw new ApiException(400, "Missing the required parameter 'type' when calling create");
+      throw new ApiException(400, "Missing the required parameter 'type' when calling createACLRules");
     }
     
     // create path and map variables
@@ -120,9 +120,9 @@ public class AccessControlApi {
    * @param id id (required)
    * @throws ApiException if fails to make API call
    */
-  public void delete(UUID id) throws ApiException {
+  public void deleteACLRule(UUID id) throws ApiException {
 
-    deleteWithHttpInfo(id);
+    deleteACLRuleWithHttpInfo(id);
   }
 
   /**
@@ -131,12 +131,12 @@ public class AccessControlApi {
    * @param id id (required)
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> deleteWithHttpInfo(UUID id) throws ApiException {
+  public ApiResponse<Void> deleteACLRuleWithHttpInfo(UUID id) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'id' is set
     if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling delete");
+      throw new ApiException(400, "Missing the required parameter 'id' when calling deleteACLRule");
     }
     
     // create path and map variables
@@ -173,8 +173,8 @@ public class AccessControlApi {
    * @return List&lt;AccessControl&gt;
    * @throws ApiException if fails to make API call
    */
-  public List<AccessControl> list(UUID datastoreId) throws ApiException {
-    return listWithHttpInfo(datastoreId).getData();
+  public List<AccessControl> listACLRules(UUID datastoreId) throws ApiException {
+    return listACLRulesWithHttpInfo(datastoreId).getData();
       }
 
   /**
@@ -184,7 +184,7 @@ public class AccessControlApi {
    * @return ApiResponse&lt;List&lt;AccessControl&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<List<AccessControl>> listWithHttpInfo(UUID datastoreId) throws ApiException {
+  public ApiResponse<List<AccessControl>> listACLRulesWithHttpInfo(UUID datastoreId) throws ApiException {
     Object localVarPostBody = null;
     
     // create path and map variables
