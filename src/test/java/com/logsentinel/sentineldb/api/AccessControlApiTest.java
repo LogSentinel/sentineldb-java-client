@@ -49,7 +49,7 @@ public class AccessControlApiTest {
         List<UUID> recordIds = null;
         String recordType = null;
         List<String> roles = null;
-        UUID response = api.create(action, datastoreId, type, recordIds, recordType, roles);
+        UUID response = api.createACLRule(action, datastoreId, type, recordIds, recordType, roles);
 
         // TODO: test validations
     }
@@ -65,7 +65,7 @@ public class AccessControlApiTest {
     @Test
     public void deleteTest() throws ApiException {
         UUID id = null;
-        api.delete(id);
+        api.deleteACLRule(id);
 
         // TODO: test validations
     }
@@ -81,7 +81,7 @@ public class AccessControlApiTest {
     @Test
     public void listTest() throws ApiException {
         UUID datastoreId = null;
-        List<AccessControl> response = api.list(datastoreId);
+        List<AccessControl> response = api.listACLRules(datastoreId);
 
         // TODO: test validations
     }

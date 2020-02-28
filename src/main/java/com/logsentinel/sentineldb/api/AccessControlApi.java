@@ -48,7 +48,7 @@ public class AccessControlApi {
    * @return UUID
    * @throws ApiException if fails to make API call
    */
-  public UUID createACLRules(String action, UUID datastoreId, String type, List<UUID> recordIds, String recordType, List<String> roles) throws ApiException {
+  public UUID createACLRule(String action, UUID datastoreId, String type, List<UUID> recordIds, String recordType, List<String> roles) throws ApiException {
     return createACLRulesWithHttpInfo(action, datastoreId, type, recordIds, recordType, roles).getData();
       }
 
