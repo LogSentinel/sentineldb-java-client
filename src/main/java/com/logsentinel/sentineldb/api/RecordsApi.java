@@ -320,9 +320,9 @@ if (type != null)
    * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
    * @throws ApiException if fails to make API call
    */
-  public void getRecordBinaryContent(UUID recordId, String actorId) throws ApiException {
+  public byte[] getRecordBinaryContent(UUID recordId, String actorId) throws ApiException {
 
-    getRecordBinaryContentWithHttpInfo(recordId, actorId);
+    return getRecordBinaryContentWithHttpInfo(recordId, actorId).getData();
   }
 
   /**
@@ -332,7 +332,7 @@ if (type != null)
    * @param actorId Optional ID of the actor that performed the action. If not supplied, it can be inferred (optional)
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> getRecordBinaryContentWithHttpInfo(UUID recordId, String actorId) throws ApiException {
+  public ApiResponse<byte[]> getRecordBinaryContentWithHttpInfo(UUID recordId, String actorId) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'recordId' is set
@@ -365,9 +365,10 @@ if (type != null)
 
     String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
-
-    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
+    GenericType<byte[]> localVarReturnType = new GenericType<byte[]>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
   }
+  
   /**
    * Gets concrete record version
    * Retrieves a specific (older) version for a given record.
