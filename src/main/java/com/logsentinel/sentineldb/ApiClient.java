@@ -750,6 +750,8 @@ public class ApiClient {
             // e.printStackTrace();
           }
         }
+        message += " " + response.getStatus();
+        
         throw new ApiException(
           response.getStatus(),
           message,
