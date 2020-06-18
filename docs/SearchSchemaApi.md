@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**deleteSearchSchema**](SearchSchemaApi.md#deleteSearchSchema) | **DELETE** /api/search-schema/{id} | Delete search schema
 [**findSearchSchema**](SearchSchemaApi.md#findSearchSchema) | **GET** /api/search-schema/find | Get search schema
 [**getSearchSchema**](SearchSchemaApi.md#getSearchSchema) | **GET** /api/search-schema/{id} | Get search schema
+[**listSearchSchemas**](SearchSchemaApi.md#listSearchSchemas) | **GET** /api/search-schema/list | List all search schemas
 [**removeSearchSchemaField**](SearchSchemaApi.md#removeSearchSchemaField) | **POST** /api/search-schema/{id}/removeField/{field} | Remove field from search schema
 
 
@@ -390,6 +391,54 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SearchSchema**](SearchSchema.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="listSearchSchemas"></a>
+# **listSearchSchemas**
+> List&lt;SearchSchema&gt; listSearchSchemas()
+
+List all search schemas
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.SearchSchemaApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+SearchSchemaApi apiInstance = new SearchSchemaApi();
+try {
+    List<SearchSchema> result = apiInstance.listSearchSchemas();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling SearchSchemaApi#listSearchSchemas");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List&lt;SearchSchema&gt;**](SearchSchema.md)
 
 ### Authorization
 

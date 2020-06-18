@@ -14,11 +14,17 @@
 package com.logsentinel.sentineldb.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -26,11 +32,136 @@ import java.util.UUID;
  */
 
 public class Datastore {
+  @JsonProperty("autoAnonymizeInactiveDays")
+  private Integer autoAnonymizeInactiveDays = null;
+
+  @JsonProperty("bodySchemas")
+  private Map<String, String> bodySchemas = null;
+
+  @JsonProperty("created")
+  private OffsetDateTime created = null;
+
+  @JsonProperty("denyUserRegistration")
+  private Boolean denyUserRegistration = null;
+
   @JsonProperty("id")
   private UUID id = null;
 
+  @JsonProperty("inactiveUserStatuses")
+  private List<String> inactiveUserStatuses = null;
+
+  @JsonProperty("ipWhiteList")
+  private List<String> ipWhiteList = null;
+
+  @JsonProperty("key")
+  private byte[] key = null;
+
+  @JsonProperty("logsentinelApplicationId")
+  private UUID logsentinelApplicationId = null;
+
   @JsonProperty("name")
   private String name = null;
+
+  @JsonProperty("numberOfRequests")
+  private Integer numberOfRequests = null;
+
+  @JsonProperty("organizationId")
+  private UUID organizationId = null;
+
+  @JsonProperty("passwordRegex")
+  private String passwordRegex = null;
+
+  @JsonProperty("pseudoId")
+  private String pseudoId = null;
+
+  @JsonProperty("suppressNonSpecificQueryLimit")
+  private Boolean suppressNonSpecificQueryLimit = null;
+
+  @JsonProperty("updateLimitWarningTriggered")
+  private Boolean updateLimitWarningTriggered = null;
+
+  @JsonProperty("updated")
+  private OffsetDateTime updated = null;
+
+  public Datastore autoAnonymizeInactiveDays(Integer autoAnonymizeInactiveDays) {
+    this.autoAnonymizeInactiveDays = autoAnonymizeInactiveDays;
+    return this;
+  }
+
+   /**
+   * Get autoAnonymizeInactiveDays
+   * @return autoAnonymizeInactiveDays
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getAutoAnonymizeInactiveDays() {
+    return autoAnonymizeInactiveDays;
+  }
+
+  public void setAutoAnonymizeInactiveDays(Integer autoAnonymizeInactiveDays) {
+    this.autoAnonymizeInactiveDays = autoAnonymizeInactiveDays;
+  }
+
+  public Datastore bodySchemas(Map<String, String> bodySchemas) {
+    this.bodySchemas = bodySchemas;
+    return this;
+  }
+
+  public Datastore putBodySchemasItem(String key, String bodySchemasItem) {
+    if (this.bodySchemas == null) {
+      this.bodySchemas = new HashMap<>();
+    }
+    this.bodySchemas.put(key, bodySchemasItem);
+    return this;
+  }
+
+   /**
+   * Get bodySchemas
+   * @return bodySchemas
+  **/
+  @ApiModelProperty(value = "")
+  public Map<String, String> getBodySchemas() {
+    return bodySchemas;
+  }
+
+  public void setBodySchemas(Map<String, String> bodySchemas) {
+    this.bodySchemas = bodySchemas;
+  }
+
+  public Datastore created(OffsetDateTime created) {
+    this.created = created;
+    return this;
+  }
+
+   /**
+   * Get created
+   * @return created
+  **/
+  @ApiModelProperty(value = "")
+  public OffsetDateTime getCreated() {
+    return created;
+  }
+
+  public void setCreated(OffsetDateTime created) {
+    this.created = created;
+  }
+
+  public Datastore denyUserRegistration(Boolean denyUserRegistration) {
+    this.denyUserRegistration = denyUserRegistration;
+    return this;
+  }
+
+   /**
+   * Get denyUserRegistration
+   * @return denyUserRegistration
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isDenyUserRegistration() {
+    return denyUserRegistration;
+  }
+
+  public void setDenyUserRegistration(Boolean denyUserRegistration) {
+    this.denyUserRegistration = denyUserRegistration;
+  }
 
   public Datastore id(UUID id) {
     this.id = id;
@@ -48,6 +179,94 @@ public class Datastore {
 
   public void setId(UUID id) {
     this.id = id;
+  }
+
+  public Datastore inactiveUserStatuses(List<String> inactiveUserStatuses) {
+    this.inactiveUserStatuses = inactiveUserStatuses;
+    return this;
+  }
+
+  public Datastore addInactiveUserStatusesItem(String inactiveUserStatusesItem) {
+    if (this.inactiveUserStatuses == null) {
+      this.inactiveUserStatuses = new ArrayList<>();
+    }
+    this.inactiveUserStatuses.add(inactiveUserStatusesItem);
+    return this;
+  }
+
+   /**
+   * Get inactiveUserStatuses
+   * @return inactiveUserStatuses
+  **/
+  @ApiModelProperty(value = "")
+  public List<String> getInactiveUserStatuses() {
+    return inactiveUserStatuses;
+  }
+
+  public void setInactiveUserStatuses(List<String> inactiveUserStatuses) {
+    this.inactiveUserStatuses = inactiveUserStatuses;
+  }
+
+  public Datastore ipWhiteList(List<String> ipWhiteList) {
+    this.ipWhiteList = ipWhiteList;
+    return this;
+  }
+
+  public Datastore addIpWhiteListItem(String ipWhiteListItem) {
+    if (this.ipWhiteList == null) {
+      this.ipWhiteList = new ArrayList<>();
+    }
+    this.ipWhiteList.add(ipWhiteListItem);
+    return this;
+  }
+
+   /**
+   * Get ipWhiteList
+   * @return ipWhiteList
+  **/
+  @ApiModelProperty(value = "")
+  public List<String> getIpWhiteList() {
+    return ipWhiteList;
+  }
+
+  public void setIpWhiteList(List<String> ipWhiteList) {
+    this.ipWhiteList = ipWhiteList;
+  }
+
+  public Datastore key(byte[] key) {
+    this.key = key;
+    return this;
+  }
+
+   /**
+   * Get key
+   * @return key
+  **/
+  @ApiModelProperty(value = "")
+  public byte[] getKey() {
+    return key;
+  }
+
+  public void setKey(byte[] key) {
+    this.key = key;
+  }
+
+  public Datastore logsentinelApplicationId(UUID logsentinelApplicationId) {
+    this.logsentinelApplicationId = logsentinelApplicationId;
+    return this;
+  }
+
+   /**
+   * Get logsentinelApplicationId
+   * @return logsentinelApplicationId
+  **/
+  @ApiModelProperty(value = "")
+  public UUID getLogsentinelApplicationId() {
+    return logsentinelApplicationId;
+  }
+
+  public void setLogsentinelApplicationId(UUID logsentinelApplicationId) {
+    this.logsentinelApplicationId = logsentinelApplicationId;
   }
 
   public Datastore name(String name) {
@@ -68,6 +287,132 @@ public class Datastore {
     this.name = name;
   }
 
+  public Datastore numberOfRequests(Integer numberOfRequests) {
+    this.numberOfRequests = numberOfRequests;
+    return this;
+  }
+
+   /**
+   * Get numberOfRequests
+   * @return numberOfRequests
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getNumberOfRequests() {
+    return numberOfRequests;
+  }
+
+  public void setNumberOfRequests(Integer numberOfRequests) {
+    this.numberOfRequests = numberOfRequests;
+  }
+
+  public Datastore organizationId(UUID organizationId) {
+    this.organizationId = organizationId;
+    return this;
+  }
+
+   /**
+   * Get organizationId
+   * @return organizationId
+  **/
+  @ApiModelProperty(value = "")
+  public UUID getOrganizationId() {
+    return organizationId;
+  }
+
+  public void setOrganizationId(UUID organizationId) {
+    this.organizationId = organizationId;
+  }
+
+  public Datastore passwordRegex(String passwordRegex) {
+    this.passwordRegex = passwordRegex;
+    return this;
+  }
+
+   /**
+   * Get passwordRegex
+   * @return passwordRegex
+  **/
+  @ApiModelProperty(value = "")
+  public String getPasswordRegex() {
+    return passwordRegex;
+  }
+
+  public void setPasswordRegex(String passwordRegex) {
+    this.passwordRegex = passwordRegex;
+  }
+
+  public Datastore pseudoId(String pseudoId) {
+    this.pseudoId = pseudoId;
+    return this;
+  }
+
+   /**
+   * Get pseudoId
+   * @return pseudoId
+  **/
+  @ApiModelProperty(value = "")
+  public String getPseudoId() {
+    return pseudoId;
+  }
+
+  public void setPseudoId(String pseudoId) {
+    this.pseudoId = pseudoId;
+  }
+
+  public Datastore suppressNonSpecificQueryLimit(Boolean suppressNonSpecificQueryLimit) {
+    this.suppressNonSpecificQueryLimit = suppressNonSpecificQueryLimit;
+    return this;
+  }
+
+   /**
+   * Get suppressNonSpecificQueryLimit
+   * @return suppressNonSpecificQueryLimit
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isSuppressNonSpecificQueryLimit() {
+    return suppressNonSpecificQueryLimit;
+  }
+
+  public void setSuppressNonSpecificQueryLimit(Boolean suppressNonSpecificQueryLimit) {
+    this.suppressNonSpecificQueryLimit = suppressNonSpecificQueryLimit;
+  }
+
+  public Datastore updateLimitWarningTriggered(Boolean updateLimitWarningTriggered) {
+    this.updateLimitWarningTriggered = updateLimitWarningTriggered;
+    return this;
+  }
+
+   /**
+   * Get updateLimitWarningTriggered
+   * @return updateLimitWarningTriggered
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isUpdateLimitWarningTriggered() {
+    return updateLimitWarningTriggered;
+  }
+
+  public void setUpdateLimitWarningTriggered(Boolean updateLimitWarningTriggered) {
+    this.updateLimitWarningTriggered = updateLimitWarningTriggered;
+  }
+
+  public Datastore updated(OffsetDateTime updated) {
+    this.updated = updated;
+    return this;
+  }
+
+   /**
+   * Get updated
+   * @return updated
+  **/
+  @ApiModelProperty(value = "")
+  public OffsetDateTime getUpdated() {
+    return updated;
+  }
+
+  public void setUpdated(OffsetDateTime updated) {
+    this.updated = updated;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -78,13 +423,28 @@ public class Datastore {
       return false;
     }
     Datastore datastore = (Datastore) o;
-    return Objects.equals(this.id, datastore.id) &&
-        Objects.equals(this.name, datastore.name);
+    return Objects.equals(this.autoAnonymizeInactiveDays, datastore.autoAnonymizeInactiveDays) &&
+        Objects.equals(this.bodySchemas, datastore.bodySchemas) &&
+        Objects.equals(this.created, datastore.created) &&
+        Objects.equals(this.denyUserRegistration, datastore.denyUserRegistration) &&
+        Objects.equals(this.id, datastore.id) &&
+        Objects.equals(this.inactiveUserStatuses, datastore.inactiveUserStatuses) &&
+        Objects.equals(this.ipWhiteList, datastore.ipWhiteList) &&
+        Arrays.equals(this.key, datastore.key) &&
+        Objects.equals(this.logsentinelApplicationId, datastore.logsentinelApplicationId) &&
+        Objects.equals(this.name, datastore.name) &&
+        Objects.equals(this.numberOfRequests, datastore.numberOfRequests) &&
+        Objects.equals(this.organizationId, datastore.organizationId) &&
+        Objects.equals(this.passwordRegex, datastore.passwordRegex) &&
+        Objects.equals(this.pseudoId, datastore.pseudoId) &&
+        Objects.equals(this.suppressNonSpecificQueryLimit, datastore.suppressNonSpecificQueryLimit) &&
+        Objects.equals(this.updateLimitWarningTriggered, datastore.updateLimitWarningTriggered) &&
+        Objects.equals(this.updated, datastore.updated);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(autoAnonymizeInactiveDays, bodySchemas, created, denyUserRegistration, id, inactiveUserStatuses, ipWhiteList, Arrays.hashCode(key), logsentinelApplicationId, name, numberOfRequests, organizationId, passwordRegex, pseudoId, suppressNonSpecificQueryLimit, updateLimitWarningTriggered, updated);
   }
 
 
@@ -93,8 +453,23 @@ public class Datastore {
     StringBuilder sb = new StringBuilder();
     sb.append("class Datastore {\n");
     
+    sb.append("    autoAnonymizeInactiveDays: ").append(toIndentedString(autoAnonymizeInactiveDays)).append("\n");
+    sb.append("    bodySchemas: ").append(toIndentedString(bodySchemas)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
+    sb.append("    denyUserRegistration: ").append(toIndentedString(denyUserRegistration)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    inactiveUserStatuses: ").append(toIndentedString(inactiveUserStatuses)).append("\n");
+    sb.append("    ipWhiteList: ").append(toIndentedString(ipWhiteList)).append("\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    logsentinelApplicationId: ").append(toIndentedString(logsentinelApplicationId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    numberOfRequests: ").append(toIndentedString(numberOfRequests)).append("\n");
+    sb.append("    organizationId: ").append(toIndentedString(organizationId)).append("\n");
+    sb.append("    passwordRegex: ").append(toIndentedString(passwordRegex)).append("\n");
+    sb.append("    pseudoId: ").append(toIndentedString(pseudoId)).append("\n");
+    sb.append("    suppressNonSpecificQueryLimit: ").append(toIndentedString(suppressNonSpecificQueryLimit)).append("\n");
+    sb.append("    updateLimitWarningTriggered: ").append(toIndentedString(updateLimitWarningTriggered)).append("\n");
+    sb.append("    updated: ").append(toIndentedString(updated)).append("\n");
     sb.append("}");
     return sb.toString();
   }

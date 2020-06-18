@@ -106,6 +106,59 @@ public class DatastoreApi {
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, null);
   }
   /**
+   * Create datastore
+   * 
+   * @param name name (required)
+   * @return Datastore
+   * @throws ApiException if fails to make API call
+   */
+  public Datastore createDatastore(String name) throws ApiException {
+    return createDatastoreWithHttpInfo(name).getData();
+      }
+
+  /**
+   * Create datastore
+   * 
+   * @param name name (required)
+   * @return ApiResponse&lt;Datastore&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Datastore> createDatastoreWithHttpInfo(String name) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling createDatastore");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/datastore";
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "name", name));
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+
+    GenericType<Datastore> localVarReturnType = new GenericType<Datastore>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
    * deleteSchema
    * 
    * @param datastoreId datastoreId (required)

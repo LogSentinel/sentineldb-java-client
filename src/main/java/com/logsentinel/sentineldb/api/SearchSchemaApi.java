@@ -466,6 +466,51 @@ public class SearchSchemaApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
+   * List all search schemas
+   * 
+   * @return List&lt;SearchSchema&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<SearchSchema> listSearchSchemas() throws ApiException {
+    return listSearchSchemasWithHttpInfo().getData();
+      }
+
+  /**
+   * List all search schemas
+   * 
+   * @return ApiResponse&lt;List&lt;SearchSchema&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<SearchSchema>> listSearchSchemasWithHttpInfo() throws ApiException {
+    Object localVarPostBody = null;
+    
+    // create path and map variables
+    String localVarPath = "/api/search-schema/list";
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+
+    GenericType<List<SearchSchema>> localVarReturnType = new GenericType<List<SearchSchema>>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
    * Remove field from search schema
    * 
    * @param field field (required)

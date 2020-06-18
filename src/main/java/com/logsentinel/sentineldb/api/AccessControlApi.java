@@ -49,7 +49,7 @@ public class AccessControlApi {
    * @throws ApiException if fails to make API call
    */
   public UUID createACLRule(String action, UUID datastoreId, String type, List<UUID> recordIds, String recordType, List<String> roles) throws ApiException {
-    return createACLRulesWithHttpInfo(action, datastoreId, type, recordIds, recordType, roles).getData();
+    return createACLRuleWithHttpInfo(action, datastoreId, type, recordIds, recordType, roles).getData();
       }
 
   /**
@@ -64,22 +64,22 @@ public class AccessControlApi {
    * @return ApiResponse&lt;UUID&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UUID> createACLRulesWithHttpInfo(String action, UUID datastoreId, String type, List<UUID> recordIds, String recordType, List<String> roles) throws ApiException {
+  public ApiResponse<UUID> createACLRuleWithHttpInfo(String action, UUID datastoreId, String type, List<UUID> recordIds, String recordType, List<String> roles) throws ApiException {
     Object localVarPostBody = null;
     
     // verify the required parameter 'action' is set
     if (action == null) {
-      throw new ApiException(400, "Missing the required parameter 'action' when calling createACLRules");
+      throw new ApiException(400, "Missing the required parameter 'action' when calling createACLRule");
     }
     
     // verify the required parameter 'datastoreId' is set
     if (datastoreId == null) {
-      throw new ApiException(400, "Missing the required parameter 'datastoreId' when calling createACLRules");
+      throw new ApiException(400, "Missing the required parameter 'datastoreId' when calling createACLRule");
     }
     
     // verify the required parameter 'type' is set
     if (type == null) {
-      throw new ApiException(400, "Missing the required parameter 'type' when calling createACLRules");
+      throw new ApiException(400, "Missing the required parameter 'type' when calling createACLRule");
     }
     
     // create path and map variables

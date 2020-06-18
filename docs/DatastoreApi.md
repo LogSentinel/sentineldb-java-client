@@ -5,11 +5,14 @@ All URIs are relative to *https://localhost:8090*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addOrUpdateSchema**](DatastoreApi.md#addOrUpdateSchema) | **POST** /api/datastore/{datastoreId}/schema/{type} | addOrUpdateSchema
+[**createDatastore**](DatastoreApi.md#createDatastore) | **POST** /api/datastore | Create datastore
 [**deleteSchema**](DatastoreApi.md#deleteSchema) | **DELETE** /api/datastore/{datastoreId}/schema/{type} | deleteSchema
 [**entitiesByIds**](DatastoreApi.md#entitiesByIds) | **GET** /api/datastore/{datastoreId}/entities/{type} | Gets a list of users or records by list of ids
+[**getDatastore**](DatastoreApi.md#getDatastore) | **GET** /api/datastore/{id} | Get datastore
 [**getRecordsByDatastore**](DatastoreApi.md#getRecordsByDatastore) | **GET** /api/datastore/{datastoreId}/records | Gets records by datastore with pagination
 [**getUsersByDatastore**](DatastoreApi.md#getUsersByDatastore) | **GET** /api/datastore/{datastoreId}/users | Gets users by datastore with pagination
 [**listDatastores**](DatastoreApi.md#listDatastores) | **GET** /api/datastore/list | Gets a list of datastores
+[**updateDatastore**](DatastoreApi.md#updateDatastore) | **POST** /api/datastore/update | Update datastore
 
 
 <a name="addOrUpdateSchema"></a>
@@ -66,6 +69,58 @@ null (empty response body)
 
  - **Content-Type**: application/json
  - **Accept**: */*
+
+<a name="createDatastore"></a>
+# **createDatastore**
+> Datastore createDatastore(name)
+
+Create datastore
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.DatastoreApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+DatastoreApi apiInstance = new DatastoreApi();
+String name = "name_example"; // String | name
+try {
+    Datastore result = apiInstance.createDatastore(name);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling DatastoreApi#createDatastore");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **String**| name |
+
+### Return type
+
+[**Datastore**](Datastore.md)
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 <a name="deleteSchema"></a>
 # **deleteSchema**
@@ -166,6 +221,58 @@ Name | Type | Description  | Notes
 ### Return type
 
 **List&lt;Object&gt;**
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getDatastore"></a>
+# **getDatastore**
+> Datastore getDatastore(id)
+
+Get datastore
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.DatastoreApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+DatastoreApi apiInstance = new DatastoreApi();
+UUID id = new UUID(); // UUID | id
+try {
+    Datastore result = apiInstance.getDatastore(id);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling DatastoreApi#getDatastore");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**UUID**](.md)| id |
+
+### Return type
+
+[**Datastore**](Datastore.md)
 
 ### Authorization
 
@@ -346,5 +453,57 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="updateDatastore"></a>
+# **updateDatastore**
+> Object updateDatastore(datastore)
+
+Update datastore
+
+### Example
+```java
+// Import classes:
+//import com.logsentinel.sentineldb.ApiClient;
+//import com.logsentinel.sentineldb.ApiException;
+//import com.logsentinel.sentineldb.Configuration;
+//import com.logsentinel.sentineldb.auth.*;
+//import com.logsentinel.sentineldb.api.DatastoreApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure HTTP basic authorization: basicAuth
+HttpBasicAuth basicAuth = (HttpBasicAuth) defaultClient.getAuthentication("basicAuth");
+basicAuth.setUsername("YOUR USERNAME");
+basicAuth.setPassword("YOUR PASSWORD");
+
+DatastoreApi apiInstance = new DatastoreApi();
+Datastore datastore = new Datastore(); // Datastore | datastore
+try {
+    Object result = apiInstance.updateDatastore(datastore);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling DatastoreApi#updateDatastore");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **datastore** | [**Datastore**](Datastore.md)| datastore |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[basicAuth](../README.md#basicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 

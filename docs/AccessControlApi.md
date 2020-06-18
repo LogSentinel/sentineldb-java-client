@@ -4,14 +4,14 @@ All URIs are relative to *https://localhost:8090*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createACLRules**](AccessControlApi.md#createACLRules) | **POST** /api/accessControl | Creates access control rule
+[**createACLRule**](AccessControlApi.md#createACLRule) | **POST** /api/accessControl | Creates access control rule
 [**deleteACLRule**](AccessControlApi.md#deleteACLRule) | **DELETE** /api/accessControl/{id} | Deletes access control rule
 [**listACLRules**](AccessControlApi.md#listACLRules) | **GET** /api/accessControl | Lists access control rules of organization or filtered by datastore
 
 
-<a name="createACLRules"></a>
-# **createACLRules**
-> UUID createACLRules(action, datastoreId, type, recordIds, recordType, roles)
+<a name="createACLRule"></a>
+# **createACLRule**
+> UUID createACLRule(action, datastoreId, type, recordIds, recordType, roles)
 
 Creates access control rule
 
@@ -39,10 +39,10 @@ List<UUID> recordIds = Arrays.asList(new UUID()); // List<UUID> | recordIds
 String recordType = "recordType_example"; // String | recordType
 List<String> roles = Arrays.asList("roles_example"); // List<String> | roles
 try {
-    UUID result = apiInstance.createACLRules(action, datastoreId, type, recordIds, recordType, roles);
+    UUID result = apiInstance.createACLRule(action, datastoreId, type, recordIds, recordType, roles);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling AccessControlApi#createACLRules");
+    System.err.println("Exception when calling AccessControlApi#createACLRule");
     e.printStackTrace();
 }
 ```
