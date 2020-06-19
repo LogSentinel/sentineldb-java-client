@@ -47,8 +47,17 @@ public class SentinelDBClientBuilder {
         SearchSchemaApi schemaApi = new SearchSchemaApi(apiClient);
         OAuthApi oAuthApi = new OAuthApi(apiClient);
         BatchApi batchApi = new BatchApi(apiClient);
+        TemplatesApi templatesApi = new TemplatesApi(apiClient);
+        MessageApi messageApi = new MessageApi(apiClient);
+        PseudonymizationApi pseudonymizationApi = new PseudonymizationApi(apiClient);
+        SqlApi sqlApi = new SqlApi(apiClient);
+        AccessControlApi accessControlApi = new AccessControlApi(apiClient);
         
-        SentinelDBClient client = new SentinelDBClient(datastoreApi, recordApi, userApi, searchApi, schemaApi, oAuthApi, batchApi);
+        ExternalEncryptionApi externalEncryptionApi = new ExternalEncryptionApi(apiClient);
+        
+        SentinelDBClient client = new SentinelDBClient(datastoreApi, recordApi, userApi, searchApi, 
+                schemaApi, oAuthApi, batchApi, templatesApi, messageApi, externalEncryptionApi,
+                pseudonymizationApi, sqlApi, accessControlApi);
         return client;
     }
 

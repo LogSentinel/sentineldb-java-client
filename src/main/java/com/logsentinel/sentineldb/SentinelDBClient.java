@@ -14,11 +14,18 @@ public class SentinelDBClient {
     private SearchSchemaApi schemaActions;
     private OAuthApi oAuthActions;
     private SentinelDBDao dao;
-    private BatchApi batchApi;
+    private BatchApi batchActions;
+    private TemplatesApi templatesActions;
+    private MessageApi messagesActions;
+    private ExternalEncryptionApi externalEncryptionActions;
+    private PseudonymizationApi pseudonymizationActions;
+    private SqlApi sqlActions;
+    private AccessControlApi accessControlActions;
     
     public SentinelDBClient(DatastoreApi datastoreActions, RecordsApi recordActions, UsersApi userActions,
-            SearchApi searchActions, SearchSchemaApi schemaActions, OAuthApi oAuthActions, BatchApi batchApi) {
-        super();
+            SearchApi searchActions, SearchSchemaApi schemaActions, OAuthApi oAuthActions, BatchApi batchActions,
+            TemplatesApi templatesActions, MessageApi messagesActions, ExternalEncryptionApi externalEncryptionActions, 
+            PseudonymizationApi pseudonymizationActions, SqlApi sqlActions, AccessControlApi accessControlActions) {
         this.datastoreActions = datastoreActions;
         this.recordActions = recordActions;
         this.userActions = userActions;
@@ -26,63 +33,64 @@ public class SentinelDBClient {
         this.schemaActions = schemaActions;
         this.oAuthActions = oAuthActions;
         this.dao = new SentinelDBDao(this);
-        this.batchApi = batchApi;
+        this.batchActions = batchActions;
+        this.templatesActions = templatesActions;
+        this.messagesActions = messagesActions;
+        this.externalEncryptionActions = externalEncryptionActions;
+        this.pseudonymizationActions = pseudonymizationActions;
+        this.sqlActions = sqlActions;
+        this.accessControlActions = accessControlActions;
     }
     
     public DatastoreApi getDatastoreActions() {
         return datastoreActions;
     }
-    public void setDatastoreActions(DatastoreApi datastoreActions) {
-        this.datastoreActions = datastoreActions;
-    }
     public RecordsApi getRecordActions() {
         return recordActions;
-    }
-    public void setRecordActions(RecordsApi recordActions) {
-        this.recordActions = recordActions;
     }
     public UsersApi getUserActions() {
         return userActions;
     }
-    public void setUserActions(UsersApi userActions) {
-        this.userActions = userActions;
-    }
     public SearchApi getSearchActions() {
         return searchActions;
     }
-    public void setSearchActions(SearchApi searchActions) {
-        this.searchActions = searchActions;
-    }
-
     public SearchSchemaApi getSchemaActions() {
         return schemaActions;
-    }
-
-    public void setSchemaActions(SearchSchemaApi schemaActions) {
-        this.schemaActions = schemaActions;
     }
 
     public OAuthApi getOAuthActions() {
         return oAuthActions;
     }
 
-    public void setOAuthActions(OAuthApi oAuthActions) {
-        this.oAuthActions = oAuthActions;
-    }
-
     public SentinelDBDao getDao() {
         return dao;
     }
 
-    public void setDao(SentinelDBDao dao) {
-        this.dao = dao;
+    public BatchApi getBatchActions() {
+        return batchActions;
     }
 
-    public BatchApi getBatchApi() {
-        return batchApi;
+    public TemplatesApi getTemplatesActions() {
+        return templatesActions;
     }
 
-    public void setBatchApi(BatchApi batchApi) {
-        this.batchApi = batchApi;
+    public MessageApi getMessagesActions() {
+        return messagesActions;
+    }
+
+    public ExternalEncryptionApi getExternalEncryptionActions() {
+        return externalEncryptionActions;
+    }
+
+    public PseudonymizationApi getPseudonymizationActions() {
+        return pseudonymizationActions;
+    }
+
+    public SqlApi getSqlActions() {
+        return sqlActions;
+    }
+
+    public AccessControlApi getAccessControlActions() {
+        return accessControlActions;
     }
 }
