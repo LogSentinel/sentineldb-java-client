@@ -43,14 +43,11 @@ public class ExternalEncryptionApi {
    * @param datastoreId datastoreId (required)
    * @param entityId entityId (required)
    * @param entityType entityType (required)
-   * @param id  (optional)
-   * @param organizationId  (optional)
-   * @param secret  (optional)
    * @return String
    * @throws ApiException if fails to make API call
    */
-  public String decryptData(String ciphertext, UUID datastoreId, String entityId, String entityType, UUID id, UUID organizationId, String secret) throws ApiException {
-    return decryptDataWithHttpInfo(ciphertext, datastoreId, entityId, entityType, id, organizationId, secret).getData();
+  public String decryptData(String ciphertext, UUID datastoreId, String entityId, String entityType) throws ApiException {
+    return decryptDataWithHttpInfo(ciphertext, datastoreId, entityId, entityType).getData();
       }
 
   /**
@@ -60,13 +57,10 @@ public class ExternalEncryptionApi {
    * @param datastoreId datastoreId (required)
    * @param entityId entityId (required)
    * @param entityType entityType (required)
-   * @param id  (optional)
-   * @param organizationId  (optional)
-   * @param secret  (optional)
    * @return ApiResponse&lt;String&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<String> decryptDataWithHttpInfo(String ciphertext, UUID datastoreId, String entityId, String entityType, UUID id, UUID organizationId, String secret) throws ApiException {
+  public ApiResponse<String> decryptDataWithHttpInfo(String ciphertext, UUID datastoreId, String entityId, String entityType) throws ApiException {
     Object localVarPostBody = ciphertext;
     
     // verify the required parameter 'ciphertext' is set
@@ -100,9 +94,6 @@ public class ExternalEncryptionApi {
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "datastoreId", datastoreId));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "entityId", entityId));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "entityType", entityType));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "id", id));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "organizationId", organizationId));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "secret", secret));
 
     
     
@@ -129,14 +120,11 @@ public class ExternalEncryptionApi {
    * @param entityType entityType (required)
    * @param fieldName fieldName (required)
    * @param payload payload (required)
-   * @param id  (optional)
-   * @param organizationId  (optional)
-   * @param secret  (optional)
    * @return ExternalEncryptionResult
    * @throws ApiException if fails to make API call
    */
-  public ExternalEncryptionResult encryptData(UUID datastoreId, String entityId, String entityType, String fieldName, String payload, UUID id, UUID organizationId, String secret) throws ApiException {
-    return encryptDataWithHttpInfo(datastoreId, entityId, entityType, fieldName, payload, id, organizationId, secret).getData();
+  public ExternalEncryptionResult encryptData(UUID datastoreId, String entityId, String entityType, String fieldName, String payload) throws ApiException {
+    return encryptDataWithHttpInfo(datastoreId, entityId, entityType, fieldName, payload).getData();
       }
 
   /**
@@ -147,13 +135,10 @@ public class ExternalEncryptionApi {
    * @param entityType entityType (required)
    * @param fieldName fieldName (required)
    * @param payload payload (required)
-   * @param id  (optional)
-   * @param organizationId  (optional)
-   * @param secret  (optional)
    * @return ApiResponse&lt;ExternalEncryptionResult&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ExternalEncryptionResult> encryptDataWithHttpInfo(UUID datastoreId, String entityId, String entityType, String fieldName, String payload, UUID id, UUID organizationId, String secret) throws ApiException {
+  public ApiResponse<ExternalEncryptionResult> encryptDataWithHttpInfo(UUID datastoreId, String entityId, String entityType, String fieldName, String payload) throws ApiException {
     Object localVarPostBody = payload;
     
     // verify the required parameter 'datastoreId' is set
@@ -193,9 +178,6 @@ public class ExternalEncryptionApi {
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "entityId", entityId));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "entityType", entityType));
     localVarQueryParams.addAll(apiClient.parameterToPairs("", "fieldName", fieldName));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "id", id));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "organizationId", organizationId));
-    localVarQueryParams.addAll(apiClient.parameterToPairs("", "secret", secret));
 
     
     

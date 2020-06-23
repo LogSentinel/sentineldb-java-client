@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="decryptData"></a>
 # **decryptData**
-> String decryptData(ciphertext, datastoreId, entityId, entityType, id, organizationId, secret)
+> String decryptData(ciphertext, datastoreId, entityId, entityType)
 
 Decrypt any data (represented as base64-encoded string) for a given entity type, id and datastore
 
@@ -35,11 +35,8 @@ String ciphertext = "ciphertext_example"; // String | ciphertext
 UUID datastoreId = new UUID(); // UUID | datastoreId
 String entityId = "entityId_example"; // String | entityId
 String entityType = "entityType_example"; // String | entityType
-UUID id = new UUID(); // UUID | 
-UUID organizationId = new UUID(); // UUID | 
-String secret = "secret_example"; // String | 
 try {
-    String result = apiInstance.decryptData(ciphertext, datastoreId, entityId, entityType, id, organizationId, secret);
+    String result = apiInstance.decryptData(ciphertext, datastoreId, entityId, entityType);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExternalEncryptionApi#decryptData");
@@ -55,9 +52,6 @@ Name | Type | Description  | Notes
  **datastoreId** | [**UUID**](.md)| datastoreId |
  **entityId** | **String**| entityId |
  **entityType** | **String**| entityType |
- **id** | [**UUID**](.md)|  | [optional]
- **organizationId** | [**UUID**](.md)|  | [optional]
- **secret** | **String**|  | [optional]
 
 ### Return type
 
@@ -74,7 +68,7 @@ Name | Type | Description  | Notes
 
 <a name="encryptData"></a>
 # **encryptData**
-> ExternalEncryptionResult encryptData(datastoreId, entityId, entityType, fieldName, payload, id, organizationId, secret)
+> ExternalEncryptionResult encryptData(datastoreId, entityId, entityType, fieldName, payload)
 
 Encrypt any data (represented as string) for a given entity type, id and datastore
 
@@ -100,11 +94,8 @@ String entityId = "entityId_example"; // String | entityId
 String entityType = "entityType_example"; // String | entityType
 String fieldName = "fieldName_example"; // String | fieldName
 String payload = "payload_example"; // String | payload
-UUID id = new UUID(); // UUID | 
-UUID organizationId = new UUID(); // UUID | 
-String secret = "secret_example"; // String | 
 try {
-    ExternalEncryptionResult result = apiInstance.encryptData(datastoreId, entityId, entityType, fieldName, payload, id, organizationId, secret);
+    ExternalEncryptionResult result = apiInstance.encryptData(datastoreId, entityId, entityType, fieldName, payload);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExternalEncryptionApi#encryptData");
@@ -121,9 +112,6 @@ Name | Type | Description  | Notes
  **entityType** | **String**| entityType |
  **fieldName** | **String**| fieldName |
  **payload** | **String**| payload |
- **id** | [**UUID**](.md)|  | [optional]
- **organizationId** | [**UUID**](.md)|  | [optional]
- **secret** | **String**|  | [optional]
 
 ### Return type
 
