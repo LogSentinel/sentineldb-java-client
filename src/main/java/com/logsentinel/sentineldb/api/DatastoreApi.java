@@ -288,6 +288,59 @@ public class DatastoreApi {
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
   /**
+   * Get datastore
+   * 
+   * @param id id (required)
+   * @return Datastore
+   * @throws ApiException if fails to make API call
+   */
+  public Datastore getDatastore(UUID id) throws ApiException {
+    return getDatastoreWithHttpInfo(id).getData();
+      }
+
+  /**
+   * Get datastore
+   * 
+   * @param id id (required)
+   * @return ApiResponse&lt;Datastore&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Datastore> getDatastoreWithHttpInfo(UUID id) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling getDatastore");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/datastore/{id}"
+      .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+
+    GenericType<Datastore> localVarReturnType = new GenericType<Datastore>() {};
+    return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
    * Gets records by datastore with pagination
    * 
    * @param datastoreId datastoreId (required)
@@ -467,5 +520,57 @@ public class DatastoreApi {
 
     GenericType<List<Datastore>> localVarReturnType = new GenericType<List<Datastore>>() {};
     return apiClient.invokeAPI(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Update datastore
+   * 
+   * @param datastore datastore (required)
+   * @return Object
+   * @throws ApiException if fails to make API call
+   */
+  public Object updateDatastore(Datastore datastore) throws ApiException {
+    return updateDatastoreWithHttpInfo(datastore).getData();
+      }
+
+  /**
+   * Update datastore
+   * 
+   * @param datastore datastore (required)
+   * @return ApiResponse&lt;Object&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Object> updateDatastoreWithHttpInfo(Datastore datastore) throws ApiException {
+    Object localVarPostBody = datastore;
+    
+    // verify the required parameter 'datastore' is set
+    if (datastore == null) {
+      throw new ApiException(400, "Missing the required parameter 'datastore' when calling updateDatastore");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/datastore/update";
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+
+    GenericType<Object> localVarReturnType = new GenericType<Object>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
 }
