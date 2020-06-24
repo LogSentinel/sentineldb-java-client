@@ -50,7 +50,7 @@ public class ExternalEncryptionApiTest {
         UUID id = null;
         UUID organizationId = null;
         String secret = null;
-        String response = api.decryptData(ciphertext, datastoreId, entityId, entityType, id, organizationId, secret);
+        String response = api.decryptData(ciphertext, datastoreId, entityId, entityType);
 
         // TODO: test validations
     }
@@ -73,7 +73,7 @@ public class ExternalEncryptionApiTest {
         UUID id = null;
         UUID organizationId = null;
         String secret = null;
-        ExternalEncryptionResult response = api.encryptData(datastoreId, entityId, entityType, fieldName, payload, id, organizationId, secret);
+        ExternalEncryptionResult response = api.encryptData(datastoreId, entityId, entityType, fieldName, payload);
 
         // TODO: test validations
     }
