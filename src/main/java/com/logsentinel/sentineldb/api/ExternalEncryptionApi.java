@@ -8,6 +8,8 @@ import com.logsentinel.sentineldb.Pair;
 
 import javax.ws.rs.core.GenericType;
 
+import com.logsentinel.sentineldb.model.BatchDecryptRequest;
+import com.logsentinel.sentineldb.model.BatchEncryptRequest;
 import com.logsentinel.sentineldb.model.ExternalEncryptionResult;
 import java.util.UUID;
 
@@ -36,6 +38,110 @@ public class ExternalEncryptionApi {
     this.apiClient = apiClient;
   }
 
+  /**
+   * Batch decrypt any data (represented as string) for a given entity type, id and datastore
+   * 
+   * @param request request (required)
+   * @return List&lt;String&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<String> batchDecrypt(List<BatchDecryptRequest> request) throws ApiException {
+    return batchDecryptWithHttpInfo(request).getData();
+      }
+
+  /**
+   * Batch decrypt any data (represented as string) for a given entity type, id and datastore
+   * 
+   * @param request request (required)
+   * @return ApiResponse&lt;List&lt;String&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<String>> batchDecryptWithHttpInfo(List<BatchDecryptRequest> request) throws ApiException {
+    Object localVarPostBody = request;
+    
+    // verify the required parameter 'request' is set
+    if (request == null) {
+      throw new ApiException(400, "Missing the required parameter 'request' when calling batchDecrypt");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/encryption/batch/decrypt";
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+
+    GenericType<List<String>> localVarReturnType = new GenericType<List<String>>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Batch encrypt any data (represented as string) for a given entity type, id and datastore
+   * 
+   * @param request request (required)
+   * @return List&lt;ExternalEncryptionResult&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<ExternalEncryptionResult> batchEncrypt(List<BatchEncryptRequest> request) throws ApiException {
+    return batchEncryptWithHttpInfo(request).getData();
+      }
+
+  /**
+   * Batch encrypt any data (represented as string) for a given entity type, id and datastore
+   * 
+   * @param request request (required)
+   * @return ApiResponse&lt;List&lt;ExternalEncryptionResult&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<ExternalEncryptionResult>> batchEncryptWithHttpInfo(List<BatchEncryptRequest> request) throws ApiException {
+    Object localVarPostBody = request;
+    
+    // verify the required parameter 'request' is set
+    if (request == null) {
+      throw new ApiException(400, "Missing the required parameter 'request' when calling batchEncrypt");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/encryption/batch/encrypt";
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+
+    
+    
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+
+    GenericType<List<ExternalEncryptionResult>> localVarReturnType = new GenericType<List<ExternalEncryptionResult>>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
   /**
    * Decrypt any data (represented as base64-encoded string) for a given entity type, id and datastore
    * 
@@ -194,6 +300,66 @@ public class ExternalEncryptionApi {
     String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
 
     GenericType<ExternalEncryptionResult> localVarReturnType = new GenericType<ExternalEncryptionResult>() {};
+    return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
+      }
+  /**
+   * Transform a given plaintext to a lookup key
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param plaintext plaintext (required)
+   * @return String
+   * @throws ApiException if fails to make API call
+   */
+  public String getLookupValue(UUID datastoreId, String plaintext) throws ApiException {
+    return getLookupValueWithHttpInfo(datastoreId, plaintext).getData();
+      }
+
+  /**
+   * Decrypt any data (represented as base64-encoded string) for a given entity type, id and datastore
+   * 
+   * @param datastoreId datastoreId (required)
+   * @param plaintext plaintext (required)
+   * @return ApiResponse&lt;String&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<String> getLookupValueWithHttpInfo(UUID datastoreId, String plaintext) throws ApiException {
+    Object localVarPostBody = plaintext;
+    
+    // verify the required parameter 'datastoreId' is set
+    if (datastoreId == null) {
+      throw new ApiException(400, "Missing the required parameter 'datastoreId' when calling getLookupValue");
+    }
+    
+    // verify the required parameter 'plaintext' is set
+    if (plaintext == null) {
+      throw new ApiException(400, "Missing the required parameter 'plaintext' when calling getLookupValue");
+    }
+    
+    // create path and map variables
+    String localVarPath = "/api/encryption/getLookupValue";
+
+    // query params
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    localVarQueryParams.addAll(apiClient.parameterToPairs("", "datastoreId", datastoreId));
+
+    
+    
+    final String[] localVarAccepts = {
+      "text/plain"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+
+    final String[] localVarContentTypes = {
+      "application/json"
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+
+    String[] localVarAuthNames = new String[] { "basicAuth", "oAuth" };
+
+    GenericType<String> localVarReturnType = new GenericType<String>() {};
     return apiClient.invokeAPI(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
       }
 }
